@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block body %}
+{% if user.is_staff %}
+  <div class="row">
+    <div class="col">
+      {% if form.errors %} <span class="text-danger">City already exists/Invalid text</span> {% endif %}
+      <form method="POST">
+        {% csrf_token %}
+        {{ form.name }}
+        <button type="submit">Add City</button>
+      </form>
+    </div>
+  </div>
+{% endif %}
+
+  <div class="weather-box text-center">
+      {% for city_weather in weather_data %}
+        <div class="card text-center m-2 d-inline-flex" style="width:18rem;">
+          <div class="card-header text-capitalize" >
+            {{ city_weather.city }}
+          </div>
+          <div class="card-body">
+            <img src="http://openweathermap.org/img/w/{{ city_weather.icon }}.png">
+            <h5 class="card-title">{{ city_weather.temperature }}&#186; F</h5>
+            <div class="card-text text-capitalize">{{ city_weather.description }}</div>
+          </div>
+        </div>
+        {% endfor %}
+  </div>
+
+{% endblock %}

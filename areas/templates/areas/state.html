@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load area_filters %}
+
+{% block body %}
+ <h2>This is the state page for {{ state.name }}!</h2>
+
+
+  {% if state.name|state_filter %}
+    {% for city in state.name|state_filter %}
+      {{ city.name }}
+    {% endfor %}
+  {% else %}
+    No cities here
+  {% endif %}
+
+
+{% endblock %}

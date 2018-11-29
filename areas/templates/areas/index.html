@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+
+{% block body %}
+{% load static %}
+
+ {% for state in state_list %}
+  <div class="card" style="width: 18rem;">
+    {% if state.img %}
+    <img class="card-img-top" src="{{ state.img.url }}" />
+    {% else %}
+    <h5>No image available</h5>
+    {% endif %}
+    <div class="card-body">
+      <h5 class="card-title">{{ state.name }}</h5>
+    </div>
+  </div>
+ {% endfor %}
+
+{% endblock %}

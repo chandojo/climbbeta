@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+{% if form.errors %}
+<span class="text-danger">Your username and password didn't match. Please try again.</span>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+    <p>Your account doesn't have access to this page. To proceed,
+    please login with an account that has access.</p>
+    {% else %}
+    <p>Please login to see this page.</p>
+    {% endif %}
+{% endif %}
+
+<form method="post" action="{% url 'members:login' %}">
+  {% csrf_token %}
+  <table class="table-borderless table-sm mx-auto m-3">
+    <tbody>
+      <tr class="form-group">
+        <td>{{ form.username.label_tag }}</td>
+        <td>{{ form.username }}</td>
+      </tr>
+
+      <tr>
+        <td>{{ form.password.label_tag }}</td>
+        <td>{{ form.password }}</td>
+      </tr>
+
+      <tr>
+        <td colspan="2" class="text-center"><button type="submit" class="btn btn-success">Login</button></td>
+      </tr>
+      <tr>
+        <td colspan="2" class="text-center"><a href="{% url 'members:signup' %}">Create Account</a></td>
+      </tr>
+    </tbody>
+  </table>
+  <input type="hidden" name="next" value="{{ next }}">
+</form>
+
+{% endblock %}
