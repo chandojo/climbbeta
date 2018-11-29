@@ -12,7 +12,7 @@
     <h5>No image available</h5>
     {% endif %}
     <div class="card-body">
-      <h5 class="card-title">{{ state.name }}</h5>
+      <a href="{% url 'areas:states' state.slug %}"><h5 class="card-title">{{ state.name }}</h5></a>
     </div>
   </div>
  {% endfor %}
