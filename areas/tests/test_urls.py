@@ -4,12 +4,12 @@ from django.test import TestCase
 from areas.models import State
 from django.utils.text import slugify
 
-class TestIndexPath(TestCase):
+class IndexPathTestCase(TestCase):
     def test_area_url_exists(self):
         response = self.client.get('/areas/')
         self.assertEqual(response.status_code, 200)
 
-class TestStatePath(TestCase):
+class StatePathTestCase(TestCase):
     def test_state_url_exists(self):
         state = State.objects.create(name='washington')
         slug = slugify(state.name)

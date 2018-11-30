@@ -4,12 +4,12 @@ from areas.models import State
 from django.utils.text import slugify
 
 
-class TestIndexView(TestCase):
+class IndexViewTestCase(TestCase):
     def test_view_template_match(self):
         response = self.client.get('/areas/')
         self.assertTemplateUsed(response, 'areas/index.html')
 
-class TestStateView(TestCase):
+class StateViewTestCase(TestCase):
     def test_view_template_match(self):
         state = State.objects.create(name='washington')
         slug = slugify(state.name)

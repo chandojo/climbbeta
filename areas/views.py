@@ -26,3 +26,11 @@ def state_view(request, slug):
     context = {'state':state, 'area_list':area_list, 'city_list':city_list, 'boulder_list':boulder_list}
 
     return render(request, template, context)
+
+def city_view(request, slug, state__slug):
+    city = get_object_or_404(City_Town, slug=slug, state__slug=state__slug)
+
+    area_list = Area.objects.all()
+    template = 'areas/city.html'
+    context = {'city':city, 'area_list':area_list}
+    return render(request, template, context)

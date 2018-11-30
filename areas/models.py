@@ -30,6 +30,9 @@ class City_Town(models.Model):
             self.slug = slugify(self.name)
         super(City_Town, self).save(*args, **kwargs)
 
+    def get_absolute_url(self):
+        return reverse('cities', kwargs={'slug':self.slug, 'state_slug':self.state.slug })
+
     def __str__(self):
         return self.name
 

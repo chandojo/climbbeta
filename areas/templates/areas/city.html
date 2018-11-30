@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load area_filters %}
+
+{% block body %}
+<h2>This is the city page for {{ city.name }}!</h2>
+
+
+{% if city.name|area_filter %}
+  {% for area in city.name|area_filter %}
+    {{ area.name }}
+  {% endfor %}
+{% else %}
+  No boulders here
+{% endif %}
+
+
+{% endblock %}
