@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic.detail import DetailView
+from django.views import View
 from django.http import HttpResponse
 from django.template import loader
 from areas.models import *
@@ -27,10 +28,12 @@ def state_view(request, slug):
 
     return render(request, template, context)
 
-def city_view(request, slug, state__slug):
-    city = get_object_or_404(City_Town, slug=slug, state__slug=state__slug)
-
-    area_list = Area.objects.all()
-    template = 'areas/city.html'
-    context = {'city':city, 'area_list':area_list}
-    return render(request, template, context)
+#class City_View(View):
+#    template = 'areas/city.html'
+#
+#    def city_view(request, slug, state__slug):
+#        city = get_object_or_404(City_Town, slug=slug, state__slug=state__slug)
+#        area_list = Area.objects.all()
+#        template = 'areas/city.html'
+#        context = {'city':city, 'area_list':area_list}
+#        return render(request, template, context)
