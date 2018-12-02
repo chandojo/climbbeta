@@ -5,8 +5,6 @@ from django.urls import reverse_lazy
 from .forms import *
 from .models import Member
 
-
-
 # Create your views here.
 def index(request):
     members = Member.objects.all()
