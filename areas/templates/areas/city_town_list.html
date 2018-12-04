@@ -4,14 +4,18 @@
 {% block body %}
 <h2>This is the state page for {{ state.name }}!</h2>
 
-
-{% if state.name|state_filter %}
-  {% for city in state.name|state_filter %}
+{% if cities %}
+  {% for city in cities %}
     <a href="{% url 'areas:cities' city.state.slug city.slug %}">{{ city.name }}</a>
   {% endfor %}
 {% else %}
   No cities here
 {% endif %}
 
+{% for city in cityWeather %}
+  {% for key, value in city.items %}
+    {{ value }}
+  {% endfor %}
+{% endfor %}
 
 {% endblock %}
