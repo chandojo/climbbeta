@@ -42,7 +42,6 @@ class State_View(ListView):
             r = requests.get(url.format(city)).json()
 
             city_weather = {
-                "city": city.name,
                 "temperature": r['main']['temp'],
                 "description": r['weather'][0]['description'],
                 "icon": r['weather'][0]['icon'],
