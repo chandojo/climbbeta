@@ -6,7 +6,7 @@ from django.views import View
 from django.http import HttpResponse
 from django.template import loader
 from areas.models import *
-from api.weather.api import url
+from api.weather import url
 
 # Create your views here.
 def index(request):
@@ -17,15 +17,6 @@ def index(request):
     context = {'state_list':state_list}
 
     return render(request, template, context)
-
-#def state_view(request,slug):
-#    template = 'areas/state.html'
-#    state = get_object_or_404(State, slug=slug)
-#    city_list = City_Town.objects.all()
-#    context = {'state':state,'city_list':city_list}
-#    return render(request, template, context)
-
-
 
 class State_View(ListView):
     template = 'areas/state.html'
