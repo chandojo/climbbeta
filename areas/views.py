@@ -19,7 +19,7 @@ def index(request):
     return render(request, template, context)
 
 class State_View(ListView):
-    template = 'areas/state.html'
+    template_name = 'areas/state.html'
 
     def get_queryset(self):
         self.state = get_object_or_404(State, slug=self.kwargs['slug'])
@@ -50,11 +50,14 @@ class State_View(ListView):
         context['weather_data'] = self.get_weather_data
         return context
 
+class City_View(ListView):
+    template_name = 'areas/city.html'
 
+    def get_queryset(self):
+        self.city = get_object_or_404(City_Town, slug=self.kwargs['slug'], state__slug=self.kwargs['state__slug'])
+        return Area.objects.filter(city_town__name=self.city)
 
-def city_view(request, slug, state__slug):
-    city = get_object_or_404(City_Town, slug=slug, state__slug=state__slug)
-    area_list = Area.objects.all()
-    template = 'areas/city.html'
-    context = {'city':city, 'area_list':area_list}
-    return render(request, template, context)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['areas'] = self.get_queryset
+        return context
