@@ -1,3 +1,4 @@
+import datetime
 import requests
 import vimeo
 
@@ -40,7 +41,6 @@ class State_View(ListView):
             }
 
             self.weather_data.append(city_weather)
-
         return self.weather_data
 
     def get_context_data(self, **kwargs):
@@ -84,6 +84,7 @@ class City_View(ListView):
             "temperature": r['main']['temp'],
             "description": r['weather'][0]['description'],
             "icon": r['weather'][0]['icon'],
+            "date": r['dt'],
         }
 
         return self.city_weather

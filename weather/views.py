@@ -1,4 +1,5 @@
 import requests
+
 from django import forms
 from django.shortcuts import render
 from .models import City
@@ -30,7 +31,7 @@ def index(request):
 
         weather_data.append(city_weather)
 
-    print(weather_data)
+    print(r)
 
     context = {'weather_data': weather_data, 'form':form}
     return render(request, 'weather/index.html', context)

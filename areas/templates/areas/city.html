@@ -2,17 +2,45 @@
 {% load area_filters %}
 
 {% block body %}
-<h2>This is the city page for {{ city.name }}!</h2>
+<div class="title">
+  <h2 class="text-uppercase display-4">{{ city.name }} <img src="http://openweathermap.org/img/w/{{ city_weather.icon }}.png"> </h2>
 
-{% for area in area_list %}
-  {{ area.name }}
-{% endfor %}
+</div>
+<div class="row">
+  <div class="col">
+    <div class="weather">
+      <h3>Today's weather </h3>
+      {% load tz %}
+      <h5> {{ city_weather.date|timezone:"America/Vancouver" }}</h5>
+      <h5>{% now "l, jS F Y h:iA" %}</h5>
+      <p clas="font-weight-bold">
+        {{ city_weather.temperature }}&#186; F
+      </p>
+      <p class="text-capitalize">
+        {{ city_weather.description}}
+      </p>
+    </div>
 
-{% for video in videos %}
-  {{ video.name }}
-  <img src="{{ video.picture }}" />
-{% endfor %}
+  </div>
 
-{{ city_weather.temperature }}
+  <div class="col">
+    {% for video in videos %}
+      <div class="card">
+        <img class="card-img-top" src="{{ video.picture }}" />
+        <div class="card-body">
+          <h5 class="card-title">{{ video.name }}</h5>
+          <p class="card-text">
+            {{ video.description|truncatechars:300 }}
+          </p>
+          <span>by <strong> {{ video.user }} </strong></span>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+</div>
+
+
+
 
 {% endblock %}
