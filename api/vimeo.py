@@ -1,4 +1,5 @@
-q = request.GET.get('q')
+import vimeo
+import os
 
 client = vimeo.VimeoClient(
        token=os.environ['VIMEO_ACCESS_TOKEN'],
@@ -7,5 +8,3 @@ client = vimeo.VimeoClient(
     )
 
 video_uri = '/videos?query={}&direction=desc&sort=plays&per_page=10'
-
-response = client.get(video_uri.format(q), params={"fields": "uri, name, description, embed, pictures, user" }).json()

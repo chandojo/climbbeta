@@ -4,9 +4,15 @@
 {% block body %}
 <h2>This is the city page for {{ city.name }}!</h2>
 
-{% for area in areas %}
+{% for area in area_list %}
   {{ area.name }}
 {% endfor %}
 
+{% for video in videos %}
+  {{ video.name }}
+  <img src="{{ video.picture }}" />
+{% endfor %}
+
+{{ city_weather.temperature }}
 
 {% endblock %}

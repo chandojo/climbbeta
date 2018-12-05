@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load area_filters %}
+
+{% block body %}
+ {% for video in videos %}
+   {{ video.uri }}
+ {% endfor %}
+
+{% endblock %}
