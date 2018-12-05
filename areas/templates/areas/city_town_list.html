@@ -4,18 +4,25 @@
 {% block body %}
 <h2>This is the state page for {{ state.name }}!</h2>
 
-{% if cities %}
-  {% for city in cities %}
-    <a href="{% url 'areas:cities' city.state.slug city.slug %}">{{ city.name }}</a>
-  {% endfor %}
-{% else %}
-  No cities here
-{% endif %}
+<div class="weather-box text-center">
+    {% for city_weather in weather_data %}
+      <div class="card text-center m-2 d-inline-flex" style="width:18rem;">
+        <div class="card-header text-capitalize" >
+          {% for city in cities %}
+            {% if city.name == city_weather.city %}
+            <a href="{% url 'areas:cities' city.state.slug city.slug %}">{{ city.name }}</a>
+            {% endif %}
+          {% endfor %}
+        </div>
+        <div class="card-body">
+          <img src="http://openweathermap.org/img/w/{{ city_weather.icon }}.png">
+          <h5 class="card-title">{{ city_weather.temperature }}&#186; F</h5>
+          <div class="card-text text-capitalize">{{ city_weather.description }}</div>
+        </div>
+      </div>
+      {% endfor %}
+</div>
 
-{% for city in cityWeather %}
-  {% for key, value in city.items %}
-    {{ value }}
-  {% endfor %}
-{% endfor %}
+
 
 {% endblock %}

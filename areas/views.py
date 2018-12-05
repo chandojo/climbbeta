@@ -42,6 +42,7 @@ class State_View(ListView):
             r = requests.get(url.format(city)).json()
 
             city_weather = {
+                "city": city.name,
                 "temperature": r['main']['temp'],
                 "description": r['weather'][0]['description'],
                 "icon": r['weather'][0]['icon'],
@@ -55,7 +56,7 @@ class State_View(ListView):
         context = super().get_context_data(**kwargs)
         context['state'] = self.state
         context['cities'] = self.get_queryset
-        context['cityWeather'] = self.get_weather_data
+        context['weather_data'] = self.get_weather_data
         return context
 
 
