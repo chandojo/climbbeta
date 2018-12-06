@@ -20,11 +20,15 @@
         {{ city_weather.description}}
       </p>
     </div>
+    <div class="video-player">
 
+    </div>
   </div>
-
   <div class="col">
     {% for video in videos %}
+      <div class="d-none video-index">
+        {{ video.index }}
+      </div>
       <div class="card text-center p-3 border-light">
         <img class="card-img-top mx-auto" style="width:295px; height:166px;" src="{{ video.picture }}" />
         <div class="card-body">
@@ -35,12 +39,22 @@
           <span>by <strong> {{ video.user }} </strong></span>
         </div>
       </div>
+      {{ videos.video }}
     {% endfor %}
   </div>
 
 </div>
 
+<!-- script to get embed values. NEEDS WORK! -->
+{% block script %}
+<script>
+  $(function(){
+    $('.card-img-top').on('click', function(){
+      var index = $(this).closest('div').find('video-index').innerHTML;
+      console.log(index);
+    });
+  });
 
-
-
+</script>
+{% endblock %}
 {% endblock %}

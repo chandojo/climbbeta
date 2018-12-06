@@ -65,6 +65,7 @@ class City_View(ListView):
 
         for i in range(len(response['data'])):
             video_data = {
+                'index': i, 
                 'uri':response['data'][i]['uri'],
                 'name':response['data'][i]['name'],
                 'user':response['data'][i]['user']['name'],
