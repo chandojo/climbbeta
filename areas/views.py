@@ -63,7 +63,7 @@ class City_View(ListView):
 
         self.beta_videos = []
 
-        for i in range(0, len(response['data'])):
+        for i in range(len(response['data'])):
             video_data = {
                 'uri':response['data'][i]['uri'],
                 'name':response['data'][i]['name'],

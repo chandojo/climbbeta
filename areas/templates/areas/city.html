@@ -25,8 +25,8 @@
 
   <div class="col">
     {% for video in videos %}
-      <div class="card">
-        <img class="card-img-top" src="{{ video.picture }}" />
+      <div class="card text-center p-3 border-light">
+        <img class="card-img-top mx-auto" style="width:295px; height:166px;" src="{{ video.picture }}" />
         <div class="card-body">
           <h5 class="card-title">{{ video.name }}</h5>
           <p class="card-text">
