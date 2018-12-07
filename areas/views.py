@@ -65,7 +65,6 @@ class City_View(ListView):
 
         for i in range(len(response['data'])):
             video_data = {
-                'index': i, 
                 'uri':response['data'][i]['uri'],
                 'name':response['data'][i]['name'],
                 'user':response['data'][i]['user']['name'],
@@ -76,16 +75,21 @@ class City_View(ListView):
 
             self.beta_videos.append(video_data)
 
+
         return self.beta_videos
 
     def get_weather_data(self, **kwargs):
         r = requests.get(weather.url.format(self.city)).json()
 
         self.city_weather = {
+            "long": r['coord']['lon'],
+            "lat": r['coord']['lat'],
             "temperature": r['main']['temp'],
+            "humidity": r['main']['humidity'],
             "description": r['weather'][0]['description'],
             "icon": r['weather'][0]['icon'],
             "date": r['dt'],
+
         }
 
         return self.city_weather

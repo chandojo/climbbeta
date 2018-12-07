@@ -13,10 +13,13 @@
       {% load tz %}
       <h5> {{ city_weather.date|timezone:"America/Vancouver" }}</h5>
       <h5>{% now "l, jS F Y h:iA" %}</h5>
+      <h5>Long. {{ city_weather.long }}</h5>
+      <h5>Lat. {{ city_weather.lat }}</h5>
       <p clas="font-weight-bold">
         {{ city_weather.temperature }}&#186; F
       </p>
       <p class="text-capitalize">
+        {{ city_weather.humidity }}
         {{ city_weather.description}}
       </p>
     </div>
@@ -26,9 +29,10 @@
   </div>
   <div class="col">
     {% for video in videos %}
-      <div class="d-none video-index">
+  <!--    <div class="d-none video-index">
         {{ video.index }}
-      </div>
+      div>
+      -->
       <div class="card text-center p-3 border-light">
         <img class="card-img-top mx-auto" style="width:295px; height:166px;" src="{{ video.picture }}" />
         <div class="card-body">
@@ -45,7 +49,7 @@
 
 </div>
 
-<!-- script to get embed values. NEEDS WORK! -->
+<!-- script to get embed values. NEEDS WORK! --><!--
 {% block script %}
 <script>
   $(function(){
@@ -56,5 +60,5 @@
   });
 
 </script>
-{% endblock %}
+{% endblock %} -->
 {% endblock %}

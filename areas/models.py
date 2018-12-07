@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
 
+from geopy.geocoders import Nominatim
 #from climbs.models import Problem
 
 class State(models.Model):
@@ -24,10 +25,20 @@ class City_Town(models.Model):
     name = models.CharField(max_length=200)
     state = models.ForeignKey(State, on_delete=models.PROTECT)
     slug = models.SlugField(blank=True, unique=True)
+    longitude = models.BigIntegerField(blank=True, null=True)
+    latitude = models.BigIntegerField(blank=True, null=True)
 
     def save(self, *args, **kwargs):
         if not self.id:
             self.slug = slugify(self.name)
+
+            geolocator = Nominatim(user_agent="climbbeta")
+            location = geolocator.geocode(self.name + ", " + self.state.name)
+
+            self.longitude = location.longitude
+
+            self.latitude = location.latitude
+
         super(City_Town, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
