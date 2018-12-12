@@ -1,13 +1,11 @@
-import datetime
 import requests
-import vimeo
 
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView
 from django.template import loader
 from areas.models import *
-from api import weather
-from api import vimeo
+from api.vimeo.requests import get_video_data
+from api.weather.requests import *
 
 # Create your views here.
 def index(request):
@@ -27,21 +25,9 @@ class State_View(ListView):
         return City_Town.objects.filter(state__name=self.state)
 
     def get_weather_data(self, **kwargs):
-        cities = City_Town.objects.filter(state__name=self.state)
-        self.weather_data = []
-
-        for city in cities:
-            r = requests.get(weather.url.format(city)).json()
-
-            city_weather = {
-                "city": city.name,
-                "temperature": r['main']['temp'],
-                "description": r['weather'][0]['description'],
-                "icon": r['weather'][0]['icon'],
-            }
-
-            self.weather_data.append(city_weather)
-        return self.weather_data
+        self.cities = City_Town.objects.filter(state__name=self.state)
+        kwargs = {'cities':self.cities}
+        return get_list_weather_data(self, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -57,49 +43,20 @@ class City_View(ListView):
         self.city = get_object_or_404(City_Town, slug=self.kwargs['slug'], state__slug=self.kwargs['state__slug'])
         return Area.objects.filter(city_town__name=self.city)
 
-    def get_videos(self):
-        q = str(self.city) + ' bouldering'
-        response = vimeo.client.get(vimeo.video_uri.format(q), params={"fields": "uri, name, description, embed, pictures, user" }).json()
-
-        self.beta_videos = []
-
-        for i in range(len(response['data'])):
-            video_data = {
-                'uri':response['data'][i]['uri'],
-                'name':response['data'][i]['name'],
-                'user':response['data'][i]['user']['name'],
-                'description':response['data'][i]['description'],
-                'embed':response['data'][i]['embed']['html'],
-                'picture':response['data'][i]['pictures']['sizes'][2]['link'],
-            }
-
-            self.beta_videos.append(video_data)
-
-
-        return self.beta_videos
-
     def get_weather_data(self, **kwargs):
-        r = requests.get(weather.url.format(self.city)).json()
+        kwargs = {'city':self.city}
+        return get_city_weather_data(self, **kwargs)
 
-        self.city_weather = {
-            "long": r['coord']['lon'],
-            "lat": r['coord']['lat'],
-            "temperature": r['main']['temp'],
-            "humidity": r['main']['humidity'],
-            "description": r['weather'][0]['description'],
-            "icon": r['weather'][0]['icon'],
-            "date": r['dt'],
-
-        }
-
-        return self.city_weather
+    def get_videos(self, **kwargs):
+        kwargs = {'city':self.city}
+        return get_video_data(self, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['city'] = self.city
         context['areas'] = self.get_queryset
-        context['videos'] = self.get_videos
         context['city_weather'] = self.get_weather_data
+        context['videos'] = self.get_videos
         return context
 
 #class Area_View(ListView):

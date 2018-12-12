@@ -7,6 +7,7 @@ from geopy.geocoders import Nominatim
 
 class State(models.Model):
     name = models.CharField(max_length=200)
+    abbrv = models.CharField(max_length=2)
     slug = models.SlugField(blank=True, unique=True)
     img = models.ImageField(blank=True, null=True, upload_to='areas/media/')
 
@@ -32,8 +33,8 @@ class City_Town(models.Model):
         if not self.id:
             self.slug = slugify(self.name)
 
-            geolocator = Nominatim(user_agent="climbbeta")
-            location = geolocator.geocode(self.name + ", " + self.state.name)
+            geolocator = Nominatim(user_agent="chand007")
+            location = geolocator.geocode(str(self.name) + ", " + str(self.state.abbrv))
 
             self.longitude = location.longitude
 
