@@ -1,5 +1,9 @@
 import requests
+import requests_cache
+
 from .keys import *
+
+requests_cache.install_cache('weather_cache', backend='sqlite', expire_after=30)
 
 def get_city_weather_data(self, **kwargs):
     r = requests.get(weather_uri.format(self.city)).json()

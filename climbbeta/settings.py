@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'vimeo',
     'timezonefinder',
+    'requests_cache',
 ]
 
 MIDDLEWARE = [

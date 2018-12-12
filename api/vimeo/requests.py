@@ -1,4 +1,8 @@
+import requests_cache
+
 from .keys import *
+
+requests_cache.install_cache('vimeo_cache', backend='sqlite', expire_after=600)
 
 def get_video_data(self, **kwargs):
     q = str(self.city) + ' bouldering'
