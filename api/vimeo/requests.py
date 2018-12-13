@@ -6,7 +6,7 @@ requests_cache.install_cache('vimeo_cache', backend='sqlite', expire_after=600)
 
 def get_video_data(self, **kwargs):
     q = str(self.city) + ' ' + str(self.city.state.name) + ' bouldering'
-    response = client.get(video_uri.format(q), params={"fields": "uri, name, description, embed, pictures, user" }).json()
+    response = client.get(video_url.format(q), params={"fields": "uri, name, description, embed, pictures, user" }).json()
 
     beta_videos = []
 

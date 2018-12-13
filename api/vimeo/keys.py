@@ -7,4 +7,4 @@ client = vimeo.VimeoClient(
        secret=os.environ['VIMEO_CLIENT_SECRET']
     )
 
-video_uri = '/videos?query={}&direction=desc&sort=relevant&per_page=10'
+video_url = '/videos?query={}&direction=desc&sort=relevant&per_page=10'

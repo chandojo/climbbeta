@@ -4,6 +4,8 @@ from django.utils.text import slugify
 
 from api.geolocator.requests import *
 #from climbs.models import Problem
+#from geopy.geocoders import Nominatim
+#from timezonefinder import TimezoneFinder
 
 class State(models.Model):
     name = models.CharField(max_length=200)
@@ -26,19 +28,27 @@ class City_Town(models.Model):
     name = models.CharField(max_length=200)
     state = models.ForeignKey(State, on_delete=models.PROTECT)
     slug = models.SlugField(blank=True, unique=True)
-    longitude = models.BigIntegerField(blank=True, null=True)
-    latitude = models.BigIntegerField(blank=True, null=True)
+    longitude = models.FloatField(blank=True, null=True)
+    latitude = models.FloatField(blank=True, null=True)
     timezone = models.CharField(max_length=200, blank=True, null=True)
+
+    def get_long(self, **kwargs):
+        kwargs = {'city':self.name, 'state':self.state}
+        lat = get_location(self, **kwargs)
+        self.latitude = lat['geo_data']['lat']
+        return self.latitude
 
     def save(self, *args, **kwargs):
         if not self.id:
             self.slug = slugify(self.name)
+            self.latitude = self.get_long()
         super(City_Town, self).save(*args, **kwargs)
 
-    def save_geolocation(self, **kwargs):
-        kwargs={'name':self.name, 'state':self.state, 'longitude':self.longitude, 'latitude':self.latitude, 'timezone':self.timezone}
-        get_location(self, **kwargs)
-        super(City_Town, self).save_geolocation(**kwargs)
+#    def save_longitude(self, *args, **kwargs):
+#        if not self.longitude:
+#            kwargs = {'city':self.name}
+#            self.longitude = get_longitude(self, **kwargs)
+
 
     def get_absolute_url(self):
         return reverse('cities', kwargs={'slug':self.slug, 'state_slug':self.state.slug })

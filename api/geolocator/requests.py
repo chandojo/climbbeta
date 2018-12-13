@@ -1,12 +1,28 @@
-from geopy.geocoders import Nominatim
-from timezonefinder import TimezoneFinder
+import requests
 
 def get_location(self, **kwargs):
-    geolocator = Nominatim(user_agent="climbbeta.com")
-    location = geolocator.geocode(str(self.name) + ", " + str(self.state.abbrv))
+    q = str(self.city) + ', ' + str(self.city.state.abbrv)
+    r = requests.get(map_url.format(q)).json()
+    geo_data = {
+        'lat': r['results'][0]['geometry']['location']['lat'],
+        'long': r['results'][0]['geometry']['location']['lng'],
+    }
+    return geo_data
 
-    self.longitude = location.longitude
-    self.latitude = location.latitude
-    self.timezone = str((TimezoneFinder().timezone_at(lng=location.longitude, lat=location.latitude)))
-
-    return self.longitude, self.latitude, self.timezone
+# def get_list_location_data(self, **kwargs):
+#     location_data = []
+#
+#     for city in self.cities:
+#         q = str(self.city) + ', ' + str(self.city.state.abbrv)
+#
+#         r = requests.get(map_url.format(q)).json()
+#
+#         geo_data = {
+#             'lat': r['results'][0]['geometry']['location']['lat'],
+#             'long': r['results'][0]['geometry']['location']['lng'],
+#         }
+#
+#         location_data.append(geo_data)
+#
+#         print(location_data)
+#         return location_data

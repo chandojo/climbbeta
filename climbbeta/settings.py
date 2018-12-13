@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'vimeo',
     'timezonefinder',
     'requests_cache',
+    'geopy',
 ]
 
 MIDDLEWARE = [

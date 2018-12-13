@@ -9,15 +9,14 @@ def get_city_weather_data(self, **kwargs):
     r = requests.get(weather_uri.format(self.city)).json()
 
     city_weather = {
-        "long": r['coord']['lon'],
-        "lat": r['coord']['lat'],
+#        "long": r['coord']['lon'],
+#        "lat": r['coord']['lat'],
         "temperature": r['main']['temp'],
         "humidity": r['main']['humidity'],
         "description": r['weather'][0]['description'],
         "icon": r['weather'][0]['icon'],
         "date": r['dt'],
     }
-
     return city_weather
 
 def get_list_weather_data(self, **kwargs):
