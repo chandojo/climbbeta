@@ -3,9 +3,9 @@
 
 {% block body %}
 {% load static %}
-
+<div class="card-bank text-center">
  {% for state in state_list %}
-  <div class="card" style="width: 18rem;">
+  <div class="card d-inline-flex" style="width: 18rem;">
     {% if state.img %}
     <img class="card-img-top" src="{{ state.img.url }}" />
     {% else %}
@@ -17,4 +17,5 @@
   </div>
  {% endfor %}
 
+</div>
 {% endblock %}
