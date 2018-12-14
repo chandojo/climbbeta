@@ -1,18 +1,31 @@
 {% extends 'base.html' %}
 {% load area_filters %}
+{% load area_tags %}
 
 {% block body %}
+
+
 <div class="title">
   <h2 class="text-uppercase display-4">{{ city.name }}, {{ city.state.abbrv }} <img src="http://openweathermap.org/img/w/{{ city_weather.icon }}.png"> </h2>
-
+  {{ city.timezone }}
 </div>
 <div class="row">
   <div class="col">
     <div class="weather">
+
+      {% current_time "%Y-%m-%d %I:%M %p" as the_time %}
+      <p>The time is {{ the_time }}.</p>
       <h3>Today's weather </h3>
       {% load tz %}
-      <h5> {{ city_weather.date }}</h5>
-      <h5>{% now "l, jS F Y h:iA" %}</h5>
+
+      {% timezone "Europe/Paris" %}
+          Paris time: {{ now }}
+      {% endtimezone %}
+
+      {% timezone None %}
+          Server time: {{ value }}
+      {% endtimezone %}
+      <h5>{% now "l, jS F Y h:iA e"%}</h5>
       <p clas="font-weight-bold">
         {{ city_weather.temperature }}&#186; F
       </p>
