@@ -52,17 +52,12 @@ class City_View(ListView):
         kwargs = {'city':self.city}
         return get_video_data(self, **kwargs)
 
-    def get_location_data(self, **kwargs):
-        kwargs = {'city':self.city}
-        return get_location(self, **kwargs)
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['city'] = self.city
         context['areas'] = self.get_queryset
         context['city_weather'] = self.get_weather_data
         context['videos'] = self.get_videos
-        context['location'] = self.get_location_data
         return context
 
 

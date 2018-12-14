@@ -3,9 +3,6 @@ from django.urls import reverse
 from django.utils.text import slugify
 
 from api.geolocator.requests import *
-#from climbs.models import Problem
-#from geopy.geocoders import Nominatim
-#from timezonefinder import TimezoneFinder
 
 class State(models.Model):
     name = models.CharField(max_length=200)
@@ -28,27 +25,32 @@ class City_Town(models.Model):
     name = models.CharField(max_length=200)
     state = models.ForeignKey(State, on_delete=models.PROTECT)
     slug = models.SlugField(blank=True, unique=True)
-    longitude = models.FloatField(blank=True, null=True)
-    latitude = models.FloatField(blank=True, null=True)
+    longitude = models.FloatField(blank=True)
+    latitude = models.FloatField(blank=True)
     timezone = models.CharField(max_length=200, blank=True, null=True)
 
+    def get_lat(self, **kwargs):
+        lat = get_latitude(self, **kwargs)
+        return lat
+
     def get_long(self, **kwargs):
-        kwargs = {'city':self.name, 'state':self.state}
-        lat = get_location(self, **kwargs)
-        self.latitude = lat['geo_data']['lat']
-        return self.latitude
+        long = get_longitude(self, **kwargs)
+        return long
+
+    def get_time(self, **kwargs):
+        time = get_timezone(self, **kwargs)
+        return time
 
     def save(self, *args, **kwargs):
-        if not self.id:
+        if not self.slug:
             self.slug = slugify(self.name)
-            self.latitude = self.get_long()
+        if not self.latitude:
+            self.latitude = self.get_lat()
+        if not self.longitude:
+            self.longitude = self.get_long()
+        if not self.timezone:
+            self.timezone = self.get_time()
         super(City_Town, self).save(*args, **kwargs)
-
-#    def save_longitude(self, *args, **kwargs):
-#        if not self.longitude:
-#            kwargs = {'city':self.name}
-#            self.longitude = get_longitude(self, **kwargs)
-
 
     def get_absolute_url(self):
         return reverse('cities', kwargs={'slug':self.slug, 'state_slug':self.state.slug })

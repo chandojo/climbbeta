@@ -1,28 +1,22 @@
 import requests
+from .keys import *
+from timezonefinder import TimezoneFinder
 
-def get_location(self, **kwargs):
-    q = str(self.city) + ', ' + str(self.city.state.abbrv)
+def get_latitude(self, **kwargs):
+    q = str(self.name) + ', ' + str(self.state.abbrv)
     r = requests.get(map_url.format(q)).json()
-    geo_data = {
-        'lat': r['results'][0]['geometry']['location']['lat'],
-        'long': r['results'][0]['geometry']['location']['lng'],
-    }
-    return geo_data
+    lat = r['results'][0]['geometry']['location']['lat']
+    lat = float(lat)
+    return lat
 
-# def get_list_location_data(self, **kwargs):
-#     location_data = []
-#
-#     for city in self.cities:
-#         q = str(self.city) + ', ' + str(self.city.state.abbrv)
-#
-#         r = requests.get(map_url.format(q)).json()
-#
-#         geo_data = {
-#             'lat': r['results'][0]['geometry']['location']['lat'],
-#             'long': r['results'][0]['geometry']['location']['lng'],
-#         }
-#
-#         location_data.append(geo_data)
-#
-#         print(location_data)
-#         return location_data
+def get_longitude(self, **kwargs):
+    q = str(self.name) + ', ' + str(self.state.abbrv)
+    r = requests.get(map_url.format(q)).json()
+    long = r['results'][0]['geometry']['location']['lng']
+    long = float(long)
+    return long
+
+def get_timezone(self, **kwargs):
+    tf = TimezoneFinder()
+    timezone = tf.timezone_at(lng=self.longitude, lat=self.latitude)
+    return timezone
