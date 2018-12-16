@@ -4,7 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('areas/', include('areas.urls')),
+    path('', include('areas.urls')),
     path('climbs/', include('climbs.urls')),
     path('members/', include('members.urls')),
     path('beta/', include('beta.urls')),
