@@ -50,9 +50,9 @@ class City_View(ListView):
         kwargs = {'city':self.city}
         return get_city_weather_data(self, **kwargs)
 
-    def get_videos(self, **kwargs):
-        kwargs = {'city':self.city}
-        return get_video_data(self, **kwargs)
+#    def get_videos(self, **kwargs):
+#        kwargs = {'city':self.city}
+#        return get_video_data(self, **kwargs)
 
     def video_response_data(self, **kwargs):
         kwargs = {'city':self.city}
@@ -70,5 +70,6 @@ class City_View(ListView):
         context['areas'] = self.get_queryset
         context['city_weather'] = self.get_weather_data
         context['videos'] = self.video_response_data
+#        context['videos_data'] = self.get_videos
         context['datetime'] = self.get_time
         return context

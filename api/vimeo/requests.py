@@ -13,8 +13,8 @@ def get_video_data(self, **kwargs):
 
     vimeo_response = 'api/vimeo/response/' + get_city + ' ' + str(self.city.state.abbrv) + '-vimeo-response.json'
 
-    with open(vimeo_response, 'w') as write_file:
-        json.dump(response, write_file)
+    with open(vimeo_response, 'w') as f:
+        json.dump(response, f)
 
 def read_video_data(self, **kwargs):
     vimeo_response = 'api/vimeo/response/' + str(self.city) + ' ' + str(self.city.state.abbrv) + '-vimeo-response.json'
