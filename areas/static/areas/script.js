@@ -1,3 +1,9 @@
-$(function(){
-  console.log("hello!");
+$('document').ready(function(){
+  $('.video-card').click(function(){
+    $(this).
+  });
 });
+
+//$(function(){
+//
+//});

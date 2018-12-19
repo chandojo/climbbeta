@@ -21,26 +21,46 @@
       </p>
     </div>
     <div class="video-player">
-
+      videoplayer
     </div>
   </div>
+
   <div class="col">
     {% for video in videos %}
-      <div class="card text-center p-3 border-light">
+      <div class="card video-card text-center p-3 border-light">
         <img class="card-img-top mx-auto" style="width:295px; height:166px;" src="{{ video.picture }}" />
         <div class="card-body">
           <h5 class="card-title">{{ video.name }}</h5>
           <p class="card-text">
             {{ video.description|truncatechars:300 }}
           </p>
-          <span>by <strong> {{ video.user }} </strong></span>
+          <span class="video-author">by <strong> {{ video.user }} </strong></span>
+          <div class="embed">
+              {{ video.embed }}
+          </div>
         </div>
       </div>
-      {{ videos.video }}
     {% endfor %}
   </div>
 
 </div>
+
+{% block script %}
+   {% load static %}
+   <script>
+     $('document').ready(function(){
+       $('.video-card').click(function(){
+  //      var index = $(this).closest('.video-card').index();
+  //      var description = $(this).find('.card-text').val()
+          console.log({{video.description}});
+
+          $(this).find('.card-title').css({'background-color':'pink'});
+
+       });
+     });
+   </script>
+<!--   <script src="{% static 'areas/script.js'%}"></script> -->
+{% endblock %}
 
 
 {% endblock %}
