@@ -6,7 +6,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView
 from django.template import loader
 from areas.models import *
-from api.vimeo.requests import get_video_data
+from api.vimeo.requests import *
 from api.weather.requests import *
 from api.geolocator.requests import *
 
@@ -54,6 +54,10 @@ class City_View(ListView):
         kwargs = {'city':self.city}
         return get_video_data(self, **kwargs)
 
+    def video_response_data(self, **kwargs):
+        kwargs = {'city':self.city}
+        return read_video_data(self, **kwargs)
+
     def get_time(self, **kwargs):
         dt = datetime.datetime.now()
         tz = pytz.timezone(self.city.timezone)
@@ -65,6 +69,6 @@ class City_View(ListView):
         context['city'] = self.city
         context['areas'] = self.get_queryset
         context['city_weather'] = self.get_weather_data
-        context['videos'] = self.get_videos
+        context['videos'] = self.video_response_data
         context['datetime'] = self.get_time
         return context
