@@ -3,10 +3,10 @@
   "page": 1,
   "per_page": 10,
   "paging": {
-    "next": "/videos?query=Index%20Washington%20bouldering&direction=desc&sort=relevant&per_page=10&fields=uri%2C%20name%2C%20description%2C%20embed%2C%20pictures%2C%20user&page=2",
+    "next": "/videos?query=Index%20bouldering%20%7C%20Index%20Washington%20bouldering&direction=desc&sort=relevant&per_page=10&fields=uri%2C%20name%2C%20description%2C%20embed%2C%20pictures%2C%20user&page=2",
     "previous": null,
-    "first": "/videos?query=Index%20Washington%20bouldering&direction=desc&sort=relevant&per_page=10&fields=uri%2C%20name%2C%20description%2C%20embed%2C%20pictures%2C%20user&page=1",
-    "last": "/videos?query=Index%20Washington%20bouldering&direction=desc&sort=relevant&per_page=10&fields=uri%2C%20name%2C%20description%2C%20embed%2C%20pictures%2C%20user&page=2"
+    "first": "/videos?query=Index%20bouldering%20%7C%20Index%20Washington%20bouldering&direction=desc&sort=relevant&per_page=10&fields=uri%2C%20name%2C%20description%2C%20embed%2C%20pictures%2C%20user&page=1",
+    "last": "/videos?query=Index%20bouldering%20%7C%20Index%20Washington%20bouldering&direction=desc&sort=relevant&per_page=10&fields=uri%2C%20name%2C%20description%2C%20embed%2C%20pictures%2C%20user&page=2"
   },
   "data": [{
     "uri": "/videos/65436627",
@@ -593,197 +593,6 @@
       "account": "basic"
     }
   }, {
-    "uri": "/videos/238214936",
-    "name": "Washington Climbing Conservation Initiative (WCCI)",
-    "description": "In 2017, the Washington Climbers Coalition launched the Washington Climbing Conservation Initiative (WCCI) as a regional stewardship program to address the increasing impacts of growing climbing use at cherished climbing areas across the state. Together with Access Fund Conservation Team West and state land agencies, the initiative has executed 11 weeks of professional trail work at crags and bouldering areas across the state. As of the end of 2017, the initiative had engaged 290 volunteers in over 2,300 hours of work at four locations: Gold Bar, Exit 38 Farside, Index, and Tieton Canyon.\n\nThis initiative was made possible by a generous grant from REI with matching funds from WCC, the Seattle Bouldering Project, and individual donors.\n\nBig thanks to the following supporting partners: Cascade Designs, Outdoor Research, Edgeworks, the Mountaineers, Mountains to Sound Greenway Trust, Stone Gardens, Vertical World, American Alpine Club, The North Face, Washington Alpine Club, DNR, WDFW, and State Parks.\n\nVideo by Ben Neilson  www.benneilsonmedia.com",
-    "embed": {
-      "html": "<iframe src=\"https://player.vimeo.com/video/238214936?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=137790\" width=\"1920\" height=\"1080\" frameborder=\"0\" title=\"Washington Climbing Conservation Initiative (WCCI)\" allow=\"autoplay; fullscreen\" allowfullscreen></iframe>",
-      "badges": {
-        "hdr": false,
-        "live": {
-          "streaming": false,
-          "archived": false
-        },
-        "staff_pick": {
-          "normal": false,
-          "best_of_the_month": false,
-          "best_of_the_year": false,
-          "premiere": false
-        },
-        "vod": false,
-        "weekend_challenge": false
-      }
-    },
-    "pictures": {
-      "uri": "/videos/238214936/pictures/660853380",
-      "active": true,
-      "type": "custom",
-      "sizes": [{
-        "width": 100,
-        "height": 75,
-        "link": "https://i.vimeocdn.com/video/660853380_100x75.jpg?r=pad",
-        "link_with_play_button": "https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F660853380_100x75.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png"
-      }, {
-        "width": 200,
-        "height": 150,
-        "link": "https://i.vimeocdn.com/video/660853380_200x150.jpg?r=pad",
-        "link_with_play_button": "https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F660853380_200x150.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png"
-      }, {
-        "width": 295,
-        "height": 166,
-        "link": "https://i.vimeocdn.com/video/660853380_295x166.jpg?r=pad",
-        "link_with_play_button": "https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F660853380_295x166.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png"
-      }, {
-        "width": 640,
-        "height": 360,
-        "link": "https://i.vimeocdn.com/video/660853380_640x360.jpg?r=pad",
-        "link_with_play_button": "https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F660853380_640x360.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png"
-      }, {
-        "width": 960,
-        "height": 540,
-        "link": "https://i.vimeocdn.com/video/660853380_960x540.jpg?r=pad",
-        "link_with_play_button": "https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F660853380_960x540.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png"
-      }, {
-        "width": 1280,
-        "height": 720,
-        "link": "https://i.vimeocdn.com/video/660853380_1280x720.jpg?r=pad",
-        "link_with_play_button": "https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F660853380_1280x720.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png"
-      }, {
-        "width": 1920,
-        "height": 1080,
-        "link": "https://i.vimeocdn.com/video/660853380_1920x1080.jpg?r=pad",
-        "link_with_play_button": "https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F660853380_1920x1080.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png"
-      }, {
-        "width": 1280,
-        "height": 720,
-        "link": "https://i.vimeocdn.com/video/660853380_1280x720.jpg?r=pad",
-        "link_with_play_button": "https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F660853380_1280x720.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png"
-      }],
-      "resource_key": "8f1685ece852169b51994c5462a7b2da867336c0"
-    },
-    "user": {
-      "uri": "/users/72677106",
-      "name": "Washington Climbers Coalition",
-      "link": "https://vimeo.com/washingtonclimbers",
-      "location": "Seattle, WA",
-      "bio": null,
-      "created_time": "2017-10-14T19:22:05+00:00",
-      "pictures": {
-        "uri": "/users/72677106/pictures/21557640",
-        "active": true,
-        "type": "custom",
-        "sizes": [{
-          "width": 30,
-          "height": 30,
-          "link": "https://i.vimeocdn.com/portrait/21557640_30x30"
-        }, {
-          "width": 75,
-          "height": 75,
-          "link": "https://i.vimeocdn.com/portrait/21557640_75x75"
-        }, {
-          "width": 100,
-          "height": 100,
-          "link": "https://i.vimeocdn.com/portrait/21557640_100x100"
-        }, {
-          "width": 300,
-          "height": 300,
-          "link": "https://i.vimeocdn.com/portrait/21557640_300x300"
-        }, {
-          "width": 72,
-          "height": 72,
-          "link": "https://i.vimeocdn.com/portrait/21557640_72x72"
-        }, {
-          "width": 144,
-          "height": 144,
-          "link": "https://i.vimeocdn.com/portrait/21557640_144x144"
-        }, {
-          "width": 216,
-          "height": 216,
-          "link": "https://i.vimeocdn.com/portrait/21557640_216x216"
-        }, {
-          "width": 288,
-          "height": 288,
-          "link": "https://i.vimeocdn.com/portrait/21557640_288x288"
-        }, {
-          "width": 360,
-          "height": 360,
-          "link": "https://i.vimeocdn.com/portrait/21557640_360x360"
-        }],
-        "resource_key": "3791a8b1fb20ec2da80e524a87ac9c3e41fdc4db"
-      },
-      "websites": [],
-      "metadata": {
-        "connections": {
-          "albums": {
-            "uri": "/users/72677106/albums",
-            "options": ["GET"],
-            "total": 0
-          },
-          "appearances": {
-            "uri": "/users/72677106/appearances",
-            "options": ["GET"],
-            "total": 0
-          },
-          "channels": {
-            "uri": "/users/72677106/channels",
-            "options": ["GET"],
-            "total": 0
-          },
-          "feed": {
-            "uri": "/users/72677106/feed",
-            "options": ["GET"]
-          },
-          "followers": {
-            "uri": "/users/72677106/followers",
-            "options": ["GET"],
-            "total": 4
-          },
-          "following": {
-            "uri": "/users/72677106/following",
-            "options": ["GET"],
-            "total": 0
-          },
-          "groups": {
-            "uri": "/users/72677106/groups",
-            "options": ["GET"],
-            "total": 0
-          },
-          "likes": {
-            "uri": "/users/72677106/likes",
-            "options": ["GET"],
-            "total": 0
-          },
-          "moderated_channels": {
-            "uri": "/users/72677106/channels?filter=moderated",
-            "options": ["GET"],
-            "total": 0
-          },
-          "portfolios": {
-            "uri": "/users/72677106/portfolios",
-            "options": ["GET"],
-            "total": 0
-          },
-          "videos": {
-            "uri": "/users/72677106/videos",
-            "options": ["GET"],
-            "total": 2
-          },
-          "shared": {
-            "uri": "/users/72677106/shared/videos",
-            "options": ["GET"],
-            "total": 0
-          },
-          "pictures": {
-            "uri": "/users/72677106/pictures",
-            "options": ["GET", "POST"],
-            "total": 1
-          }
-        }
-      },
-      "resource_key": "f5c9dd58bf6495a6fece8812f0e909fca1b6d501",
-      "account": "basic"
-    }
-  }, {
     "uri": "/videos/213464928",
     "name": "Architect V11 - Index Bouldering",
     "description": "An incredible highball compression line in Index, Washington.",
@@ -972,6 +781,197 @@
         }
       },
       "resource_key": "277036de63dcba37b40ed6275a8f00da4535e0a4",
+      "account": "basic"
+    }
+  }, {
+    "uri": "/videos/238214936",
+    "name": "Washington Climbing Conservation Initiative (WCCI)",
+    "description": "In 2017, the Washington Climbers Coalition launched the Washington Climbing Conservation Initiative (WCCI) as a regional stewardship program to address the increasing impacts of growing climbing use at cherished climbing areas across the state. Together with Access Fund Conservation Team West and state land agencies, the initiative has executed 11 weeks of professional trail work at crags and bouldering areas across the state. As of the end of 2017, the initiative had engaged 290 volunteers in over 2,300 hours of work at four locations: Gold Bar, Exit 38 Farside, Index, and Tieton Canyon.\n\nThis initiative was made possible by a generous grant from REI with matching funds from WCC, the Seattle Bouldering Project, and individual donors.\n\nBig thanks to the following supporting partners: Cascade Designs, Outdoor Research, Edgeworks, the Mountaineers, Mountains to Sound Greenway Trust, Stone Gardens, Vertical World, American Alpine Club, The North Face, Washington Alpine Club, DNR, WDFW, and State Parks.\n\nVideo by Ben Neilson  www.benneilsonmedia.com",
+    "embed": {
+      "html": "<iframe src=\"https://player.vimeo.com/video/238214936?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=137790\" width=\"1920\" height=\"1080\" frameborder=\"0\" title=\"Washington Climbing Conservation Initiative (WCCI)\" allow=\"autoplay; fullscreen\" allowfullscreen></iframe>",
+      "badges": {
+        "hdr": false,
+        "live": {
+          "streaming": false,
+          "archived": false
+        },
+        "staff_pick": {
+          "normal": false,
+          "best_of_the_month": false,
+          "best_of_the_year": false,
+          "premiere": false
+        },
+        "vod": false,
+        "weekend_challenge": false
+      }
+    },
+    "pictures": {
+      "uri": "/videos/238214936/pictures/660853380",
+      "active": true,
+      "type": "custom",
+      "sizes": [{
+        "width": 100,
+        "height": 75,
+        "link": "https://i.vimeocdn.com/video/660853380_100x75.jpg?r=pad",
+        "link_with_play_button": "https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F660853380_100x75.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png"
+      }, {
+        "width": 200,
+        "height": 150,
+        "link": "https://i.vimeocdn.com/video/660853380_200x150.jpg?r=pad",
+        "link_with_play_button": "https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F660853380_200x150.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png"
+      }, {
+        "width": 295,
+        "height": 166,
+        "link": "https://i.vimeocdn.com/video/660853380_295x166.jpg?r=pad",
+        "link_with_play_button": "https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F660853380_295x166.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png"
+      }, {
+        "width": 640,
+        "height": 360,
+        "link": "https://i.vimeocdn.com/video/660853380_640x360.jpg?r=pad",
+        "link_with_play_button": "https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F660853380_640x360.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png"
+      }, {
+        "width": 960,
+        "height": 540,
+        "link": "https://i.vimeocdn.com/video/660853380_960x540.jpg?r=pad",
+        "link_with_play_button": "https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F660853380_960x540.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png"
+      }, {
+        "width": 1280,
+        "height": 720,
+        "link": "https://i.vimeocdn.com/video/660853380_1280x720.jpg?r=pad",
+        "link_with_play_button": "https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F660853380_1280x720.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png"
+      }, {
+        "width": 1920,
+        "height": 1080,
+        "link": "https://i.vimeocdn.com/video/660853380_1920x1080.jpg?r=pad",
+        "link_with_play_button": "https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F660853380_1920x1080.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png"
+      }, {
+        "width": 1280,
+        "height": 720,
+        "link": "https://i.vimeocdn.com/video/660853380_1280x720.jpg?r=pad",
+        "link_with_play_button": "https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F660853380_1280x720.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png"
+      }],
+      "resource_key": "8f1685ece852169b51994c5462a7b2da867336c0"
+    },
+    "user": {
+      "uri": "/users/72677106",
+      "name": "Washington Climbers Coalition",
+      "link": "https://vimeo.com/washingtonclimbers",
+      "location": "Seattle, WA",
+      "bio": null,
+      "created_time": "2017-10-14T19:22:05+00:00",
+      "pictures": {
+        "uri": "/users/72677106/pictures/21557640",
+        "active": true,
+        "type": "custom",
+        "sizes": [{
+          "width": 30,
+          "height": 30,
+          "link": "https://i.vimeocdn.com/portrait/21557640_30x30"
+        }, {
+          "width": 75,
+          "height": 75,
+          "link": "https://i.vimeocdn.com/portrait/21557640_75x75"
+        }, {
+          "width": 100,
+          "height": 100,
+          "link": "https://i.vimeocdn.com/portrait/21557640_100x100"
+        }, {
+          "width": 300,
+          "height": 300,
+          "link": "https://i.vimeocdn.com/portrait/21557640_300x300"
+        }, {
+          "width": 72,
+          "height": 72,
+          "link": "https://i.vimeocdn.com/portrait/21557640_72x72"
+        }, {
+          "width": 144,
+          "height": 144,
+          "link": "https://i.vimeocdn.com/portrait/21557640_144x144"
+        }, {
+          "width": 216,
+          "height": 216,
+          "link": "https://i.vimeocdn.com/portrait/21557640_216x216"
+        }, {
+          "width": 288,
+          "height": 288,
+          "link": "https://i.vimeocdn.com/portrait/21557640_288x288"
+        }, {
+          "width": 360,
+          "height": 360,
+          "link": "https://i.vimeocdn.com/portrait/21557640_360x360"
+        }],
+        "resource_key": "3791a8b1fb20ec2da80e524a87ac9c3e41fdc4db"
+      },
+      "websites": [],
+      "metadata": {
+        "connections": {
+          "albums": {
+            "uri": "/users/72677106/albums",
+            "options": ["GET"],
+            "total": 0
+          },
+          "appearances": {
+            "uri": "/users/72677106/appearances",
+            "options": ["GET"],
+            "total": 0
+          },
+          "channels": {
+            "uri": "/users/72677106/channels",
+            "options": ["GET"],
+            "total": 0
+          },
+          "feed": {
+            "uri": "/users/72677106/feed",
+            "options": ["GET"]
+          },
+          "followers": {
+            "uri": "/users/72677106/followers",
+            "options": ["GET"],
+            "total": 4
+          },
+          "following": {
+            "uri": "/users/72677106/following",
+            "options": ["GET"],
+            "total": 0
+          },
+          "groups": {
+            "uri": "/users/72677106/groups",
+            "options": ["GET"],
+            "total": 0
+          },
+          "likes": {
+            "uri": "/users/72677106/likes",
+            "options": ["GET"],
+            "total": 0
+          },
+          "moderated_channels": {
+            "uri": "/users/72677106/channels?filter=moderated",
+            "options": ["GET"],
+            "total": 0
+          },
+          "portfolios": {
+            "uri": "/users/72677106/portfolios",
+            "options": ["GET"],
+            "total": 0
+          },
+          "videos": {
+            "uri": "/users/72677106/videos",
+            "options": ["GET"],
+            "total": 2
+          },
+          "shared": {
+            "uri": "/users/72677106/shared/videos",
+            "options": ["GET"],
+            "total": 0
+          },
+          "pictures": {
+            "uri": "/users/72677106/pictures",
+            "options": ["GET", "POST"],
+            "total": 1
+          }
+        }
+      },
+      "resource_key": "f5c9dd58bf6495a6fece8812f0e909fca1b6d501",
       "account": "basic"
     }
   }, {
