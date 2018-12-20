@@ -3,7 +3,8 @@
 {% load area_filters %}
 
 {% block body %}
-<h2>This is the state page for {{ state.name }}!</h2>
+
+<h1 class="state-name text-uppercase text-center p-3">{{ state.name }}</h1>
 
 <div class="weather-box text-center">
     {% for city_weather in weather_data %}
@@ -33,6 +34,15 @@
 {% endblock %}
 
 {% block script %}
-{% load static %}
-  <script src="{% static 'areas/script.js' %}"></script>
+  <script type="text/javascript">
+    $(function(){
+      $('body').css("background-image", "url('{{ state.img.url }}')");
+
+      $('.weather-card').hover(function(){
+          $(this).toggleClass("weather-hover");
+      });
+
+      console.log('success!');
+    });
+  </script>
 {% endblock %}

@@ -1,8 +1,31 @@
-.video-card{
+header{
+  background-color: white;
+}
+
+body{
+  background-repeat:no-repeat;
+  background-position: top;
+  background-size: cover;
+}
+
+.container{
+  opacity:.95;
+}
+
+.state-name{
+  color:white;
+  text-shadow: 2px 2px 8px #000000;
+}
+
+.video-card, .weather-box{
   cursor:pointer;
 }
 
 .active-video{
   background-color:grey;
   color:white;
+}
+
+.weather-hover{
+  opacity: 1;
 }
