@@ -26,15 +26,16 @@
   </div>
 
   <div class="col">
-    {% for video in videos %}
+
+    {% for video in videos.data %}
       <div class="card video-card text-center p-3 border-light">
-        <img class="card-img-top mx-auto" style="width:295px; height:166px;" src="{{ video.picture }}" />
+        <img class="card-img-top mx-auto" src="{{ video.pictures.sizes.3.link }}" />
         <div class="card-body">
           <h5 class="card-title">{{ video.name }}</h5>
           <p class="card-text">
             {{ video.description|truncatechars:300 }}
           </p>
-          <span class="video-author">by <strong> {{ video.user }} </strong></span>
+          <span class="video-author">by <strong> {{ video.user.name }} </strong></span>
           <div class="embed" style="display:none;">
               {{ video.embed | safe }}
           </div>

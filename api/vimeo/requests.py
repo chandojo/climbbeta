@@ -39,17 +39,20 @@ def read_video_data(self, **kwargs):
     with open(vimeo_response, 'r') as read_file:
         data = json.load(read_file)
 
-    beta_videos = []
+    return data
 
-    for i in range(len(data['data'])):
-        video_data = {
-            'uri':data['data'][i]['uri'],
-            'name':data['data'][i]['name'],
-            'user':data['data'][i]['user']['name'],
-            'description':data['data'][i]['description'],
-            'embed':data['data'][i]['embed']['html'],
-            'picture':data['data'][i]['pictures']['sizes'][2]['link'],
-        }
-        beta_videos.append(video_data)
 
-    return beta_videos
+#    beta_videos = []
+#
+#    for i in range(len(data['data'])):
+#        video_data = {
+#            'uri':data['data'][i]['uri'],
+#            'name':data['data'][i]['name'],
+#            'user':data['data'][i]['user']['name'],
+#            'description':data['data'][i]['description'],
+#            'embed':data['data'][i]['embed']['html'],
+#            'picture':data['data'][i]['pictures']['sizes'][2]['link'],
+#        }
+#        beta_videos.append(video_data)
+#
+#    return beta_videos
