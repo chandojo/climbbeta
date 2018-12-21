@@ -21,6 +21,19 @@
         {{ city_weather.description}}
       </p>
     </div>
+<!--    {{ day.dt | stringformat:"d" | slice:":5"}} -->
+
+     {% for day in forecast %}
+     <div class="card">
+       <div class="card-body">
+         <h6 class="card-title">{{ day.dt | utc_converter }}</h6>
+         <div class="card-text">
+           Temperature: {{day.temp}}&#186; F <img src="http://openweathermap.org/img/w/{{ day.icon }}.png">
+         </div>
+       </div>
+     </div>
+
+      {% endfor %}
 
   </div>
 
@@ -38,12 +51,11 @@
     <div class="video-results" style="height:500px; overflow:scroll;">
       {% for video in videos.data %}
         <div class="card video-card text-center p-3 border-light">
-          <img class="card-img-top mx-auto" src="{{ video.pictures.sizes.3.link }}" />
+          <div class="img" style="max-height:300px; overflow:hidden;">
+            <img class="card-img-top mx-auto" src="{{ video.pictures.sizes.3.link }}" />
+          </div>
           <div class="card-body">
             <h5 class="card-title">{{ video.name }}</h5>
-            <p class="card-text">
-              {{ video.description|truncatechars:300 }}
-            </p>
             <span class="video-author">by <strong> {{ video.user.name }} </strong></span>
             <div class="embed" style="display:none;">
                 {{ video.embed | safe }}
