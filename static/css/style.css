@@ -8,6 +8,18 @@ body{
   background-size: cover;
 }
 
+a, a:hover {
+  color: inherit;
+}
+
+a:hover {
+  text-decoration:none;
+}
+
+a.view-state :hover {
+  color:grey;
+}
+
 .container{
   opacity:.95;
 }
