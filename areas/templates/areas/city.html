@@ -26,12 +26,16 @@
 
   <div class="col">
     <div class="video-player" style="width:100%; height:300px; overflow:inherit; background-color: black;">
-
       <iframe class="video" width="100%" height="100%" src="" frameBorder="0" allow="autoplay" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
     </div>
     <hr>
+    <div class="text-center">
+      <span class="text-uppercase">Videos</span>
+      <button type="button" class="btn btn-success play-all"><i class="fas fa-play"></i> All</button>
+    </div>
+
+    <hr>
     <div class="video-results" style="height:500px; overflow:scroll;">
-      <h5 class="text-uppercase text-center">Videos</h5>
       {% for video in videos.data %}
         <div class="card video-card text-center p-3 border-light">
           <img class="card-img-top mx-auto" src="{{ video.pictures.sizes.3.link }}" />
