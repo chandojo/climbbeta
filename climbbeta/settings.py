@@ -33,9 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'areas',
     'climbs',
-    'beta',
     'members',
-    'weather',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

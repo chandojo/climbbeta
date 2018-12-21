@@ -9,8 +9,6 @@ urlpatterns = [
     path('areas/', include('areas.urls')),
     path('climbs/', include('climbs.urls')),
     path('members/', include('members.urls')),
-    path('beta/', include('beta.urls')),
-    path('weather/', include('weather.urls')),
     path('admin/', admin.site.urls),
 ]
 
