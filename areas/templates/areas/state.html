@@ -10,7 +10,8 @@
     {% for city_weather in weather_data %}
       {% for city in cities %}
         {% if city.name == city_weather.city %}
-        <div class="weather-card card text-center m-2 d-inline-flex" style="width:18rem;">
+      <a href="{% url 'areas:cities' city.state.slug city.slug %}">
+          <div class="weather-card card text-center m-2 d-inline-flex" style="width:18rem;">
           <div class="card-header text-capitalize" >
               {{ city.name }}
           </div>
@@ -21,12 +22,11 @@
               <p>
                 {{ city_weather.description }}
               </p>
-              <span>
-                <a href="{% url 'areas:cities' city.state.slug city.slug %}">See more</a>
-                </span>
+
             </div>
           </div>
         </div>
+        </a>
           {% endif %}
         {% endfor %}
       {% endfor %}
@@ -34,15 +34,14 @@
 {% endblock %}
 
 {% block script %}
-  <script type="text/javascript">
-    $(function(){
-      $('body').css("background-image", "url('{{ state.img.url }}')");
+  {% load static %}
+  <script src="{% static 'areas/js/script.js' %}"></script>
 
-      $('.weather-card').hover(function(){
-          $(this).toggleClass("weather-hover");
-      });
-
-      console.log('success!');
-    });
+  <script>
+   $(function(){
+     $('body').css("background-image", "url('{{ state.img.url }}')");
+   });
   </script>
+
+
 {% endblock %}

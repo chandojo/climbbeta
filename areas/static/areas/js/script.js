@@ -12,3 +12,8 @@ $('.video-card').on('click', function(){
 $('.play-all').on('click', function(){
 
 });
+
+$('.weather-card').hover(function(){
+  $(this).addClass("weather-hover");},
+  function(){$(this).removeClass("weather-hover");}
+  );

@@ -20,7 +20,12 @@ a.view-state :hover {
   color:grey;
 }
 
-.container{
+.weather-forecast{
+  height:400px;
+  overflow:scroll;
+}
+
+.weather-card{
   opacity:.95;
 }
 
@@ -29,7 +34,7 @@ a.view-state :hover {
   text-shadow: 2px 2px 8px #000000;
 }
 
-.video-card, .weather-box{
+.video-card{
   cursor:pointer;
 }
 
@@ -39,5 +44,6 @@ a.view-state :hover {
 }
 
 .weather-hover{
-  opacity: 1;
+  opacity:1;
+  cursor:pointer;
 }

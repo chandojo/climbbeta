@@ -8,32 +8,55 @@
 <div class="row">
   <div class="col">
     <div class="title">
-      <h2 class="text-uppercase display-4">{{ city.name }}, {{ city.state.abbrv }} <img src="http://openweathermap.org/img/w/{{ city_weather.icon }}.png"> </h2>
-      <h3 class="display-5">Local time: {{ datetime }}</h3>
+      <h2 class="text-uppercase display-4">{{ city.name }}, {{ city.state.abbrv }}  </h2>
+      <h5>Local time: {{ datetime }}</h5>
     </div>
     <div class="weather">
-      <h3>Today's weather </h3>
-      <p clas="font-weight-bold">
-        {{ city_weather.temperature }}&#186; F
-      </p>
-      <p class="text-capitalize">
-        {{ city_weather.humidity }}
-        {{ city_weather.description}}
-      </p>
+      <h4>Today's weather: {{ city_weather.main }} <img src="http://openweathermap.org/img/w/{{ city_weather.icon }}.png"></h4>
+      <table class="table">
+        <thead>
+          <tr class="bg-success">
+            <th scope="col">Temperature</th>
+            <th scope="col">Description</th>
+            <th scope="col">Humidity</th>
+            <th scope="col">Wind</th>
+            <th scope="col">Pressure</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-success">
+            <td>{{ city_weather.temperature }}&#186; F</td>
+            <td class="text-capitalize">{{ city_weather.description }}</td>
+            <td>{{ city_weather.humidity }}% </td>
+            <td>{{ city_weather.wind }} m/h</td>
+            <td>{{ city_weather.pressure }} hpa </td>
+          </tr>
+
+        </tbody>
+      </table>
+
     </div>
-<!--    {{ day.dt | stringformat:"d" | slice:":5"}} -->
 
-     {% for day in forecast %}
-     <div class="card">
-       <div class="card-body">
-         <h6 class="card-title">{{ day.dt | utc_converter }}</h6>
-         <div class="card-text">
-           Temperature: {{day.temp}}&#186; F <img src="http://openweathermap.org/img/w/{{ day.icon }}.png">
-         </div>
-       </div>
-     </div>
+    <h5>Forecast</h5>
 
-      {% endfor %}
+    <div class="weather-forecast">
+      <table class="table">
+          {% for day, hour in forecast.items %}
+          <tr class="table-light">
+            <td colspan="3">
+              {{ day|day_converter }}
+            </td>
+          </tr>
+          {% for temp in hour %}
+          <tr>
+            <td>{{ temp.dt|time_converter }}</td>
+            <td>{{ temp.temp }}&#186; F <img src="http://openweathermap.org/img/w/{{ temp.icon }}.png"></td>
+            <td class="text-capitalize">{{ temp.desc }}</td>
+          </tr>
+          {% endfor %}
+         {% endfor %}
+      </table>
+    </div>
 
   </div>
 
