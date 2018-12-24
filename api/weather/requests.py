@@ -1,7 +1,9 @@
+import datetime
+import json
+import pytz
 import requests
 import requests_cache
-import datetime
-import pytz
+
 
 from .keys import *
 
@@ -11,8 +13,6 @@ def get_city_weather_data(self, **kwargs):
     r = requests.get(weather_url.format(self.city)).json()
 
     city_weather = {
-#        "long": r['coord']['lon'],
-#        "lat": r['coord']['lat'],
         "main": r['weather'][0]['main'],
         "temperature": r['main']['temp'],
         "humidity": r['main']['humidity'],
@@ -26,6 +26,7 @@ def get_city_weather_data(self, **kwargs):
 
 def get_city_forecast_data(self, **kwargs):
     r = requests.get(forecast_url.format(self.city)).json()
+#    weather_response = 'api/weather/response/' + str(self.city) + str(self.city.state.abbrv) + '.json'
 
     forecast_data = []
 
@@ -44,16 +45,28 @@ def get_city_forecast_data(self, **kwargs):
 
         forecast_data.append(day_weather)
 
-    d = {}
+    data = {}
 
     for i in range(len(forecast_data)):
         idt = forecast_data[i]['dt']
         key = idt[:10]
-        if not d.get(key):
-            d.update({key:[]})
-        d[key].append(forecast_data[i])
+        if not data.get(key):
+            data.update({key:[]})
+        data[key].append(forecast_data[i])
 
-    return d
+#    with open(weather_response, 'w') as f:
+#        json.dump(data, f)
+
+    return data
+
+#def read_forecast_data(self, **kwargs):
+#    weather_response = 'api/weather/response/' + str(self.city) + str(self.city.state.abbrv) + '.json'
+#
+#    with open(weather_response, 'r') as read_file:
+#        data = json.load(read_file)
+#        
+#    return data
+
 
 def get_list_weather_data(self, **kwargs):
     weather_data = []
