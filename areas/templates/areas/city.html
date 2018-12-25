@@ -15,7 +15,7 @@
       <h4>Today's weather: {{ city_weather.main }} <img src="http://openweathermap.org/img/w/{{ city_weather.icon }}.png"></h4>
       <table class="table">
         <thead>
-          <tr class="bg-success">
+          <tr class="bg-warning">
             <th scope="col">Temperature</th>
             <th scope="col">Description</th>
             <th scope="col">Humidity</th>
@@ -24,7 +24,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="table-success">
+          <tr class="table-warning">
             <td>{{ city_weather.temperature }}&#186; F</td>
             <td class="text-capitalize">{{ city_weather.description }}</td>
             <td>{{ city_weather.humidity }}% </td>
@@ -36,13 +36,12 @@
       </table>
 
     </div>
+    <button type="button" class="five-day btn btn-primary btn-lg btn-block">5-Day Forecast</button>
 
-    <h5>Forecast</h5>
-
-    <div class="weather-forecast">
+    <div class="weather-forecast hidden">
       <table class="table">
           {% for day, hour in forecast.items %}
-          <tr class="table-light">
+          <tr class="table-secondary">
             <td colspan="3">
               {{ day|day_converter }}
             </td>

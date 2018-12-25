@@ -17,3 +17,7 @@ $('.weather-card').hover(function(){
   $(this).addClass("weather-hover");},
   function(){$(this).removeClass("weather-hover");}
   );
+
+$('button.five-day').click(function(){
+  $('.weather-forecast.hidden').slideToggle();
+});

@@ -25,6 +25,10 @@ a.view-state :hover {
   overflow:scroll;
 }
 
+.hidden{
+  display:none;
+}
+
 .weather-card{
   opacity:.95;
 }
