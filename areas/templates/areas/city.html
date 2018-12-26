@@ -11,9 +11,9 @@
       <h2 class="text-uppercase display-4">{{ city.name }}, {{ city.state.abbrv }}  </h2>
       <h5>Local time: {{ datetime }}</h5>
     </div>
-    <div class="weather">
-      <h4>Today's weather: {{ city_weather.main }} <img src="http://openweathermap.org/img/w/{{ city_weather.icon }}.png"></h4>
-      <table class="table">
+    <button type="button" class="todays-weather btn btn-secondary btn-lg btn-block rounded-0">Today's weather: {{ city_weather.main }} <img src="http://openweathermap.org/img/w/{{ city_weather.icon }}.png"></button>
+  <div class="weather">
+      <table class="table current-weather">
         <thead>
           <tr class="bg-warning">
             <th scope="col">Temperature</th>
@@ -36,7 +36,7 @@
       </table>
 
     </div>
-    <button type="button" class="five-day btn btn-primary btn-lg btn-block">5-Day Forecast</button>
+    <button type="button" class="five-day btn btn-light btn-lg btn-block rounded-0">5-Day Forecast</button>
 
     <div class="weather-forecast hidden">
       <table class="table">
@@ -57,6 +57,10 @@
       </table>
     </div>
 
+    <button type="button" class="map-embed btn btn-light btn-lg btn-block rounded-0">City Map</button>
+    <div class="city-map hidden">
+      {{ map | safe }}
+    </div>
   </div>
 
   <div class="col">
@@ -72,7 +76,7 @@
     <hr>
     <div class="video-results" style="height:500px; overflow:scroll;">
       {% for video in videos.data %}
-        <div class="card video-card text-center p-3 border-light">
+        <div class="card video-card pointer text-center p-3 border-light">
           <div class="img" style="max-height:300px; overflow:hidden;">
             <img class="card-img-top mx-auto" src="{{ video.pictures.sizes.3.link }}" />
           </div>

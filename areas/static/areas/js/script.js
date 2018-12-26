@@ -21,3 +21,13 @@ $('.weather-card').hover(function(){
 $('button.five-day').click(function(){
   $('.weather-forecast.hidden').slideToggle();
 });
+
+$('button.map-embed').click(function(){
+  $('.city-map.hidden').slideToggle();
+});
+
+$('.todays-weather').click(function(){
+  $('.weather').slideToggle(function(){
+    $('.weather').toggleClass('hidden');
+  });
+});

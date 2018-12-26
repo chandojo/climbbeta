@@ -20,3 +20,9 @@ def get_timezone(self, **kwargs):
     tf = TimezoneFinder()
     timezone = tf.timezone_at(lng=self.longitude, lat=self.latitude)
     return timezone
+
+def embed_map(self, **kwargs):
+    link = "https://www.google.com/maps/embed/v1/place?q=" + str(self.city) + ",+" + str(self.city.state.abbrv) + "&key=" + embed_key
+    map_iframe = '<iframe width="100%" height="450" frameborder="0" style="border:0" src="' + link + '"allowfullscreen></iframe>'
+
+    return map_iframe
