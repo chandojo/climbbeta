@@ -1509,7 +1509,7 @@
           "followers": {
             "uri": "/users/72677106/followers",
             "options": ["GET"],
-            "total": 4
+            "total": 5
           },
           "following": {
             "uri": "/users/72677106/following",
@@ -1705,7 +1705,7 @@
           "following": {
             "uri": "/users/61320643/following",
             "options": ["GET"],
-            "total": 15
+            "total": 16
           },
           "groups": {
             "uri": "/users/61320643/groups",
@@ -1715,7 +1715,7 @@
           "likes": {
             "uri": "/users/61320643/likes",
             "options": ["GET"],
-            "total": 122
+            "total": 125
           },
           "moderated_channels": {
             "uri": "/users/61320643/channels?filter=moderated",

@@ -7,8 +7,9 @@ from django.views.generic import ListView
 from django.template import loader
 from areas.models import *
 from api.vimeo.requests import *
+from api.google.youtube.requests import *
 from api.weather.requests import *
-from api.geolocator.requests import *
+from api.google.geolocator.requests import *
 
 # Create your views here.
 def index(request):
@@ -58,13 +59,13 @@ class City_View(ListView):
 #        kwargs = {'city':self.city}
 #        return read_forecast_data(self, **kwargs)
 
-    def get_videos(self, **kwargs):
+    def vimeo_read_data(self, **kwargs):
         kwargs = {'city':self.city}
-        return get_video_data(self, **kwargs)
+        return read_vimeo_data(self, **kwargs)
 
-    def video_read_data(self, **kwargs):
+    def youtube_read_data(self, **kwargs):
         kwargs = {'city':self.city}
-        return read_video_data(self, **kwargs)
+        return read_youtube_data(self, **kwargs)
 
     def get_embed_map(self, **kwargs):
         kwargs = {'city':self.city}
@@ -81,10 +82,10 @@ class City_View(ListView):
         context['city'] = self.city
         context['areas'] = self.get_queryset
         context['city_weather'] = self.get_weather_data
-        context['videos'] = self.video_read_data
+        context['vimeo_videos'] = self.vimeo_read_data
+        context['youtube_videos'] = self.youtube_read_data
         context['forecast'] = self.get_forecast_data
 #        context['forecast'] = self.read_weather_forecast
-#        context['videos'] = self.get_videos
         context['map'] = self.get_embed_map
         context['datetime'] = self.get_time
         return context

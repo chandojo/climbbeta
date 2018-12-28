@@ -75,7 +75,7 @@
 
     <hr>
     <div class="video-results" style="height:500px; overflow:scroll;">
-      {% for video in videos.data %}
+      {% for video in vimeo_videos.data %}
         <div class="card video-card pointer text-center p-3 border-light">
           <div class="img" style="max-height:300px; overflow:hidden;">
             <img class="card-img-top mx-auto" src="{{ video.pictures.sizes.3.link }}" />
@@ -83,13 +83,32 @@
           <div class="card-body">
             <h5 class="card-title">{{ video.name }}</h5>
             <span class="video-author">by <strong> {{ video.user.name }} </strong></span>
-            <div class="embed" style="display:none;">
+            <div class="embed-vimeo" style="display:none;">
                 {{ video.embed | safe }}
             </div>
           </div>
         </div>
       {% endfor %}
     </div>
+
+    <div class="video-results" style="height:500px; overflow:scroll;">
+      {% for video in youtube_videos.items %}
+
+        <div class="card video-card pointer text-center p-3 border-light">
+          <div class="img" style="max-height:300px; overflow:hidden;">
+            <img class="card-img-top mx-auto" src="{{ video.snippet.thumbnails.medium.url }}" />
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ video.snippet.title }}</h5>
+            <span class="video-author">by <strong> {{ video.snippet.channelTitle }} </strong></span>
+            <div class="embed-youtube" style="display:none;">
+                https://www.youtube.com/embed/{{ video.id.videoId }}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
   </div>
 
 </div>

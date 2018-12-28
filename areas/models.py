@@ -4,7 +4,7 @@ from django.utils.text import slugify
 
 from api.vimeo import *
 
-from api.geolocator.requests import *
+from api.google.geolocator.requests import *
 
 class State(models.Model):
     name = models.CharField(max_length=200)
