@@ -65,7 +65,7 @@
 
   <div class="col">
     <div class="video-player" style="width:100%; height:300px; overflow:inherit; background-color: black;">
-      <iframe class="video" width="100%" height="100%" src="" frameBorder="0" allow="autoplay" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      <iframe class="video" width="100%" height="100%" src="" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
     </div>
     <hr>
     <div class="text-center">
@@ -75,14 +75,14 @@
 
     <hr>
     <div class="video-results" style="height:500px; overflow:scroll;">
-      {% for video in vimeo_videos.data %}
-        <div class="card video-card pointer text-center p-3 border-light">
-          <div class="img" style="max-height:300px; overflow:hidden;">
-            <img class="card-img-top mx-auto" src="{{ video.pictures.sizes.3.link }}" />
+      {% for video in vimeo_videos %}
+        <div class="video-card pointer p-3 border-light d-inline-flex">
+          <div class="img" style="max-height:300px; overflow:hidden; width:50%;">
+            <img class="mx-auto" src="{{ video.thumbnail }}" />
           </div>
-          <div class="card-body">
-            <h5 class="card-title">{{ video.name }}</h5>
-            <span class="video-author">by <strong> {{ video.user.name }} </strong></span>
+          <div class="p-3" style="width:50%;">
+            <h5>{{ video.name }}</h5>
+            <span class="video-author">by <strong> {{ video.author }} </strong></span>
             <div class="embed-vimeo" style="display:none;">
                 {{ video.embed | safe }}
             </div>
@@ -92,17 +92,16 @@
     </div>
 
     <div class="video-results" style="height:500px; overflow:scroll;">
-      {% for video in youtube_videos.items %}
-
-        <div class="card video-card pointer text-center p-3 border-light">
-          <div class="img" style="max-height:300px; overflow:hidden;">
-            <img class="card-img-top mx-auto" src="{{ video.snippet.thumbnails.medium.url }}" />
+      {% for video in youtube_videos %}
+        <div class="video-card pointer p-3 border-light d-inline-flex">
+          <div class="img" style="max-height:300px; overflow:hidden; width:50%;">
+            <img class="mx-auto" src="{{ video.thumbnail }}" />
           </div>
-          <div class="card-body">
-            <h5 class="card-title">{{ video.snippet.title }}</h5>
-            <span class="video-author">by <strong> {{ video.snippet.channelTitle }} </strong></span>
-            <div class="embed-youtube" style="display:none;">
-                https://www.youtube.com/embed/{{ video.id.videoId }}
+          <div class="p-3" style="width:50%;">
+            <h5>{{ video.name }}</h5>
+            <span class="video-author">by <strong> {{ video.author }} </strong></span>
+            <div class="embed-vimeo" style="display:none;">
+                <iframe src="{{ video.embed }}"></iframe>
             </div>
           </div>
         </div>
