@@ -78,7 +78,7 @@
       {% for video in vimeo_videos %}
         <div class="video-card pointer p-3 border-light d-inline-flex">
           <div class="img" style="max-height:300px; overflow:hidden; width:50%;">
-            <img class="mx-auto" src="{{ video.thumbnail }}" />
+            <img class="mx-auto" style="max-width:295px" src="{{ video.thumbnail }}" />
           </div>
           <div class="p-3" style="width:50%;">
             <h5>{{ video.name }}</h5>
