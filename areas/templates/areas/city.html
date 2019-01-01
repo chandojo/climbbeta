@@ -74,8 +74,23 @@
     </div>
 
     <hr>
+
     <div class="video-results" style="height:500px; overflow:scroll;">
-      {% for video in vimeo_videos %}
+       {% for video in videos %}
+       <div class="video-card pointer p-3 border-light d-inline-flex">
+         <div class="img" style="max-height:300px; overflow:hidden; width:50%;">
+           <img class="mx-auto" style="max-width:295px" src="{{ video.thumbnail }}" />
+         </div>
+         <div class="p-3" style="width:50%;">
+           <h5>{{ video.name }}</h5>
+           <span class="video-author">by <strong> {{ video.author }} </strong></span>
+           <div class="embed-vimeo" style="display:none;">
+               {{ video.embed | safe }}
+           </div>
+         </div>
+       </div>
+       {% endfor %}
+<!--      {% for video in vimeo_videos %}
         <div class="video-card pointer p-3 border-light d-inline-flex">
           <div class="img" style="max-height:300px; overflow:hidden; width:50%;">
             <img class="mx-auto" style="max-width:295px" src="{{ video.thumbnail }}" />
@@ -107,7 +122,7 @@
         </div>
       {% endfor %}
     </div>
-
+-->
   </div>
 
 </div>

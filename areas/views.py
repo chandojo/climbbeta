@@ -10,6 +10,7 @@ from api.vimeo.requests import *
 from api.google.youtube.requests import *
 from api.weather.requests import *
 from api.google.geolocator.requests import *
+from api.videos.request import *
 
 # Create your views here.
 def index(request):
@@ -67,6 +68,10 @@ class City_View(ListView):
         kwargs = {'city':self.city}
         return read_youtube_data(self, **kwargs)
 
+    def read_all_videos(self, **kwargs):
+        kwargs = {'city':self.city}
+        return read_combined_video_data(self, **kwargs)
+
     def get_embed_map(self, **kwargs):
         kwargs = {'city':self.city}
         return embed_map(self, **kwargs)
@@ -81,9 +86,10 @@ class City_View(ListView):
         context = super().get_context_data(**kwargs)
         context['city'] = self.city
         context['areas'] = self.get_queryset
-        context['city_weather'] = self.get_weather_data
-        context['vimeo_videos'] = self.vimeo_read_data
+#        context['city_weather'] = self.get_weather_data
+#        context['vimeo_videos'] = self.vimeo_read_data
         context['youtube_videos'] = self.youtube_read_data
+        context['videos'] = self.read_all_videos
         context['forecast'] = self.get_forecast_data
 #        context['forecast'] = self.read_weather_forecast
         context['map'] = self.get_embed_map
