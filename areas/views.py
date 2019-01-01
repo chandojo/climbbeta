@@ -86,9 +86,9 @@ class City_View(ListView):
         context = super().get_context_data(**kwargs)
         context['city'] = self.city
         context['areas'] = self.get_queryset
-#        context['city_weather'] = self.get_weather_data
+        context['city_weather'] = self.get_weather_data
 #        context['vimeo_videos'] = self.vimeo_read_data
-        context['youtube_videos'] = self.youtube_read_data
+#        context['youtube_videos'] = self.youtube_read_data
         context['videos'] = self.read_all_videos
         context['forecast'] = self.get_forecast_data
 #        context['forecast'] = self.read_weather_forecast
