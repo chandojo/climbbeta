@@ -1,1 +1,1 @@
-web: gunicorn climbbeta.wsgi
+web: gunicorn climbbeta.wsgi --log-file -
