@@ -15,11 +15,8 @@ from api.videos.request import *
 # Create your views here.
 def index(request):
     state_list = State.objects.all()
-
     template = 'areas/index.html'
-
     context = {'state_list':state_list}
-
     return render(request, template, context)
 
 class State_View(ListView):

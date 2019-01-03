@@ -12,7 +12,6 @@ $('.video-card').on('click', function(){
   } else {
     $('.video').attr('src', youtubeEmbed);
   }
-
   $(this).addClass('active-video');
 });
 
