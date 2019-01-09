@@ -31,7 +31,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
     'vimeo',
     'timezonefinder',
     'requests_cache',
@@ -134,7 +133,6 @@ USE_TZ = False
 
 #STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-#STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 #MEDIA_ROOT = BASE_DIR
