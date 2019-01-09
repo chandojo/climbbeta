@@ -151,6 +151,14 @@ SECURE_BROWSER_XSS_FILTER       = True
 X_FRAME_OPTIONS                 = 'DENY'
 SECURE_HSTS_PRELOAD             = True
 
-ADMINS = (('Celena', 'cmhandojo@gmail.com'),)
+EMAIL_HOST = 'smtp.gmail.com' #insert email host here
+EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER'] # My email username. Hide email address in key named EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD'] # My email password. Hide email password in key named EMAIL_HOST_PASSWORD
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = "My Name <myemail@email.com>"
+
+ADMINS = [('Celena', EMAIL_HOST_USER)]
+MANAGERS = ADMINS
 
 django_heroku.settings(locals())
