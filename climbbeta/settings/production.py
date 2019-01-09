@@ -13,7 +13,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 SECRET_KEY = os.environ.get('CLIMB_BETA_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['climbbeta.herokuapp.com', '.herokuapp.com']
 
@@ -151,5 +151,22 @@ SECURE_BROWSER_XSS_FILTER       = True
 X_FRAME_OPTIONS                 = 'DENY'
 SECURE_HSTS_PRELOAD             = True
 
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+             'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
+        },
+    },
+}
 
 django_heroku.settings(locals())
