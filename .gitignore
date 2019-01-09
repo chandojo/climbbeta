@@ -110,3 +110,6 @@ staticfiles.json
 
 # mypy
 .mypy_cache/
+
+# AWS secrets
+aws-secret.txt
