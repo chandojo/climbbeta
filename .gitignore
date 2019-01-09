@@ -94,6 +94,14 @@ ENV/
 .spyderproject
 .spyproject
 
+# Staticfiles
+staticfiles/admin
+staticfiles/areas
+staticfiles/css
+staticfiles/img
+staticfiles/rest_framework
+staticfiles.json
+
 # Rope project settings
 .ropeproject
 

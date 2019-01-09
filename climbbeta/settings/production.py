@@ -1,5 +1,6 @@
 import os
 import django_heroku
+from climbbeta.aws.conf import *
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 # Note: Production BASE_DIR different from local settings
@@ -35,6 +36,7 @@ INSTALLED_APPS = [
     'timezonefinder',
     'requests_cache',
     'geopy',
+    'storages',
 ]
 
 MIDDLEWARE = [
