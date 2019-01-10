@@ -1,5 +1,5 @@
 import os
-import django_heroku
+#import django_heroku
 from climbbeta.aws.conf import *
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -162,4 +162,4 @@ DEFAULT_FROM_EMAIL = "My Name <myemail@email.com>"
 ADMINS = [('Celena', EMAIL_HOST_USER)]
 MANAGERS = ADMINS
 
-django_heroku.settings(locals())
+#django_heroku.settings(locals())
