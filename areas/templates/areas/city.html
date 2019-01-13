@@ -4,12 +4,30 @@
 {% block head %}
 <div class="row p-1 text-center fixed-bottom bg-dark text-light">
   <div class="col">
-    <strong>Current weather in {{ city.name }}, {{ city.state.abbrv }}</strong>: {{ city_weather.temperature }}&#186; F | {{ city_weather.description }} | <img src="http://openweathermap.org/img/w/{{ city_weather.icon }}.png">
+    <strong>Current weather in {{ city.name }}, {{ city.state.abbrv }}</strong>: {{ city_weather.temperature }}&#186; F | <span class="text-capitalize">{{ city_weather.description }}</span>  | <img src="http://openweathermap.org/img/w/{{ city_weather.icon }}.png">
   </div>
 </div>
 {% endblock %}
 
 {% block body %}
+<div class="row">
+  <div class="col d-inline p-4 bg-warning" style="width:100%; overflow:hidden; overflow-x:scroll; white-space: nowrap;">
+
+    {% for day, hour in forecast.items %}
+    <div class="d-inline table-warning p-3">
+
+      <span class="font-weight-bold">{{ day|day_converter }}</span>
+    {% for temp in hour %}
+      <span class="font-italic">{{ temp.dt|time_converter }}:</span>
+      {{ temp.temp }}&#186; F -
+      <span class="text-capitalize">{{ temp.desc }}</span> |
+
+    {% endfor %}
+
+  </div>
+   {% endfor %}
+  </div>
+</div>
 <div class="row">
   <div class="col-3 p-1">
     <div class="video-results" style="height:500px; overflow:scroll;">
