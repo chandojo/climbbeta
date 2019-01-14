@@ -2,35 +2,47 @@
 {% load area_filters %}
 
 {% block head %}
-<div class="row p-1 text-center fixed-bottom bg-dark text-light">
-  <div class="col">
+<div class="p-1 text-center fixed-bottom bg-dark text-light">
+  <div class="current-weather">
     <strong>Current weather in {{ city.name }}, {{ city.state.abbrv }}</strong>: {{ city_weather.temperature }}&#186; F | <span class="text-capitalize">{{ city_weather.description }}</span>  | <img src="http://openweathermap.org/img/w/{{ city_weather.icon }}.png">
+    <button type="button" class="five-day btn btn-light btn-sm">5-Day Forecast</button>
+    <button type="button" class="map-embed btn btn-light btn-sm">Map</button>
   </div>
+  <div class="weather-forecast hidden bg-light">
+      <div class="col d-inline" style="width:100%; overflow:hidden; overflow:scroll; white-space: nowrap; font-size:0.8rem">
+        {% for day, hour in forecast.items %}
+        <table class="table d-inline">
+          <tbody class="text-dark">
+            <tr class="table-secondary">
+              <td colspan="3">
+                {{ day|day_converter }}
+              </td>
+            </tr>
+            {% for temp in hour %}
+            <tr>
+              <td>{{ temp.dt|time_converter }}</td>
+              <td>{{ temp.temp }}&#186; F <img src="http://openweathermap.org/img/w/{{ temp.icon }}.png"></td>
+              <td class="text-capitalize">{{ temp.desc }}</td>
+            </tr>
+            {% endfor %}
+           {% endfor %}
+         </tbody>
+        </table>
+      </div>
+  </div>
+
+  <div class="city-map hidden">
+    {{ map | safe }}
+  </div>
+
 </div>
 {% endblock %}
 
 {% block body %}
-<div class="row">
-  <div class="col d-inline p-4 bg-warning" style="width:100%; overflow:hidden; overflow-x:scroll; white-space: nowrap;">
 
-    {% for day, hour in forecast.items %}
-    <div class="d-inline table-warning p-3">
-
-      <span class="font-weight-bold">{{ day|day_converter }}</span>
-    {% for temp in hour %}
-      <span class="font-italic">{{ temp.dt|time_converter }}:</span>
-      {{ temp.temp }}&#186; F -
-      <span class="text-capitalize">{{ temp.desc }}</span> |
-
-    {% endfor %}
-
-  </div>
-   {% endfor %}
-  </div>
-</div>
 <div class="row">
   <div class="col-3 p-1">
-    <div class="video-results" style="height:500px; overflow:scroll;">
+    <div class="video-results" style="max-height:675px; overflow:scroll;">
        {% for video in videos %}
        <div class="video-card pointer p-3 border-light d-block">
          <div class="img" style="max-height:300px; overflow:hidden; width:100%;">
@@ -62,31 +74,6 @@
   </div>
 
   <div class="col-3" style="font-size:.8em;">
-    <button type="button" class="five-day btn btn-light btn-lg btn-block rounded-0">5-Day Forecast</button>
-
-    <div class="weather-forecast hidden">
-      <table class="table">
-          {% for day, hour in forecast.items %}
-          <tr class="table-secondary">
-            <td colspan="3">
-              {{ day|day_converter }}
-            </td>
-          </tr>
-          {% for temp in hour %}
-          <tr>
-            <td>{{ temp.dt|time_converter }}</td>
-            <td>{{ temp.temp }}&#186; F <img src="http://openweathermap.org/img/w/{{ temp.icon }}.png"></td>
-            <td class="text-capitalize">{{ temp.desc }}</td>
-          </tr>
-          {% endfor %}
-         {% endfor %}
-      </table>
-    </div>
-
-    <button type="button" class="map-embed btn btn-light btn-lg btn-block rounded-0">City Map</button>
-    <div class="city-map hidden">
-      {{ map | safe }}
-    </div>
 
   </div>
 </div>
