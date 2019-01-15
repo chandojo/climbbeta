@@ -21,16 +21,12 @@ $('.weather-card').hover(function(){
   function(){$(this).removeClass("weather-hover");}
   );
 
+$('.hidden').hide();
+
 $('button.five-day').click(function(){
   $('.weather-forecast.hidden').slideToggle();
 });
 
 $('button.map-embed').click(function(){
   $('.city-map.hidden').slideToggle();
-});
-
-$('.todays-weather').click(function(){
-  $('.weather').slideToggle(function(){
-    $('.weather').toggleClass('hidden');
-  });
 });
