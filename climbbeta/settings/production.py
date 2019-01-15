@@ -158,5 +158,5 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = "My Name <myemail@email.com>"
 
-ADMINS = [('Celena', EMAIL_HOST_USER)]
+ADMINS = [('Admin', EMAIL_HOST_USER)]
 MANAGERS = ADMINS
