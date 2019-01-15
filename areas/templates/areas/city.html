@@ -46,15 +46,14 @@
       <iframe class="video" width="100%" height="100%" src="" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
     </div>
     <hr>
-    <div class="text-center">
-      <span class="text-uppercase">Videos</span>
-      <button type="button" class="btn btn-success play-all"><i class="fas fa-play"></i> All</button>
-    </div>
-
-    <hr>
   </div>
 
   <div class="col-md-4 p-1">
+    <div class="text-center">
+      <span class="text-uppercase"><strong>Videos</strong></span>
+      <button type="button" class="btn btn-success play-all"><i class="fas fa-play"></i> All</button>
+    </div>
+
     <div class="video-results" style="max-height:675px; overflow:scroll;">
        {% for video in videos %}
        <div class="video-card pointer p-3 border-light d-block">

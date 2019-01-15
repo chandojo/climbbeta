@@ -5,6 +5,7 @@
 {% load static %}
 <div class="card-bank text-center">
  {% for state in state_list %}
+ <a class="view-state" href="{% url 'areas:states' state.slug %}">
   <div class="card d-inline-flex" style="width: 18rem;">
     {% if state.img %}
     <img class="card-img-top" src="{{ state.img.url }}" />
@@ -12,9 +13,10 @@
     <h5>No image available</h5>
     {% endif %}
     <div class="card-body">
-      <a class="view-state" href="{% url 'areas:states' state.slug %}"><h5 class="card-title">{{ state.name }}</h5></a>
+      <h5 class="card-title">{{ state.name }}</h5>
     </div>
   </div>
+  </a>
  {% endfor %}
 
 </div>
