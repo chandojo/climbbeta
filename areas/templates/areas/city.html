@@ -9,6 +9,9 @@
     <button type="button" class="map-embed btn btn-light btn-sm">Map</button>
   </div>
   <div class="weather-forecast hidden bg-light">
+    <div class="x pointer">
+      <i class="fas fa-times"></i> Close
+    </div>
       <div class="col d-inline" style="width:100%; overflow:hidden; overflow:scroll; white-space: nowrap; font-size:0.8rem">
         {% for day, hour in forecast.items %}
         <table class="table d-inline">
@@ -32,6 +35,9 @@
   </div>
 
   <div class="city-map hidden">
+    <div class="x pointer">
+      <i class="fas fa-times"></i> Close
+    </div>
     {{ map | safe }}
   </div>
 
@@ -48,8 +54,8 @@
     <hr>
   </div>
 
-  <div class="col-md-4 p-1">
-    <div class="text-center">
+  <div class="col-md-4 p-2">
+    <div class="text-center p-2">
       <span class="text-uppercase"><strong>Videos</strong></span>
       <button type="button" class="btn btn-success play-all"><i class="fas fa-play"></i> All</button>
     </div>

@@ -27,6 +27,7 @@ a.view-state :hover {
 
 .hidden{
   display:none;
+  z-index: -1;
 }
 
 .weather-card{
@@ -49,4 +50,12 @@ a.view-state :hover {
 
 .pointer, .weather-hover{
   cursor:pointer;
+}
+
+.x{
+  z-index: 10;
+  position:absolute;
+  left:1rem;
+  color:red;
+
 }

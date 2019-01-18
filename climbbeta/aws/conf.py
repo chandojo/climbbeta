@@ -6,6 +6,7 @@ AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
 AWS_FILE_EXPIRE = 200
 AWS_PRELOAD_METADATA = True
 AWS_QUERYSTRING_AUTH = True
+AWS_DEFAULT_ACL = None
 
 DEFAULT_FILE_STORAGE = 'climbbeta.aws.utils.MediaRootS3BotoStorage'
 STATICFILES_STORAGE = 'climbbeta.aws.utils.StaticRootS3BotoStorage'

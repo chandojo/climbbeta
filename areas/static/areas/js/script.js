@@ -30,3 +30,7 @@ $('button.map-embed').click(function(){
   $('.city-map.hidden').slideToggle();
   $('.weather-forecast.hidden').hide(400);
 });
+
+$('div.x').click(function(){
+  $(this).parent().hide(400);
+});
