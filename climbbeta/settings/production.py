@@ -35,6 +35,8 @@ INSTALLED_APPS = [
     'requests_cache',
     'geopy',
     'storages',
+    'frontend',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [

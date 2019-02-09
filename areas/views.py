@@ -2,6 +2,8 @@ import datetime
 import pytz
 import requests
 
+from rest_framework import viewsets
+from .serializers import *
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView
 from django.template import loader
@@ -18,6 +20,10 @@ def index(request):
     template = 'areas/index.html'
     context = {'state_list':state_list}
     return render(request, template, context)
+
+class API_State_View(viewsets.ModelViewSet):
+    queryset = State.objects.all()
+    serializer_class = StateSerializer
 
 class State_View(ListView):
     template_name = 'areas/state.html'

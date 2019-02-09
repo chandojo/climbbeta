@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'timezonefinder',
     'requests_cache',
     'geopy',
-    'frontend'
+    'frontend',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
