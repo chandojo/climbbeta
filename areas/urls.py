@@ -5,6 +5,7 @@ from . import views
 
 router = routers.DefaultRouter()
 router.register('states', views.API_State_View)
+router.register('cities', views.API_CityTown_View)
 
 app_name = 'areas'
 urlpatterns = [
