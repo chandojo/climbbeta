@@ -4,17 +4,20 @@ from areas.models import City_Town
 
 # Create your models here.
 class Videos(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, primary_key=True)
     author = models.CharField(max_length=100)
     thumbnail = models.URLField(max_length=200)
-    embed = models.CharField(max_length=255)
+    embed = models.TextField()
     description = models.TextField()
-    city = models.ForeignKey(City_Town, on_delete=models.PROTECT)
-    slug = models.SlugField(blank=True, unique=True)
+    slug = models.SlugField(blank=True, null=True, unique=True)
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.id)
+            self.slug = slugify(self.name)
+        super(Videos, self).save(*args, **kwargs)
 
     class Meta:
         db_table='videos'
+
+    def __str__(self):
+        return self.name
