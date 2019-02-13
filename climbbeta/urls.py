@@ -9,6 +9,7 @@ urlpatterns = [
     path('areas/', include('areas.urls')),
     path('climbs/', include('climbs.urls')),
     path('members/', include('members.urls')),
+    path('videos/', include('video.urls')),
     path('admin/', admin.site.urls),
 ]
 
