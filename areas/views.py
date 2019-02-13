@@ -43,7 +43,8 @@ class City_View(ListView):
 
     def get_queryset(self):
         self.city = get_object_or_404(City_Town, slug=self.kwargs['slug'], state__slug=self.kwargs['state__slug'])
-        return Area.objects.filter(city_town__name=self.city)
+        return self.city
+#        return Area.objects.filter(city_town__name=self.city)
 
     def get_weather_data(self, **kwargs):
         kwargs = {'city':self.city}
@@ -82,7 +83,7 @@ class City_View(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['city'] = self.city
-        context['areas'] = self.get_queryset
+#        context['areas'] = self.get_queryset
         context['city_weather'] = self.get_weather_data
 #        context['vimeo_videos'] = self.vimeo_read_data
 #        context['youtube_videos'] = self.youtube_read_data

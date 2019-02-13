@@ -1,0 +1,61 @@
+[{
+  "model": "weather.Todays_Weather",
+  "fields": {
+    "city": "Gold Bar",
+    "date": 1550080380,
+    "main": "Fog",
+    "temp": 35.06,
+    "max_temp": 37.04,
+    "min_temp": 33.08,
+    "humidity": 95,
+    "pressure": 1003,
+    "wind_speed": 9.17,
+    "desc": "fog",
+    "icon": "50d"
+  }
+}, {
+  "model": "weather.Todays_Weather",
+  "fields": {
+    "city": "Index",
+    "date": 1550080380,
+    "main": "Fog",
+    "temp": 33.3,
+    "max_temp": 37.04,
+    "min_temp": 26.96,
+    "humidity": 95,
+    "pressure": 1003,
+    "wind_speed": 9.17,
+    "desc": "fog",
+    "icon": "50d"
+  }
+}, {
+  "model": "weather.Todays_Weather",
+  "fields": {
+    "city": "Leavenworth",
+    "date": 1550080500,
+    "main": "Mist",
+    "temp": 22.48,
+    "max_temp": 26.96,
+    "min_temp": 19.94,
+    "humidity": 88,
+    "pressure": 1004,
+    "wind_speed": 4.7,
+    "desc": "mist",
+    "icon": "50d"
+  }
+}, {
+  "model": "weather.Todays_Weather",
+  "fields": {
+    "city": "Bellingham",
+    "date": 1550080500,
+    "main": "Mist",
+    "temp": 30.85,
+    "max_temp": 37.04,
+    "min_temp": 23,
+    "humidity": 100,
+    "pressure": 1005,
+    "wind_speed": 10.29,
+    "desc": "mist",
+    "icon": "50d"
+  }
+}]

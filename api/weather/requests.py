@@ -15,6 +15,8 @@ def get_city_weather_data(self, **kwargs):
     city_weather = {
         "main": r['weather'][0]['main'],
         "temperature": r['main']['temp'],
+        "max_temp": r['main']['temp_max'],
+        "min_temp": r['main']['temp_min'],
         "humidity": r['main']['humidity'],
         "pressure": r['main']['pressure'],
         "wind": r['wind']['speed'],
@@ -64,7 +66,7 @@ def get_city_forecast_data(self, **kwargs):
 #
 #    with open(weather_response, 'r') as read_file:
 #        data = json.load(read_file)
-#        
+#
 #    return data
 
 

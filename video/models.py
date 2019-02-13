@@ -9,7 +9,7 @@ class Videos(models.Model):
     thumbnail = models.URLField(max_length=200)
     embed = models.TextField()
     description = models.TextField()
-    slug = models.SlugField(blank=True, unique=True)
+    slug = models.SlugField(blank=True,unique=True, null=True)
 
     def save(self, *args, **kwargs):
         if not self.slug:
