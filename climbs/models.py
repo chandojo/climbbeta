@@ -1,7 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 import uuid
-from areas.models import Boulder_Wall
+#from areas.models import Boulder_Wall
 
 class Grade(models.Model):
     grade_name = models.CharField(max_length=3, primary_key=True)
@@ -20,7 +20,7 @@ class Problem(models.Model):
     problem_name = models.CharField(max_length=200)
     description = models.TextField()
     grade = models.ManyToManyField(Grade)
-    location = models.ForeignKey(Boulder_Wall, on_delete=models.PROTECT)
+#    location = models.ForeignKey(Boulder_Wall, on_delete=models.PROTECT)
     stars = models.ForeignKey(Rating, on_delete=models.PROTECT)
 
 
