@@ -15,12 +15,16 @@ def get_todays_weather():
     for city in cities:
         get_city = str(city.name)
         r = requests.get(weather_url.format(get_city)).json()
+        day = r['dt']
+        utc = datetime.datetime.utcfromtimestamp(day)
+        tz = pytz.timezone(city.timezone)
+        date = utc.astimezone(tz)
 
         city_weather = {
             "model": "weather.Todays_Weather",
             "fields": {
                 "city": city.name,
-                "date": r['dt'],
+                "date": str(date),
                 "main": r['weather'][0]['main'],
                 "temp": r['main']['temp'],
                 "max_temp": r['main']['temp_max'],
@@ -43,7 +47,6 @@ def get_forecast_data():
     cities = City_Town.objects.all()
     forecast_weather = []
     data = {}
-    forecast_data = []
     forecast_response = 'weather/fixtures/week-forecast-' + today + '.json'
 
     for city in cities:
@@ -65,12 +68,12 @@ def get_forecast_data():
                     }
             }
             forecast_weather.append(day_weather)
-    for i in range(len(forecast_weather)):
-        idt = forecast_weather[i]['fields']['daytime']
-        key = idt[:10]
-        if not data.get(key):
-            data.update({key:[]})
-        data[key].append(forecast_weather[i])
-        forecast_data.append(data[key])
+#    for i in range(len(forecast_weather)):
+#        idt = forecast_weather[i]['fields']['daytime']
+#        key = idt[:10]
+#        if not data.get(key):
+#            data.update({key:[]})
+#        data[key].append(forecast_weather[i])
+
     with open(forecast_response, 'w') as f:
-        json.dump(forecast_data, f)
+        json.dump(forecast_weather, f)
