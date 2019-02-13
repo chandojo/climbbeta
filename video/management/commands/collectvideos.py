@@ -1,8 +1,5 @@
-from django.core import management
 from django.core.management.base import BaseCommand, CommandError
-from django.core.management.commands import loaddata
-from video.api.get_all_videos import get_all_city_videos, compile_videos
-from datetime import date
+from video.api.get_all_videos import get_all_city_videos
 
 
 class Command(BaseCommand):
@@ -10,6 +7,3 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         return  get_all_city_videos()
-
-#    def handle(self, *args, **options):
-#        return compile_videos()

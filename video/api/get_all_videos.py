@@ -49,16 +49,17 @@ def get_all_city_videos():
 def compile_videos():
     cities = City_Town.objects.all()
     today = str(date.today())
+    compiled_file = 'video/fixtures/' + today + '.json'
+    concat_videos = []
 
     for city in cities:
-        compiled_file = 'video/fixtures/' + today + '.json'
         get_city = str(city.name)
         no_space_city = get_city.replace(' ', '')
         video_response = 'video/fixtures/' + today + no_space_city + '-' + str(city.state.abbrv) + '.json'
-        concat_videos = []
         with open(video_response) as f:
             video_file = json.load(f)
             for video in video_file:
                 concat_videos.append(video)
-        with open(compiled_file, 'w') as f:
-            json.dump(concat_videos, f)
+
+    with open(compiled_file, 'w') as f:
+        json.dump(concat_videos, f)

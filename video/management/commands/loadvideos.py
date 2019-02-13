@@ -4,6 +4,8 @@ from django.core.management.commands import loaddata
 from datetime import date
 
 class Command(BaseCommand):
+    help = "Uploads video fixtures to database"
+    
     def handle(self, *args, **options):
         today = str(date.today())
         return management.call_command('loaddata', today + '.json')

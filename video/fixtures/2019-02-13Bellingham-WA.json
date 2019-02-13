@@ -1,1 +1,100 @@
-[{"model": "video.Videos", "fields": {"name": "Bellingham Bouldering", "author": "Luis Serrano Bellido", "thumbnail": "https://i.vimeocdn.com/video/531252542_295x166.jpg?r=pad", "embed": "<iframe src=\"https://player.vimeo.com/video/136659744?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=137790\" width=\"640\" height=\"360\" frameborder=\"0\" title=\"Bellingham Bouldering\" allow=\"autoplay; fullscreen\" allowfullscreen></iframe>", "description": "Last bouldering trip we did in Bellingham, Washington. Andrea climbing a classic V5, MCL, in Lost Ledge boulders. Luis climbing Chuckanut Roof, V12, next to Chuckanut Drive."}}, {"model": "video.Videos", "fields": {"name": "Nasty Woman - Bellingham, Washington", "author": "wesn01", "thumbnail": "https://i.ytimg.com/vi/jtKrmqgfahg/mqdefault.jpg", "embed": "jtKrmqgfahg", "description": "Nasty Woman / Lost Ledges North / Larrabee State Park / Bellingham, Washington (Yes, I scraped the hanging pad a couple times.)"}}, {"model": "video.Videos", "fields": {"name": "Outliers: Bellingham Bouldering", "author": "redpointfilm", "thumbnail": "https://i.ytimg.com/vi/qamLqbU_E1U/mqdefault.jpg", "embed": "qamLqbU_E1U", "description": "Two new sandstone bouldering problems at two new areas between Bellingham-Burlington. Both were climbed after work and I'm excited for more after-work ..."}}, {"model": "video.Videos", "fields": {"name": "tony and riley climbing near bellingham, wa", "author": "Riley Polvorosa", "thumbnail": "https://i.ytimg.com/vi/3AKxKp5hNIs/mqdefault.jpg", "embed": "3AKxKp5hNIs", "description": ""}}, {"model": "video.Videos", "fields": {"name": "Bouldering at Clayton Beach, Bellingham, WA", "author": "Moreebz", "thumbnail": "https://i.ytimg.com/vi/GWNUvDnF1_0/mqdefault.jpg", "embed": "GWNUvDnF1_0", "description": "Just another bouldering video."}}, {"model": "video.Videos", "fields": {"name": "Western Washington Bouldering 2018", "author": "TripBrannen", "thumbnail": "https://i.ytimg.com/vi/TqFVFPl59jQ/mqdefault.jpg", "embed": "TqFVFPl59jQ", "description": "A collection of bouldering footage from Western Washington in 2018. All grades are from the Western Washington Bouldering guidebook and do not necessarily ..."}}, {"model": "video.Videos", "fields": {"name": "Bellingham Bouldering", "author": "Jeremy Zachariash", "thumbnail": "https://i.ytimg.com/vi/lbyxQDGuirw/mqdefault.jpg", "embed": "lbyxQDGuirw", "description": "Sun and sandstone!!!!"}}, {"model": "video.Videos", "fields": {"name": "Bellingham, Washington and the Pacific Northwest", "author": "Helen Lieblein", "thumbnail": "https://i.ytimg.com/vi/Gpr3LPQLpcw/mqdefault.jpg", "embed": "Gpr3LPQLpcw", "description": "A place to visit in the summer. Cool and hang loose."}}, {"model": "video.Videos", "fields": {"name": "Bellingham Bouldering", "author": "Myles Byam", "thumbnail": "https://i.ytimg.com/vi/n4ti0sfwkHQ/mqdefault.jpg", "embed": "n4ti0sfwkHQ", "description": "A few classics from Larrabee state park."}}, {"model": "video.Videos", "fields": {"name": "Lost Ledge Bouldering", "author": "Brittany Goris", "thumbnail": "https://i.ytimg.com/vi/aAMjnvQBzw8/mqdefault.jpg", "embed": "aAMjnvQBzw8", "description": "Bouldering in the Lost Ledge area near Bellingham, Washington. Names and exact grades of climbs are unknown as the area is still under development, but our ..."}}, {"model": "video.Videos", "fields": {"name": "Boulderham 2018 Competition at VITAL Bellingham", "author": "VITAL Climbing Gym", "thumbnail": "https://i.ytimg.com/vi/Vv2xpYjDgg8/mqdefault.jpg", "embed": "Vv2xpYjDgg8", "description": "Check out the highlights from the 5th annual Boulderham competition at VITAL Climbing Gym in Bellingham, WA on Saturday, November 17, 2018! Video by The ..."}}]
+[{
+  "model": "video.Videos",
+  "fields": {
+    "name": "Bellingham Bouldering",
+    "author": "Luis Serrano Bellido",
+    "thumbnail": "https://i.vimeocdn.com/video/531252542_295x166.jpg?r=pad",
+    "embed": "<iframe src=\"https://player.vimeo.com/video/136659744?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=137790\" width=\"640\" height=\"360\" frameborder=\"0\" title=\"Bellingham Bouldering\" allow=\"autoplay; fullscreen\" allowfullscreen></iframe>",
+    "description": "Last bouldering trip we did in Bellingham, Washington. Andrea climbing a classic V5, MCL, in Lost Ledge boulders. Luis climbing Chuckanut Roof, V12, next to Chuckanut Drive."
+  }
+}, {
+  "model": "video.Videos",
+  "fields": {
+    "name": "Nasty Woman - Bellingham, Washington",
+    "author": "wesn01",
+    "thumbnail": "https://i.ytimg.com/vi/jtKrmqgfahg/mqdefault.jpg",
+    "embed": "jtKrmqgfahg",
+    "description": "Nasty Woman / Lost Ledges North / Larrabee State Park / Bellingham, Washington (Yes, I scraped the hanging pad a couple times.)"
+  }
+}, {
+  "model": "video.Videos",
+  "fields": {
+    "name": "Outliers: Bellingham Bouldering",
+    "author": "redpointfilm",
+    "thumbnail": "https://i.ytimg.com/vi/qamLqbU_E1U/mqdefault.jpg",
+    "embed": "qamLqbU_E1U",
+    "description": "Two new sandstone bouldering problems at two new areas between Bellingham-Burlington. Both were climbed after work and I'm excited for more after-work ..."
+  }
+}, {
+  "model": "video.Videos",
+  "fields": {
+    "name": "Boulderham 2018 Competition at VITAL Bellingham",
+    "author": "VITAL Climbing Gym",
+    "thumbnail": "https://i.ytimg.com/vi/Vv2xpYjDgg8/mqdefault.jpg",
+    "embed": "Vv2xpYjDgg8",
+    "description": "Check out the highlights from the 5th annual Boulderham competition at VITAL Climbing Gym in Bellingham, WA on Saturday, November 17, 2018! Video by The ..."
+  }
+}, {
+  "model": "video.Videos",
+  "fields": {
+    "name": "tony and riley climbing near bellingham, wa",
+    "author": "Riley Polvorosa",
+    "thumbnail": "https://i.ytimg.com/vi/3AKxKp5hNIs/mqdefault.jpg",
+    "embed": "3AKxKp5hNIs",
+    "description": ""
+  }
+}, {
+  "model": "video.Videos",
+  "fields": {
+    "name": "Bouldering at Clayton Beach, Bellingham, WA",
+    "author": "Moreebz",
+    "thumbnail": "https://i.ytimg.com/vi/GWNUvDnF1_0/mqdefault.jpg",
+    "embed": "GWNUvDnF1_0",
+    "description": "Just another bouldering video."
+  }
+}, {
+  "model": "video.Videos",
+  "fields": {
+    "name": "Western Washington Bouldering 2018",
+    "author": "TripBrannen",
+    "thumbnail": "https://i.ytimg.com/vi/TqFVFPl59jQ/mqdefault.jpg",
+    "embed": "TqFVFPl59jQ",
+    "description": "A collection of bouldering footage from Western Washington in 2018. All grades are from the Western Washington Bouldering guidebook and do not necessarily ..."
+  }
+}, {
+  "model": "video.Videos",
+  "fields": {
+    "name": "Bellingham Bouldering",
+    "author": "Jeremy Zachariash",
+    "thumbnail": "https://i.ytimg.com/vi/lbyxQDGuirw/mqdefault.jpg",
+    "embed": "lbyxQDGuirw",
+    "description": "Sun and sandstone!!!!"
+  }
+}, {
+  "model": "video.Videos",
+  "fields": {
+    "name": "Bellingham, Washington and the Pacific Northwest",
+    "author": "Helen Lieblein",
+    "thumbnail": "https://i.ytimg.com/vi/Gpr3LPQLpcw/mqdefault.jpg",
+    "embed": "Gpr3LPQLpcw",
+    "description": "A place to visit in the summer. Cool and hang loose."
+  }
+}, {
+  "model": "video.Videos",
+  "fields": {
+    "name": "Bellingham Bouldering",
+    "author": "Myles Byam",
+    "thumbnail": "https://i.ytimg.com/vi/n4ti0sfwkHQ/mqdefault.jpg",
+    "embed": "n4ti0sfwkHQ",
+    "description": "A few classics from Larrabee state park."
+  }
+}, {
+  "model": "video.Videos",
+  "fields": {
+    "name": "Lost Ledge Bouldering",
+    "author": "Brittany Goris",
+    "thumbnail": "https://i.ytimg.com/vi/aAMjnvQBzw8/mqdefault.jpg",
+    "embed": "aAMjnvQBzw8",
+    "description": "Bouldering in the Lost Ledge area near Bellingham, Washington. Names and exact grades of climbs are unknown as the area is still under development, but our ..."
+  }
+}]

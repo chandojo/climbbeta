@@ -9,7 +9,7 @@ class Videos(models.Model):
     thumbnail = models.URLField(max_length=200)
     embed = models.TextField()
     description = models.TextField()
-    slug = models.SlugField(blank=True, null=True, unique=True)
+    slug = models.SlugField(blank=True, unique=True)
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -18,6 +18,7 @@ class Videos(models.Model):
 
     class Meta:
         db_table='videos'
+        verbose_name_plural = 'Videos'
 
     def __str__(self):
         return self.name
