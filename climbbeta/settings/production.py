@@ -35,13 +35,9 @@ INSTALLED_APPS = [
     'requests_cache',
     'geopy',
     'storages',
-<<<<<<< HEAD
-    'frontend',
-    'rest_framework'
-=======
+    'rest_framework',
     'video',
     'weather',
->>>>>>> apitodb
 ]
 
 MIDDLEWARE = [

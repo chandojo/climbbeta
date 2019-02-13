@@ -9,7 +9,6 @@ urlpatterns = [
     path('areas/', include('areas.urls')),
     path('climbs/', include('climbs.urls')),
     path('members/', include('members.urls')),
-    path('react/', include('frontend.urls')),
     path('admin/', admin.site.urls),
 ]
 

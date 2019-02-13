@@ -44,13 +44,9 @@ INSTALLED_APPS = [
     'timezonefinder',
     'requests_cache',
     'geopy',
-<<<<<<< HEAD
-    'frontend',
-    'rest_framework'
-=======
+    'rest_framework',
     'video',
     'weather',
->>>>>>> apitodb
 ]
 
 MIDDLEWARE = [
