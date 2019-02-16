@@ -2,78 +2,77 @@ import datetime
 import json
 import pytz
 import requests
+import requests_cache
 
-from weather.api.keys import *
-from areas.models import City_Town
 
-def get_todays_weather():
-    today = str(datetime.date.today())
-    cities = City_Town.objects.all()
-    daily_weather = []
-    weather_response = 'weather/fixtures/daily-weather-' + today + '.json'
+from .keys import *
 
-    for city in cities:
-        get_city = str(city.name)
-        r = requests.get(weather_url.format(get_city)).json()
-        day = r['dt']
-        utc = datetime.datetime.utcfromtimestamp(day)
-        tz = pytz.timezone(city.timezone)
-        date = utc.astimezone(tz)
+requests_cache.install_cache(
+    'weather_cache', backend='sqlite', expire_after=30)
+
+
+def get_city_weather_data(self, **kwargs):
+    r = requests.get(weather_url.format(self.city)).json()
+
+    city_weather = {
+        "main": r['weather'][0]['main'],
+        "temperature": r['main']['temp'],
+        "max_temp": r['main']['temp_max'],
+        "min_temp": r['main']['temp_min'],
+        "humidity": r['main']['humidity'],
+        "pressure": r['main']['pressure'],
+        "wind": r['wind']['speed'],
+        "description": r['weather'][0]['description'],
+        "icon": r['weather'][0]['icon'],
+        "date": r['dt'],
+    }
+    return city_weather
+
+
+def get_city_forecast_data(self, **kwargs):
+    r = requests.get(forecast_url.format(self.city)).json()
+
+    forecast_data = []
+
+    for day in r['list']:
+        daytime = day['dt']
+        utc = datetime.datetime.utcfromtimestamp(daytime)
+        tz = pytz.timezone(self.city.timezone)
+        time = utc.astimezone(tz)
+
+        day_weather = {
+            "dt": str(time),
+            "temp": day['main']['temp'],
+            "desc": day['weather'][0]['description'],
+            "icon": day['weather'][0]['icon'],
+        }
+
+        forecast_data.append(day_weather)
+
+    data = {}
+
+    for i in range(len(forecast_data)):
+        idt = forecast_data[i]['dt']
+        key = idt[:10]
+        if not data.get(key):
+            data.update({key: []})
+        data[key].append(forecast_data[i])
+
+    return data
+
+
+def get_list_weather_data(self, **kwargs):
+    weather_data = []
+
+    for city in self.cities:
+        r = requests.get(weather_url.format(city)).json()
 
         city_weather = {
-            "model": "weather.Todays_Weather",
-            "fields": {
-                "city": city.name,
-                "date": str(date),
-                "main": r['weather'][0]['main'],
-                "temp": r['main']['temp'],
-                "max_temp": r['main']['temp_max'],
-                "min_temp": r['main']['temp_min'],
-                "humidity": r['main']['humidity'],
-                "pressure": r['main']['pressure'],
-                "wind_speed": r['wind']['speed'],
-                "desc": r['weather'][0]['description'],
-                "icon": r['weather'][0]['icon'],
-            }
+            "city": city.name,
+            "temperature": r['main']['temp'],
+            "description": r['weather'][0]['description'],
+            "icon": r['weather'][0]['icon'],
         }
-        daily_weather.append(city_weather)
 
-        with open(weather_response, 'w') as f:
-            json.dump(daily_weather, f)
-
-
-def get_forecast_data():
-    today = str(datetime.date.today())
-    cities = City_Town.objects.all()
-    forecast_weather = []
-    data = {}
-    forecast_response = 'weather/fixtures/week-forecast-' + today + '.json'
-
-    for city in cities:
-        get_city = str(city.name)
-        r = requests.get(forecast_url.format(get_city)).json()
-        for day in r['list']:
-            daytime = day['dt']
-            utc = datetime.datetime.utcfromtimestamp(daytime)
-            tz = pytz.timezone(city.timezone)
-            time = utc.astimezone(tz)
-            day_weather = {
-                "model": "weather.Weather_Forecast",
-                "fields": {
-                    "city": city.name,
-                    "daytime": str(time),
-                    "temp": day['main']['temp'],
-                    "desc": day['weather'][0]['description'],
-                    "icon": day['weather'][0]['icon'],
-                    }
-            }
-            forecast_weather.append(day_weather)
-#    for i in range(len(forecast_weather)):
-#        idt = forecast_weather[i]['fields']['daytime']
-#        key = idt[:10]
-#        if not data.get(key):
-#            data.update({key:[]})
-#        data[key].append(forecast_weather[i])
-
-    with open(forecast_response, 'w') as f:
-        json.dump(forecast_weather, f)
+        weather_data.append(city_weather)
+    return weather_data
