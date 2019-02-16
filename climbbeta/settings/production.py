@@ -1,9 +1,11 @@
+import dj_database_url
 import os
 from climbbeta.aws.conf import *
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 # Note: Production BASE_DIR different from local settings
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+BASE_DIR = os.path.dirname(os.path.dirname(
+    os.path.dirname(os.path.abspath(__file__))))
 
 
 # Quick-start development settings - unsuitable for production
@@ -38,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'video',
     'weather',
+    'frontend'
 ]
 
 MIDDLEWARE = [
@@ -84,7 +87,6 @@ DATABASES = {
     }
 }
 
-import dj_database_url
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
 DATABASES['default']['CONN_MAX_AGE'] = 500
@@ -140,23 +142,25 @@ STATICFILES_DIRS = [
 #MEDIA_ROOT = BASE_DIR
 #MEDIA_URL = '/media/'
 
-CORS_REPLACE_HTTPS_REFERER      = True
-HOST_SCHEME                     = "https://"
-SECURE_PROXY_SSL_HEADER         = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT             = True
-SESSION_COOKIE_SECURE           = True
-CSRF_COOKIE_SECURE              = True
-SECURE_HSTS_INCLUDE_SUBDOMAINS  = True
-SECURE_HSTS_SECONDS             = 1000000
-SECURE_FRAME_DENY               = True
-SECURE_CONTENT_TYPE_NOSNIFF     = True
-SECURE_BROWSER_XSS_FILTER       = True
-X_FRAME_OPTIONS                 = 'DENY'
-SECURE_HSTS_PRELOAD             = True
+CORS_REPLACE_HTTPS_REFERER = True
+HOST_SCHEME = "https://"
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_SECONDS = 1000000
+SECURE_FRAME_DENY = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_BROWSER_XSS_FILTER = True
+X_FRAME_OPTIONS = 'DENY'
+SECURE_HSTS_PRELOAD = True
 
-EMAIL_HOST = 'smtp.gmail.com' #insert email host here
-EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER'] # My email username. Hide email address in key named EMAIL_HOST_USER
-EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD'] # My email password. Hide email password in key named EMAIL_HOST_PASSWORD
+EMAIL_HOST = 'smtp.gmail.com'  # insert email host here
+# My email username. Hide email address in key named EMAIL_HOST_USER
+EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
+# My email password. Hide email password in key named EMAIL_HOST_PASSWORD
+EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = "My Name <myemail@email.com>"

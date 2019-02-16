@@ -1,16 +1,15 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 
-import Header from './layout/Header';
-
+import Header from './layout/Header.js';
 
 class App extends Component {
   render(){
     return (
-      <>
-      <h1 className="text-center">Climb Beta</h1>
-      <Header />
-      </>
+      <div>
+        <h1>Hello</h1>
+        <Header />
+      </div>
 
     );
   }
