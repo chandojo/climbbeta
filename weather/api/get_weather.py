@@ -7,7 +7,9 @@ import requests_cache
 
 from .keys import *
 
-requests_cache.install_cache('weather_cache', backend='sqlite', expire_after=30)
+requests_cache.install_cache(
+    'weather_cache', backend='sqlite', expire_after=30)
+
 
 def get_city_weather_data(self, **kwargs):
     r = requests.get(weather_url.format(self.city)).json()
@@ -26,9 +28,9 @@ def get_city_weather_data(self, **kwargs):
     }
     return city_weather
 
+
 def get_city_forecast_data(self, **kwargs):
     r = requests.get(forecast_url.format(self.city)).json()
-#    weather_response = 'api/weather/response/' + str(self.city) + str(self.city.state.abbrv) + '.json'
 
     forecast_data = []
 
@@ -53,21 +55,10 @@ def get_city_forecast_data(self, **kwargs):
         idt = forecast_data[i]['dt']
         key = idt[:10]
         if not data.get(key):
-            data.update({key:[]})
+            data.update({key: []})
         data[key].append(forecast_data[i])
 
-#    with open(weather_response, 'w') as f:
-#        json.dump(data, f)
-
     return data
-
-#def read_forecast_data(self, **kwargs):
-#    weather_response = 'api/weather/response/' + str(self.city) + str(self.city.state.abbrv) + '.json'
-#
-#    with open(weather_response, 'r') as read_file:
-#        data = json.load(read_file)
-#
-#    return data
 
 
 def get_list_weather_data(self, **kwargs):

@@ -35,6 +35,9 @@ INSTALLED_APPS = [
     'requests_cache',
     'geopy',
     'storages',
+    'rest_framework',
+    'video',
+    'weather',
 ]
 
 MIDDLEWARE = [
