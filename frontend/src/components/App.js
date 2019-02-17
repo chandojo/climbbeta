@@ -2,13 +2,14 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 
 import Header from './layout/Header.js';
-
+import ClimbingVideos from './videos/ClimbingVideos.js';
 class App extends Component {
   render(){
     return (
-      <div>
-        <h1>Hello</h1>
+      <div class="container bg-light">
+        <h1 class="display-3 text-center">Climb Beta</h1>
         <Header />
+        <ClimbingVideos />
       </div>
 
     );
