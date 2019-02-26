@@ -17,7 +17,6 @@ class App extends Component {
             <Route exact path="/react/climbingvideos" component={ClimbingVideos} />
           </Switch>
         </BrowserRouter>
-
         <StateDetails />
       </div>
 
