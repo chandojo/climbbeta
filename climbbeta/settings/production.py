@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'geopy',
     'storages',
     'rest_framework',
+    'django_filters',
     'video',
     'weather',
     'frontend'

@@ -4,6 +4,7 @@ import requests
 
 from rest_framework import viewsets
 from .serializers import *
+from django_filters.rest_framework import DjangoFilterBackend
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView
 from django.template import loader
@@ -30,6 +31,8 @@ class API_State_View(viewsets.ModelViewSet):
 class API_CityTown_View(viewsets.ModelViewSet):
     queryset = City_Town.objects.all()
     serializer_class = CityTownSerializer
+#    filter_backends = (DjangoFilterBackend,)
+#    filterset_fields = ('state',)
 
 
 class State_View(ListView):

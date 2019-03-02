@@ -25,10 +25,11 @@ class ClimbingVideos extends Component {
       .then(function(response){
         return response.json()
       }).then(function(responseData){
+        console.log(responseData);
         thisComp.setState({
           isLoaded:true,
           climbingVideos: responseData
-        })
+        });
       }).catch(function(error){
         thisComp.setState({
           error,
@@ -49,7 +50,7 @@ class ClimbingVideos extends Component {
               !isLoaded ?
                 (<div>Loading...</div>)
                : isLoaded && totalVideos > 0 ?
-                (<div> it works! </div>)
+                (<div> It works! { climbingVideos[0].name } </div>)
               : isLoaded && error !== null ?
                 (<div> an error has occured </div>) : ""
             }

@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'requests_cache',
     'geopy',
     'rest_framework',
+    'django_filters',
     'video',
     'weather',
     'frontend'
