@@ -23,6 +23,9 @@ class ClimbingVideos extends Component {
 
       fetch(endpoint,lookupOptions)
       .then(function(response){
+      if(response.status == 404){
+        console.log('there has been an error')
+      }
         return response.json()
       }).then(function(responseData){
         console.log(responseData);
@@ -49,9 +52,9 @@ class ClimbingVideos extends Component {
             {
               !isLoaded ?
                 (<div>Loading...</div>)
-               : isLoaded && totalVideos > 0 ?
+               : isLoaded && totalVideos > 0 && totalVideos !== null ?
                 (<div> It works! { climbingVideos[0].name } </div>)
-              : isLoaded && error !== null ?
+              : isLoaded && error !== null | totalVideos == null ?
                 (<div> an error has occured </div>) : ""
             }
             </div>

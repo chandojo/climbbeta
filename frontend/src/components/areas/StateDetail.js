@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 
+import CityInline from './CityInline.js';
 import 'whatwg-fetch';
 import cookie from 'react-cookies';
 
@@ -11,11 +12,14 @@ class StateDetail extends Component{
       error: null,
       isLoaded: false,
       id: null,
-      cities:[],
+      name: null,
+      cities: [],
+      img: null,
+      cityClass: 'card d-inline-flex bg-light state-card'
     }
   }
 
-  loadCities(id){
+  loadDetails(id){
     let endpoint = `/areas/api/states/${id}`
     let thisComp = this
     let lookupOptions = {
@@ -24,7 +28,7 @@ class StateDetail extends Component{
         'Content-Type': 'application/json'
       }
     }
-    console.log(endpoint);
+
     fetch(endpoint, lookupOptions)
     .then(function(response){
       if(response.status == 404){
@@ -35,7 +39,9 @@ class StateDetail extends Component{
       console.log(responseData);
       thisComp.setState({
         isLoaded: true,
-        cities: responseData
+        name: responseData.name,
+        cities: responseData.cities,
+        img: responseData.img
       })
     }).catch(function(error){
       console.log('error',error);
@@ -51,7 +57,10 @@ class StateDetail extends Component{
       error: null,
       isLoaded: false,
       id: null,
-      cities:[],
+      name: null,
+      cities: [],
+      img: null,
+      cityClass: 'card d-inline-flex bg-light state-card'
     })
 
     if(this.props.match){
@@ -60,16 +69,32 @@ class StateDetail extends Component{
         id: id,
         isLoaded: false
       });
-      this.loadCities(id);
+      this.loadDetails(id);
     }
   }
 
   render(){
     const { isLoaded } = this.state;
+    const { name } = this.state;
     const { cities } = this.state;
+    const { img } = this.state;
     const { error } = this.state;
+    const { cityClass } = this.state;
+
     return(
-      <p>it worked!</p>
+      <>
+      <h1>{ name }</h1>
+      { cities.map((city, i)=>{
+        return(
+        <div className={cityClass} key={i}>
+          <div className="card-header text-capitalize">
+            { city }
+          </div>
+        </div>
+
+        )
+      })}
+      </>
     )
   }
 
