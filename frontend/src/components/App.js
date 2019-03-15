@@ -6,6 +6,7 @@ import Header from './layout/Header.js';
 import ClimbingVideos from './videos/ClimbingVideos.js';
 import StateList from './areas/StateList.js';
 import StateDetail from './areas/StateDetail.js';
+import CityDetail from './areas/CityDetail.js';
 
 class App extends Component {
   render(){
@@ -20,6 +21,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/react/states" component={StateList} />
               <Route exact path="/react/:id" component={StateDetail} />
+              <Route exact path="/react/:id/:city" component={CityDetail} />
               <Route exact path="/react/climbingvideos" component={ClimbingVideos} />
             </Switch>
           </Fragment>

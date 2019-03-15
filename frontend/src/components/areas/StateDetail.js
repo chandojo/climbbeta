@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 
-import CityInline from './CityInline.js';
+import CityDetail from './CityDetail.js';
 import 'whatwg-fetch';
 import cookie from 'react-cookies';
 
