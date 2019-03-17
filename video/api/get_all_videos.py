@@ -7,16 +7,21 @@ from datetime import date
 from video.api.keys import *
 from areas.models import *
 
+
 def get_all_city_videos():
     cities = City_Town.objects.all()
     today = str(date.today())
     for city in cities:
         get_city = str(city.name)
         no_space_city = get_city.replace(' ', '')
-        q = get_city + ' bouldering | ' + get_city + ' ' + str(city.state.name) + ' bouldering'
-        vimeo_response = client.get(video_url.format(q), params={"fields": "uri, name, description, embed, pictures, user" }).json()
-        youtube_response = requests.get(keys.youtube_search_url.format(q)).json()
-        video_response = 'video/fixtures/' + today + no_space_city + '-' + str(city.state.abbrv) + '.json'
+        q = get_city + ' bouldering | ' + get_city + \
+            ' ' + str(city.state.name) + ' bouldering'
+        vimeo_response = client.get(video_url.format(
+            q), params={"fields": "uri, name, description, embed, pictures, user"}).json()
+        youtube_response = requests.get(
+            keys.youtube_search_url.format(q)).json()
+        video_response = 'video/fixtures/' + today + \
+            no_space_city + '-' + str(city.state.abbrv) + '.json'
         video_results = []
 
         for video in vimeo_response['data']:
@@ -24,6 +29,7 @@ def get_all_city_videos():
                 'model': 'video.Videos',
                 'fields': {
                     'name': video['name'],
+                    'city': get_city,
                     'author': video['user']['name'],
                     'thumbnail': video['pictures']['sizes'][2]['link'],
                     'embed': video['embed']['html'],
@@ -36,6 +42,7 @@ def get_all_city_videos():
                 'model': 'video.Videos',
                 'fields': {
                     'name': video['snippet']['title'],
+                    'city': get_city,
                     'author': video['snippet']['channelTitle'],
                     'thumbnail': video['snippet']['thumbnails']['medium']['url'],
                     'embed': video['id']['videoId'],
@@ -46,6 +53,7 @@ def get_all_city_videos():
         with open(video_response, 'w') as f:
             json.dump(video_results, f)
 
+
 def compile_videos():
     cities = City_Town.objects.all()
     today = str(date.today())
@@ -55,7 +63,8 @@ def compile_videos():
     for city in cities:
         get_city = str(city.name)
         no_space_city = get_city.replace(' ', '')
-        video_response = 'video/fixtures/' + today + no_space_city + '-' + str(city.state.abbrv) + '.json'
+        video_response = 'video/fixtures/' + today + \
+            no_space_city + '-' + str(city.state.abbrv) + '.json'
         with open(video_response) as f:
             video_file = json.load(f)
             for video in video_file:

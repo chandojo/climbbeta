@@ -5,6 +5,7 @@ from areas.models import City_Town
 
 class Videos(models.Model):
     name = models.CharField(max_length=255, primary_key=True)
+    city = models.ForeignKey(City_Town, on_delete=models.PROTECT)
     author = models.CharField(max_length=100)
     thumbnail = models.URLField(max_length=200)
     embed = models.TextField()
