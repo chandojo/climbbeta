@@ -19,10 +19,10 @@ class App extends Component {
             <Header />
 
             <Switch>
+              <Route exact path="/react/climbingvideos" component={ClimbingVideos} />
               <Route exact path="/react/states" component={StateList} />
               <Route exact path="/react/:id" component={StateDetail} />
               <Route exact path="/react/:id/:city" component={CityDetail} />
-              <Route exact path="/react/climbingvideos" component={ClimbingVideos} />
             </Switch>
           </Fragment>
         </BrowserRouter>
