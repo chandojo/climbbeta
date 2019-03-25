@@ -33,7 +33,6 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'areas',
-    'climbs',
     'members',
     'django.contrib.admin',
     'django.contrib.auth',

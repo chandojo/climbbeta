@@ -24,7 +24,6 @@ ALLOWED_HOSTS = ['climbbeta.herokuapp.com', '.herokuapp.com']
 
 INSTALLED_APPS = [
     'areas',
-    'climbs',
     'members',
     'django.contrib.admin',
     'django.contrib.auth',
