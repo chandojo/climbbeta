@@ -2,6 +2,7 @@ from django.test import TestCase
 
 from areas.models import *
 from video.models import *
+from .faker_data import *
 
 
 class VideosLabelTestCase(TestCase):
@@ -33,6 +34,8 @@ class VideosLabelTestCase(TestCase):
         field_label = Videos._meta.get_field('slug').verbose_name
         self.assertEquals(field_label, 'slug')
 
+
+class VideoFieldLengthTestCase(TestCase):
     def test_name_max_length(self):
         max_length = Videos._meta.get_field('name').max_length
         self.assertEquals(max_length, 255)
@@ -49,31 +52,13 @@ class VideosLabelTestCase(TestCase):
 class VideosContentTestCase(TestCase):
 
     @classmethod
-    def setUpClass(cls):
-        cls.state = State.objects.create(name='Washington')
-        cls.city = City_Town.objects.create(
-            name='Leavenworth', state=cls.state)
-        Videos.objects.create(name='This is a test', city=cls.city, author="Freddie Mercury",
-                              thumbnail="https://www.example.com/example.jpg", embed="sdf34bg", description="this is a description for a test")
-        cls.video = Videos.objects.get(name='This is a test')
+    def setUpTestData(cls):
+        VideoFactory.create()
+        cls.video = Videos.objects.get(name=Climbing_Name_Random.climb_name)
 
     @classmethod
     def tearDownClass(cls):
-        pass
-        #cls.video = None
-
-    def test_city_is_name(self):
-        self.assertEquals(str(self.video.city), 'Leavenworth')
+        super().tearDownClass()
 
     def test_url_is_http(self):
         self.assertIn('https://', self.video.thumbnail)
-
-    def test_url_is_name(self):
-        self.assertEquals(self.video.thumbnail,
-                          'https://www.example.com/example.jpg')
-
-    def test_author_is_name(self):
-        self.assertEquals(self.video.author, 'Freddie Mercury')
-
-    def test_slug_is_name(self):
-        self.assertEquals(self.video.slug, 'this-is-a-test')

@@ -1,44 +1,34 @@
+from django.utils.text import slugify
+
 from faker import Faker
-from faker.providers import BaseProvider
 
 import factory
 from factory.django import DjangoModelFactory
-import random
 
 from video.models import Videos
-from areas.models import City_Town, State
+from areas.tests.faker_data import CityTownFactory
+
+import random
 
 fake = Faker()
 
 
-class StateFactory(DjangoModelFactory):
-    class Meta:
-        model = State
-        exclude = ('abbrv', 'img', 'slug')
-
-    name = factory.Faker('state')
-
-
-class CityTownFactory(DjangoModelFactory):
-    class Meta:
-        model = City_Town
-        exclude = ('longitude', 'latitude', 'slug', 'timezone')
-
-    name = factory.Faker('city')
-    state = factory.SubFactory(StateFactory)
-    longitude = factory.Faker('longitude')
-    latitude = factory.Faker('latitude')
-    timezone = factory.Faker('timezone')
+class Climbing_Name_Random():
+    climbs = ['The Pocket', 'Ground Zero', 'Samurai', 'The Engineer',
+              'Footless Traverse', 'Beam Me Up', 'Jaws', 'Bricklayer']
+    num_climbs = len(climbs) - 1
+    random_num = random.randint(0, num_climbs)
+    climb_name = climbs[random_num]
 
 
 class VideoFactory(DjangoModelFactory):
     class Meta:
         model = Videos
 
-    name = factory.Faker('word')
+    name = Climbing_Name_Random.climb_name
     city = factory.SubFactory(CityTownFactory)
-    author = factory.Faker('name')
+    author = factory.Faker('user_name')
     thumbnail = factory.Faker('image_url')
-    embed = factory.Faker('user_name')
+    embed = factory.Faker('word')
     description = factory.Faker('sentence')
-    slug = factory.Faker('word')
+    slug = slugify(name)
