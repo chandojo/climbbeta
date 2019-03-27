@@ -16,7 +16,7 @@ class CityDetail extends Component {
 
   loadDetails(city){
     let cityEndpoint = `/areas/api/cities/${city}`
-    let videoEndpoint = `/videos/api/videos?city=${city}`
+    let videoEndpoint = `/video/api/videos/?city=${city}`
     let thisComp = this
     let lookupOptions = {
       method: "GET",
@@ -98,9 +98,11 @@ class CityDetail extends Component {
       { isLoaded && cityInfo !== null && cityVideos !== null && error === null ?
         <div>
           <p>It works! { cityInfo.name }</p>
-          { cityVideos.map((video)=>{
+          <div className="video-player">
+          </div>
+          { cityVideos.map((video, id)=>{
             return(
-                <div>
+                <div className={id} key={id}>
                   <CityVideosInline video={video}/>
                 </div>
             )

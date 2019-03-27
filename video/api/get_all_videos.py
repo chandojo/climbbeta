@@ -17,19 +17,23 @@ def get_all_city_videos():
         no_space_city = get_city.replace(' ', '')
         q = get_city + ' bouldering | ' + get_city + \
             ' ' + str(city.state.name) + ' bouldering'
+        vimeo_status = client.get(video_url.format(
+            q), params={"fields": "uri, name, description, embed, pictures, user"}, headers={"content-type": "application/json"})
         vimeo_response = client.get(video_url.format(
             q), params={"fields": "uri, name, description, embed, pictures, user"}, headers={"content-type": "application/json"}).json()
+        youtube_status = requests.get(
+            keys.youtube_search_url.format(q), headers={"content-type": "application/json"})
         youtube_response = requests.get(
             keys.youtube_search_url.format(q), headers={"content-type": "application/json"}).json()
-        video_response = 'video/fixtures/' + today +
-        no_space_city + '-' + str(city.state.abbrv) + '.json'
+        video_response = 'video/fixtures/' + today + no_space_city + '-' + str(city.state.abbrv) + '.json'
         video_results = []
 
-        if vimeo_response.status_code == 200:
+        if vimeo_status.status_code == 200:
             for video in vimeo_response['data']:
                 vimeo_video = {
                     'model': 'video.Videos',
                     'fields': {
+                        'uri' : 'https://player.vimeo.com/video/' + video['uri'][8:] + '?autoplay=1',
                         'name': video['name'],
                         'city': get_city,
                         'author': video['user']['name'],
@@ -42,7 +46,7 @@ def get_all_city_videos():
         else:
             print("There has been an error with the Vimeo call")
 
-        if youtube_response.status_code == 200:
+        if youtube_status.status_code == 200:
             for video in youtube_response['items']:
                 youtube_video = {
                     'model': 'video.Videos',
@@ -51,7 +55,7 @@ def get_all_city_videos():
                         'city': get_city,
                         'author': video['snippet']['channelTitle'],
                         'thumbnail': video['snippet']['thumbnails']['medium']['url'],
-                        'embed': video['id']['videoId'],
+                        'embed': 'https://www.youtube.com/embed' + video['id']['videoId'] + '?autoplay=1origin=climbbeta.com',
                         'description': video['snippet']['description'],
                     }
                 }
@@ -72,8 +76,7 @@ def compile_videos():
     for city in cities:
         get_city = str(city.name)
         no_space_city = get_city.replace(' ', '')
-        video_response = 'video/fixtures/' + today +
-        no_space_city + '-' + str(city.state.abbrv) + '.json'
+        video_response = 'video/fixtures/' + today + no_space_city + '-' + str(city.state.abbrv) + '.json'
         with open(video_response) as f:
             video_file = json.load(f)
             for video in video_file:

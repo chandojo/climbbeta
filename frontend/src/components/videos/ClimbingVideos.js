@@ -12,7 +12,7 @@ class ClimbingVideos extends Component {
     }
 
     componentDidMount(){
-      let endpoint = `/videos/api/videos`
+      let endpoint = `/video/api/videos`
       let thisComp = this
       let lookupOptions = {
         method: "GET",

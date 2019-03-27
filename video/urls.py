@@ -9,4 +9,4 @@ router.register('videos', views.API_Video_View)
 app_name = 'video'
 urlpatterns = [
     path('api/', include(router.urls)),
- ]
+]

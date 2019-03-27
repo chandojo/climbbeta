@@ -4,6 +4,7 @@ from areas.models import City_Town
 
 
 class Videos(models.Model):
+    uri = models.CharField(max_length=10)
     name = models.CharField(max_length=255, primary_key=True)
     city = models.ForeignKey(City_Town, on_delete=models.PROTECT)
     author = models.CharField(max_length=100)

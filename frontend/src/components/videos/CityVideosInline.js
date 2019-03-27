@@ -4,10 +4,11 @@ import '../design/videoCard.css';
 
 
 class CityVideosInline extends Component {
+
     render(){
       const { video } = this.props;
+
       return(
-        <div>
           <div className="video-card pointer p-3 border-light d-block">
             <div className="img">
               <img className="mx-auto video-image" src={ video.thumbnail } />
@@ -17,7 +18,6 @@ class CityVideosInline extends Component {
               <span className="video-author"> by { video.author }</span>
             </div>
           </div>
-        </div>
       )
     }
   }
