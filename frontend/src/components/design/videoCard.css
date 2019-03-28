@@ -16,3 +16,7 @@
   max-height: 675px;
   overflow: scroll;
 }
+
+.video-card {
+  width: 18rem;
+}

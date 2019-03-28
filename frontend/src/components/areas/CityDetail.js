@@ -1,18 +1,33 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import CityVideosInline from '../videos/CityVideosInline.js';
+import VideoContainer from '../videos/VideoContainer.js';
 
 class CityDetail extends Component {
   constructor(props){
     super(props)
+    this.loadMoreVideos = this.loadMoreVideos.bind(this)
+
     this.state = {
       error: null,
       isLoaded: false,
       city: null,
       cityInfo: [],
-      cityVideos: []
+      cityVideos: [],
+      next: null,
+      previous: null,
+      count: 0
     }
   }
+
+  loadMoreVideos(){
+    const {next} = this.state
+    if (next !== null || next !== undefined){
+      this.loadDetails(next)
+    }
+  }
+
+
 
   loadDetails(city){
     let cityEndpoint = `/areas/api/cities/${city}`
@@ -51,7 +66,11 @@ class CityDetail extends Component {
         error:null,
         isLoaded:true,
         cityInfo: combinedData["cityInfoRequest"],
-        cityVideos: combinedData["cityVideosRequest"]
+        cityVideos: combinedData["cityVideosRequest"].results,
+        next: combinedData["cityVideosRequest"].next,
+        previous: combinedData["cityVideosRequest"].previous,
+        count: combinedData["cityVideosRequest"].count,
+
       })
     })
   .catch(function(error){
@@ -69,7 +88,10 @@ class CityDetail extends Component {
       isLoaded: false,
       city: null,
       cityInfo: [],
-      cityVideos: []
+      cityVideos: [],
+      next: null,
+      previous: null,
+      count: 0
     })
 
     if(this.props.match){
@@ -87,6 +109,7 @@ class CityDetail extends Component {
     const { error } = this.state;
     const { cityInfo } = this.state;
     const { cityVideos } = this.state;
+    const { next } = this.state
 
     return(
       <>
@@ -96,22 +119,25 @@ class CityDetail extends Component {
       { isLoaded && error ? <p>There has been an error...</p> : ""}
 
       { isLoaded && cityInfo !== null && cityVideos !== null && error === null ?
-        <div>
-          <p>It works! { cityInfo.name }</p>
-          <div className="video-player">
-          </div>
-          { cityVideos.map((video, id)=>{
-            return(
-                <div className={id} key={id}>
+//        <VideoContainer cityInfo={ cityInfo } cityVideos={ cityVideos } next={next}/>
+          <div className="city-details">
+            <div className="video-player">
+            </div>
+
+            <h1 className="text-center">{cityInfo.name} Climbing Videos</h1>
+            <div className="card-deck border">
+              { cityVideos.map((video)=>{
+                return (
                   <CityVideosInline video={video}/>
-                </div>
-            )
-          })}
-        </div>
+                )
+              })}
+            </div>
+          </div>
 
-        : ""}
+          : ""}
+          { next !== null ? <button onClick={this.loadMoreVideos}>Load more</button> : ""}
 
-      </>
+    </>
     )
   }
 }
