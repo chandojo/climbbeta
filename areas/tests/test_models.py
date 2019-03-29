@@ -1,8 +1,13 @@
 from django.test import TestCase
-
+from django.utils.text import slugify
+from faker import Faker
 from areas.models import *
+from areas.tests.faker_data import Random_Location, StateFactory, CityTownFactory
 
-class StateTestCase(TestCase):
+fake = Faker()
+
+
+class StateLabelTestCase(TestCase):
     def test_state_name_label(self):
         field_label = State._meta.get_field('name').verbose_name
         self.assertEquals(field_label, 'name')
@@ -19,10 +24,25 @@ class StateTestCase(TestCase):
         max_length = State._meta.get_field('name').max_length
         self.assertEquals(max_length, 200)
 
+    def test_abbrv_max_length(self):
+        max_length = State._meta.get_field('abbrv').max_length
+        self.assertEquals(max_length, 2)
+
+
+class StateFunctionsTestCase(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        StateFactory.create()
+        cls.state = State.objects.get(id=1)
+
+    @classmethod
+    def tearDownClass(cls):
+        super().tearDownClass()
+
     def test_slug_is_name(self):
-        State.objects.create(name='washington')
-        state = State.objects.get(id=1)
-        self.assertEquals(state.slug, state.name)
+        test_slug = slugify(self.state.name)
+        self.assertEquals(self.state.slug, test_slug)
+
 
 class City_TownTestCase(TestCase):
     def test_city_name_label(self):
@@ -37,28 +57,17 @@ class City_TownTestCase(TestCase):
         max_length = City_Town._meta.get_field('name').max_length
         self.assertEquals(max_length, 200)
 
-class AreaTestCase(TestCase):
-    def test_area_name_label(self):
-        field_label = Area._meta.get_field('name').verbose_name
-        self.assertEquals(field_label, 'name')
 
-    def test_area_city_town_label(self):
-        field_label = Area._meta.get_field('city_town').verbose_name
-        self.assertEquals(field_label, 'city town')
+class CityFunctionsTestCase(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        CityTownFactory.create()
+        cls.city = City_Town.objects.get(name=Random_Location.city)
 
-    def test_name_max_length(self):
-        max_length = Area._meta.get_field('name').max_length
-        self.assertEquals(max_length, 200)
+    @classmethod
+    def tearDownClass(cls):
+        super().tearDownClass()
 
-class Boulder_WallTestCase(TestCase):
-    def test_boulder_wall_name_label(self):
-        field_label = Boulder_Wall._meta.get_field('name').verbose_name
-        self.assertEquals(field_label, 'name')
-
-    def test_boulder_wall_area_label(self):
-        field_label = Boulder_Wall._meta.get_field('area').verbose_name
-        self.assertEquals(field_label, 'area')
-
-    def test_name_max_length(self):
-        max_length = Boulder_Wall._meta.get_field('name').max_length
-        self.assertEquals(max_length, 200)
+    def test_slug_is_name(self):
+        test_slug = slugify(self.city.name)
+        self.assertEquals(self.city.slug, test_slug)

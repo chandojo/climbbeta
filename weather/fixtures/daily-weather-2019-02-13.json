@@ -1,0 +1,61 @@
+[{
+  "model": "weather.Todays_Weather",
+  "fields": {
+    "city": "Gold Bar",
+    "date": "2019-02-13 10:32:00-08:00",
+    "main": "Mist",
+    "temp": 34.88,
+    "max_temp": 37.94,
+    "min_temp": 28.04,
+    "humidity": 84,
+    "pressure": 998,
+    "wind_speed": 1.52,
+    "desc": "mist",
+    "icon": "50d"
+  }
+}, {
+  "model": "weather.Todays_Weather",
+  "fields": {
+    "city": "Index",
+    "date": "2019-02-13 10:32:00-08:00",
+    "main": "Mist",
+    "temp": 34.3,
+    "max_temp": 37.94,
+    "min_temp": 28.04,
+    "humidity": 84,
+    "pressure": 998,
+    "wind_speed": 1.52,
+    "desc": "mist",
+    "icon": "50d"
+  }
+}, {
+  "model": "weather.Todays_Weather",
+  "fields": {
+    "city": "Leavenworth",
+    "date": "2019-02-13 10:32:00-08:00",
+    "main": "Snow",
+    "temp": 23.99,
+    "max_temp": 28.04,
+    "min_temp": 21.02,
+    "humidity": 84,
+    "pressure": 998,
+    "wind_speed": 2.42,
+    "desc": "light snow",
+    "icon": "13d"
+  }
+}, {
+  "model": "weather.Todays_Weather",
+  "fields": {
+    "city": "Bellingham",
+    "date": "2019-02-13 10:15:00-08:00",
+    "main": "Snow",
+    "temp": 31.26,
+    "max_temp": 37.04,
+    "min_temp": 24.8,
+    "humidity": 74,
+    "pressure": 1004,
+    "wind_speed": 3.42,
+    "desc": "heavy snow",
+    "icon": "13d"
+  }
+}]
