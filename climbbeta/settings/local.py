@@ -43,6 +43,11 @@ INSTALLED_APPS = [
     'timezonefinder',
     'requests_cache',
     'geopy',
+    'rest_framework',
+    'django_filters',
+    'video',
+    'weather',
+    'frontend'
 ]
 
 MIDDLEWARE = [
@@ -120,7 +125,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = False
+USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
@@ -133,3 +138,8 @@ STATICFILES_DIRS = [
 
 MEDIA_ROOT = BASE_DIR
 MEDIA_URL = '/media/'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 100
+}

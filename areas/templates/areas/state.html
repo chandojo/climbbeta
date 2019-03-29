@@ -37,11 +37,14 @@
   {% load static %}
   <script src="{% static 'areas/js/script.js' %}"></script>
 
-  <script>
-   $(function(){
-     $('body').css("background-image", "url('{{ state.img.url }}')");
-   });
-  </script>
+  
+    <script>
+     $(function(){
+         $('body').css(
+              "background-image", "url('{{ state.img.url }}')"
+          );
+     });
+    </script>
 
 
 {% endblock %}
