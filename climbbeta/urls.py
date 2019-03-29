@@ -5,11 +5,11 @@ from django.conf.urls.static import static
 from areas.views import index
 
 urlpatterns = [
-    path('', index, name='index'),
+#    path('', index, name='index'),
     path('areas/', include('areas.urls')),
     path('video/', include('video.urls')),
-    path('', include('frontend.urls')),
     path('admin/', admin.site.urls),
+    path('', include('frontend.urls'))
 ]
 
 if settings.DEBUG:

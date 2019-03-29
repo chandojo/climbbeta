@@ -12,7 +12,7 @@ class Header extends Component {
             <Link to="/" className="navbar-brand">Climb Beta</Link>
             <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
               <li className="nav-item">
-                  <Link to="/react/climbingvideos" className="nav-link"> Climbing Videos </Link>
+                  <Link to="/climbingvideos" className="nav-link"> Climbing Videos </Link>
               </li>
             </ul>
 
