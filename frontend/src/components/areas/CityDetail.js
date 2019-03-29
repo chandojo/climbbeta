@@ -7,7 +7,7 @@ class CityDetail extends Component {
   constructor(props){
     super(props)
     this.loadMoreVideos = this.loadMoreVideos.bind(this)
-
+    this.previousVideos = this.previousVideos.bind(this)
     this.state = {
       error: null,
       isLoaded: false,
@@ -16,21 +16,29 @@ class CityDetail extends Component {
       cityVideos: [],
       next: null,
       previous: null,
-      count: 0
+      count: 0,
+      totalPages: 0
+
     }
   }
 
   loadMoreVideos(){
-    const {next} = this.state
+    const {city} = this.state;
+    const {next} = this.state;
     if (next !== null || next !== undefined){
-      this.loadDetails(next)
-    }
+      this.loadVideos(city, next);
+    };
   }
 
+  previousVideos(){
+    const {city} = this.state;
+    const {previous} = this.state;
+    if (previous !== null || previous !== undefined){
+      this.loadVideos(city, previous);
+    };
+  }
 
-
-  loadDetails(city){
-    let cityEndpoint = `/areas/api/cities/${city}`
+  loadVideos(city, nextEndpoint){
     let videoEndpoint = `/video/api/videos/?city=${city}`
     let thisComp = this
     let lookupOptions = {
@@ -40,38 +48,26 @@ class CityDetail extends Component {
       }
     }
 
-    var cityInfoRequest = fetch(cityEndpoint, lookupOptions).then(function(response){
-      if(response.status == 404){
-        console.log("there is a 404 error for city info")
-      }
-      return response.json()
-    });
-    var cityVideosRequest = fetch(videoEndpoint, lookupOptions).then(function(response){
+    if (nextEndpoint !== undefined){
+      videoEndpoint = nextEndpoint;
+    }
+
+    fetch(videoEndpoint, lookupOptions).then(function(response){
       if(response.status !== 200){
         console.log("there is an error for city video")
       }
       return response.json()
-    });
-    var combinedData = {"cityInfoRequest":{}, "cityVideosRequest":{}};
-
-    Promise.all([ cityInfoRequest, cityVideosRequest])
-    .then(function(values){
-      combinedData["cityInfoRequest"] = values[0];
-      combinedData["cityVideosRequest"] = values[1];
-      return combinedData;
     })
-    .then((combinedData) => {
-      console.log(combinedData);
+    .then((responseData) => {
       thisComp.setState({
         error:null,
         isLoaded:true,
-        cityInfo: combinedData["cityInfoRequest"],
-        cityVideos: combinedData["cityVideosRequest"].results,
-        next: combinedData["cityVideosRequest"].next,
-        previous: combinedData["cityVideosRequest"].previous,
-        count: combinedData["cityVideosRequest"].count,
-
-      })
+        cityVideos: responseData.results,
+        next: responseData.next,
+        previous: responseData.previous,
+        count: responseData.count,
+        totalPages: responseData.total_pages
+      });
     })
   .catch(function(error){
       console.log('error',error);
@@ -82,6 +78,38 @@ class CityDetail extends Component {
     })
   }
 
+
+    loadCityDetails(city){
+      let cityEndpoint = `/areas/api/cities/${city}`
+      let thisComp = this
+      let lookupOptions = {
+        method: "GET",
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+      fetch(cityEndpoint, lookupOptions).then(function(response){
+        if(response.status == 404){
+          console.log("there is a 404 error for city info")
+        }
+        return response.json()
+      })
+      .then((responseData) => {
+        thisComp.setState({
+          error:null,
+          isLoaded:true,
+          cityInfo: responseData
+        })
+      })
+    .catch(function(error){
+        console.log('error',error);
+        thisComp.setState({
+          isLoaded: true,
+          error
+        })
+      })
+    }
+
   componentDidMount(){
     this.setState({
       error: null,
@@ -91,7 +119,8 @@ class CityDetail extends Component {
       cityVideos: [],
       next: null,
       previous: null,
-      count: 0
+      count: 0,
+      totalPages: 0
     })
 
     if(this.props.match){
@@ -100,7 +129,8 @@ class CityDetail extends Component {
         city: city,
         isLoaded: false
       });
-      this.loadDetails(city);
+      this.loadVideos(city);
+      this.loadCityDetails(city);
     };
   }
 
@@ -109,7 +139,9 @@ class CityDetail extends Component {
     const { error } = this.state;
     const { cityInfo } = this.state;
     const { cityVideos } = this.state;
-    const { next } = this.state
+    const { next } = this.state;
+    const { previous } = this.state;
+    const { totalPages } = this.state;
 
     return(
       <>
@@ -118,8 +150,7 @@ class CityDetail extends Component {
       }
       { isLoaded && error ? <p>There has been an error...</p> : ""}
 
-      { isLoaded && cityInfo !== null && cityVideos !== null && error === null ?
-//        <VideoContainer cityInfo={ cityInfo } cityVideos={ cityVideos } next={next}/>
+      { isLoaded && cityVideos !== null && error === null ?
           <div className="city-details">
             <div className="video-player">
             </div>
@@ -129,13 +160,13 @@ class CityDetail extends Component {
               { cityVideos.map((video)=>{
                 return (
                   <CityVideosInline video={video}/>
-                )
+                );
               })}
             </div>
           </div>
-
           : ""}
-          { next !== null ? <button onClick={this.loadMoreVideos}>Load more</button> : ""}
+          { previous !== null ? <button onClick={this.previousVideos}>Previous</button> : ""}
+          { next !== null ? <button onClick={this.loadMoreVideos}>Next</button> : ""}
 
     </>
     )
