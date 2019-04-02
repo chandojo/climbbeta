@@ -135,13 +135,7 @@ class CityDetail extends Component {
   }
 
   render() {
-    const { isLoaded } = this.state;
-    const { error } = this.state;
-    const { cityInfo } = this.state;
-    const { cityVideos } = this.state;
-    const { next } = this.state;
-    const { previous } = this.state;
-    const { totalPages } = this.state;
+    const { isLoaded, error, cityInfo, cityVideos, next, previous, totalPages } = this.state;
 
     return(
       <>

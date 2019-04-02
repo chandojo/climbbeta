@@ -71,17 +71,11 @@ class StateDetail extends Component{
       });
       this.loadDetails(id);
     }
-  }
+ }
+render(){
+      const { isLoaded, name, cities, img, error, cityClass  } = this.state;
 
-  render(){
-    const { isLoaded } = this.state;
-    const { name } = this.state;
-    const { cities } = this.state;
-    const { img } = this.state;
-    const { error } = this.state;
-    const { cityClass } = this.state;
-
-    return(
+  return(
       <>
       <h1>{ name }</h1>
       { cities.map((city, i)=>{

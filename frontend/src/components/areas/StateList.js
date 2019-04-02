@@ -15,7 +15,7 @@ class StateList extends Component {
   }
 
   getStates(){
-    let endpoint = '/areas/api/states'
+    let endpoint = `/areas/api/states/`
     let thisComp = this
     let lookupOptions = {
       method: "GET",
@@ -26,10 +26,9 @@ class StateList extends Component {
 
     fetch(endpoint,lookupOptions)
     .then(function(response){
-      console.log('first then');
       return response.json()
     }).then(function(responseData){
-      console.log('second then');
+      console.log(responseData);
       thisComp.setState({
         isLoaded:true,
         stateList:responseData
@@ -55,10 +54,7 @@ class StateList extends Component {
 
 
   render(){
-      const { error } = this.state;
-      const { isLoaded } = this.state;
-      const { stateList } = this.state;
-      const { stateClass } = this.state;
+      const { error, isLoaded, stateList, stateClass } = this.state;
 
       return (
         <div className="card-bank text-center">

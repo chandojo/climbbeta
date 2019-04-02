@@ -10,7 +10,7 @@ class StateInline extends Component {
     return(
       <div className={stateClass}>
         {state !== undefined ? <>
-          <Link to={{ pathname:`/react/${state.id}`}}>
+          <Link to={{ pathname:`/${state.id}`}}>
           <img className="card-img-top state-img" src={state.img} />
 
           <div className="card-body">
