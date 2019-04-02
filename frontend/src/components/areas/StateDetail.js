@@ -73,7 +73,7 @@ class StateDetail extends Component{
     }
  }
 render(){
-      const { isLoaded, name, cities, img, error, cityClass  } = this.state;
+      const { isLoaded, id, name, cities, img, error, cityClass  } = this.state;
 
   return(
       <>
@@ -81,9 +81,11 @@ render(){
       { cities.map((city, i)=>{
         return(
         <div className={cityClass} key={i}>
+          <Link to={{ pathname:`/${id}/${city}`}}>
           <div className="card-header text-capitalize">
             { city }
           </div>
+          </Link>
         </div>
 
         )
