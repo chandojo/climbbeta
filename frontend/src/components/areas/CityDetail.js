@@ -1,24 +1,26 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import CityVideosInline from '../videos/CityVideosInline.js';
-import VideoContainer from '../videos/VideoContainer.js';
+import VideoPlayer from '../videos/VideoPlayer.js';
 
 class CityDetail extends Component {
   constructor(props){
     super(props)
     this.loadMoreVideos = this.loadMoreVideos.bind(this)
     this.previousVideos = this.previousVideos.bind(this)
+    this.videoClick = this.videoClick.bind(this)
+
     this.state = {
       error: null,
       isLoaded: false,
       city: null,
       cityInfo: [],
       cityVideos: [],
+      thisVideo: null,
       next: null,
       previous: null,
       count: 0,
       totalPages: 0
-
     }
   }
 
@@ -110,6 +112,13 @@ class CityDetail extends Component {
       })
     }
 
+  videoClick(video){
+    console.log(video);
+    this.setState({
+      thisVideo: video
+    });
+  }
+
   componentDidMount(){
     this.setState({
       error: null,
@@ -135,10 +144,11 @@ class CityDetail extends Component {
   }
 
   render() {
-    const { isLoaded, error, cityInfo, cityVideos, next, previous, totalPages } = this.state;
+    const { isLoaded, error, cityInfo, cityVideos, thisVideo, next, previous, totalPages } = this.state;
 
     return(
       <>
+      <h1 className="text-center">{cityInfo.name}, {cityInfo.state}</h1>
       { !isLoaded ?
         <p>Loading</p> : ""
       }
@@ -146,14 +156,14 @@ class CityDetail extends Component {
 
       { isLoaded && cityVideos !== null && error === null ?
           <div className="city-details">
-            <div className="video-player">
+            <div className="video-player col">
+              <VideoPlayer video={thisVideo}/>
             </div>
 
-            <h1 className="text-center">{cityInfo.name} Climbing Videos</h1>
             <div className="card-deck border">
               { cityVideos.map((video)=>{
                 return (
-                  <CityVideosInline video={video}/>
+                    <CityVideosInline video={video} key={video.name} onClick={this.videoClick.bind(this,video)}/>
                 );
               })}
             </div>
