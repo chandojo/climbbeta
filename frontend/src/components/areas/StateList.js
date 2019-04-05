@@ -28,7 +28,6 @@ class StateList extends Component {
     .then(function(response){
       return response.json()
     }).then(function(responseData){
-      console.log(responseData);
       thisComp.setState({
         isLoaded:true,
         stateList:responseData
