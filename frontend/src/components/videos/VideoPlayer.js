@@ -17,6 +17,8 @@ class VideoPlayer extends Component{
               <p> { video.description }</p>
             </div>
           </div>
+        <div className="embed-responsive embed-responsive-21by9">
+          <iframe className="embed-responsive-item" src={video.uri}></iframe>
         </div>
         : ""
       }

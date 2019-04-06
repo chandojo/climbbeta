@@ -160,6 +160,7 @@ class CityDetail extends Component {
               <VideoPlayer video={thisVideo}/>
             </div>
 
+            <h1 className="text-center">{cityInfo.name}, {cityInfo.state}</h1>
             <div className="card-deck border">
               { cityVideos.map((video)=>{
                 return (
