@@ -18,9 +18,9 @@ def get_all_city_videos():
         q = get_city + ' bouldering | ' + get_city + \
             ' ' + str(city.state.name) + ' bouldering'
         vimeo_status = client.get(video_url.format(
-            q), params={"fields": "uri, name, description, embed, pictures, user"}, headers={"content-type": "application/json"})
+            q), params={"fields": "uri, name, description, created_time, pictures, user"}, headers={"content-type": "application/json"})
         vimeo_response = client.get(video_url.format(
-            q), params={"fields": "uri, name, description, embed, pictures, user"}, headers={"content-type": "application/json"}).json()
+            q), params={"fields": "uri, name, description, created_time, pictures, user"}, headers={"content-type": "application/json"}).json()
         youtube_status = requests.get(
             keys.youtube_search_url.format(q), headers={"content-type": "application/json"})
         youtube_response = requests.get(
@@ -34,11 +34,11 @@ def get_all_city_videos():
                     'model': 'video.Videos',
                     'fields': {
                         'uri' : 'https://player.vimeo.com/video/' + video['uri'][8:] + '?autoplay=1',
+                        'created': video['created_time'],
                         'name': video['name'],
                         'city': get_city,
                         'author': video['user']['name'],
                         'thumbnail': video['pictures']['sizes'][2]['link'],
-                        'embed': video['embed']['html'],
                         'description': video['description'],
                     }
                 }
@@ -51,12 +51,13 @@ def get_all_city_videos():
                 youtube_video = {
                     'model': 'video.Videos',
                     'fields': {
+                        'uri': 'https://www.youtube.com/embed/' + video['id']['videoId'] + '?autoplay=1&origin=climbbeta.com',
+                        'created': video['snippet']['publishedAt'],
                         'name': video['snippet']['title'],
                         'city': get_city,
                         'author': video['snippet']['channelTitle'],
                         'thumbnail': video['snippet']['thumbnails']['medium']['url'],
-                        'embed': 'https://www.youtube.com/embed' + video['id']['videoId'] + '?autoplay=1origin=climbbeta.com',
-                        'description': video['snippet']['description'],
+                        'description': video['snippet']['description']
                     }
                 }
                 video_results.append(youtube_video)

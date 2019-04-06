@@ -9,7 +9,7 @@ class CityVideosInline extends Component {
       const { video } = this.props;
 
       return(
-          <div className="video-card mx-auto pointer p-1 border-light">
+          <div className="video-card mx-auto pointer p-1 border-light" onClick={this.props.onClick}>
             <div className="img">
               <img className="mx-auto video-image" src={ video.thumbnail } />
             </div>

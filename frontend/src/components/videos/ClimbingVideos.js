@@ -43,10 +43,9 @@ class ClimbingVideos extends Component {
     }
 
     render(){
-          const { error } = this.state;
-          const { isLoaded } = this.state;
-          const { climbingVideos } = this.state;
+          const { error, isLoaded, climbingVideos } = this.state;
           const totalVideos = climbingVideos.length;
+          
           return(
             <div>
             {
