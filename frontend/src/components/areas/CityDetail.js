@@ -148,6 +148,7 @@ class CityDetail extends Component {
 
     return(
       <>
+      <h1 className="text-center">{cityInfo.name}, {cityInfo.state}</h1>
       { !isLoaded ?
         <p>Loading</p> : ""
       }
@@ -155,7 +156,7 @@ class CityDetail extends Component {
 
       { isLoaded && cityVideos !== null && error === null ?
           <div className="city-details">
-            <div className="video-player">
+            <div className="video-player col">
               <VideoPlayer video={thisVideo}/>
             </div>
 
