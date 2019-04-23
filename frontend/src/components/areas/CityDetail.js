@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import CityVideosInline from '../videos/CityVideosInline.js';
 import VideoPlayer from '../videos/VideoPlayer.js';
 import WeatherHeader from '../layout/WeatherHeader.js';
+import WeatherForecast from '../layout/WeatherForecast.js';
 
 class CityDetail extends Component {
   constructor(props){
@@ -23,9 +24,12 @@ class CityDetail extends Component {
       count: 0,
       totalPages: 0,
       pagesArray: [],
+      cityLat: 0,
+      cityLon: 0,
       weatherToday: [],
       weatherDescription:[],
-      sunTime:[]
+      sunTime:[],
+      weatherForecast:[]
     }
   }
 
@@ -105,6 +109,8 @@ class CityDetail extends Component {
           error:null,
           isLoaded:true,
           cityInfo: responseData,
+          cityLat:responseData.latitude,
+          cityLon: responseData.longitude
         });
         var cityLat = responseData.latitude;
         var cityLon = responseData.longitude;
@@ -114,11 +120,47 @@ class CityDetail extends Component {
           return response.json();
         })
       .then((data) => {
-        console.log(data)
         thisComp.setState({
           weatherToday: data.main,
           weatherDescription: data.weather,
           sunTime: data.sys
+        });
+        var cityLat = data.coord.lat;
+        var cityLon = data.coord.lon;
+        return fetch(`http://api.openweathermap.org/data/2.5/forecast?lat=${cityLat}&lon=${cityLon}&units=imperial&APPID=5f14a9e6503b7e9ccad869971588e4c5`)
+      })
+      .then((response)=>{
+        return response.json();
+      })
+      .then((responseData)=>{
+        var forecastData = [];
+        var cityInfo = this.state;
+        for (var i=0; i < responseData.list.length; i++){
+          const dayWeather = {
+            "dt": new Date(responseData.list[i].dt * 1000).toLocaleString('en-US', { timeZone: cityInfo.timezone }),
+            "temp": responseData.list[i].main.temp,
+            "desc": responseData.list[i].weather[0].description,
+            "icon": responseData.list[i].weather[0].icon
+          };
+          forecastData.push(dayWeather)
+        }
+        return forecastData
+      })
+      .then((forecastData)=>{
+        var dayList = {};
+        for (var i=0; i < forecastData.length; i++){
+          var idt = forecastData[i].dt;
+          var dayKey = idt.slice(0,9);
+          if(!(dayKey in dayList)){
+            dayList[dayKey] = []
+            }
+          dayList[dayKey].push(forecastData[i])
+        };
+          return dayList
+        })
+      .then((dayList)=>{
+        thisComp.setState({
+          weatherForecast: dayList
         })
       })
     .catch(function(error){
@@ -163,9 +205,12 @@ class CityDetail extends Component {
       count: 0,
       totalPages: 0,
       pagesArray: [],
+      cityLat: 0,
+      cityLon: 0,
       weatherToday: [],
       weatherDescription:[],
-      suntime:[]
+      suntime:[],
+      weatherForecast:[]
     })
 
     if(this.props.match){
@@ -180,8 +225,7 @@ class CityDetail extends Component {
   }
 
   render() {
-    const { isLoaded, error, cityInfo, cityVideos, thisVideo, next, previous, totalPages, pagesArray, weatherToday, weatherDescription, sunTime, videoClick } = this.state;
-
+    const { isLoaded, error, cityInfo, cityVideos, thisVideo, next, previous, totalPages, pagesArray, weatherToday, weatherDescription, weatherForecast, sunTime, videoClick } = this.state;
     return(
       <>
       <div className="shadow bg-light mt-2">
@@ -202,8 +246,6 @@ class CityDetail extends Component {
           <a className="nav-item nav-link" id="nav-weather-forecast-tab" data-toggle="tab" href="#nav-weather-forecast" role="tab" aria-controls="nav-weather-forecast" aria-selected="false">Weather Forecast</a>
           <a className="nav-item nav-link" id="nav-map-tab" data-toggle="tab" href="#nav-map" role="tab" aria-controls="nav-map" aria-selected="false">Map</a>
           <a className="nav-item nav-link" id="nav-about-area-tab" data-toggle="tab" href="#nav-about-area" role="tab" aria-controls="nav-about-area" aria-selected="false">About Area</a>
-          <a className="nav-item nav-link" id="nav-amenities-tab" data-toggle="tab" href="#nav-amenities" role="tab" aria-controls="nav-amenities" aria-selected="false">Amenities</a>
-
         </div>
       </nav>
       <div className="tab-content" id="nav-tabContent">
@@ -217,14 +259,14 @@ class CityDetail extends Component {
                   })}
                 </div>
               : ""}
-              { previous !== null ? <button type="button" class="btn btn-info m-1" onClick={this.previousVideos}>Previous</button> : ""}
-              { next !== null ? <button type="button" class="btn btn-info m-1" onClick={this.loadMoreVideos}>Next</button> : ""}
+              { previous !== null ? <button type="button" className="btn btn-info m-1" onClick={this.previousVideos}>Previous</button> : ""}
+              { next !== null ? <button type="button" className="btn btn-info m-1" onClick={this.loadMoreVideos}>Next</button> : ""}
         </div>
-        <div className="tab-pane fade" id="nav-weather-forecast" role="tabpanel" aria-labelledby="nav-weather-forecast-tab">Weather Forecast</div>
+        <div className="tab-pane fade" id="nav-weather-forecast" role="tabpanel" aria-labelledby="nav-weather-forecast-tab">
+          <WeatherForecast weatherForecast={weatherForecast} />
+        </div>
         <div className="tab-pane fade" id="nav-map" role="tabpanel" aria-labelledby="nav-map-tab">Map</div>
         <div className="tab-pane fade" id="nav-about-area" role="tabpanel" aria-labelledby="nav-about-area-tab">About Area</div>
-        <div className="tab-pane fade" id="nav-amenities" role="tabpanel" aria-labelledby="nav-amenities-tab">Amenities</div>
-
       </div>
     </div>
 

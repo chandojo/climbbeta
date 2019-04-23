@@ -28,7 +28,6 @@ class ClimbingVideos extends Component {
       }
         return response.json()
       }).then(function(responseData){
-        console.log(responseData);
         thisComp.setState({
           isLoaded:true,
           climbingVideos: responseData
@@ -45,7 +44,7 @@ class ClimbingVideos extends Component {
     render(){
           const { error, isLoaded, climbingVideos } = this.state;
           const totalVideos = climbingVideos.length;
-          
+
           return(
             <div>
             {

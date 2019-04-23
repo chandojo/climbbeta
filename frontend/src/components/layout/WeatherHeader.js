@@ -6,19 +6,17 @@ export default class WeatherHeader extends Component {
     const { weatherDescription } = this.props;
     const { sunTime } = this.props;
 
-    console.log(weatherDescription)
-
     return(
       <div className="row m-0 justify-content-center fixed">
-            { weatherDescription.map((item)=>{
+            { weatherDescription.map((item, key)=>{
               const icon = `http://openweathermap.org/img/w/${item.icon}.png`;
               return(
-                <>
-                <div className="d-inline"><img src={icon} alt={item.main}/></div>
-                <div className="d-inline pl-2 pr-2">
+                <div key={key}>
+                <div className="d-inline-block"><img src={icon} alt={item.main}/></div>
+                <div className="d-inline-block pl-2 pr-2">
                   <p className="text-capitalize mt-3">{item.description}</p>
                 </div>
-              </>
+              </div>
                 )
               })}
               <div className="d-inline pl-2 pr-2">
