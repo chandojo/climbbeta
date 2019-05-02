@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+
 import CityVideosInline from '../videos/CityVideosInline.js';
 import VideoPlayer from '../videos/VideoPlayer.js';
 import WeatherHeader from '../layout/WeatherHeader.js';
@@ -80,6 +81,21 @@ class CityDetail extends Component {
         totalPages: responseData.total_pages
       });
     })
+    .then((totalPages, city)=>{
+      var pages = []
+      if(totalPages > 1){
+        for(var i=0; i < totalPages; i++){
+          let pageEndpoint = `/areas/api/cities/${city}&page=${i}`;
+          pages.push(pageEndpoint)
+        }
+      };
+      return pages
+    })
+    .then((pages)=>{
+      thisComp.setState({
+        pagesArray: pages
+      })
+    })
   .catch(function(error){
       console.log('error',error);
       thisComp.setState({
@@ -150,7 +166,7 @@ class CityDetail extends Component {
         var dayList = {};
         for (var i=0; i < forecastData.length; i++){
           var idt = forecastData[i].dt;
-          var dayKey = idt.slice(0,9);
+          var dayKey = idt.slice(0,8);
           if(!(dayKey in dayList)){
             dayList[dayKey] = []
             }
@@ -177,21 +193,6 @@ class CityDetail extends Component {
       thisVideo: video
     });
   }
-
-// !!!!!!!!!!!!!!!!!!!WORK ON THIS!!!!!!!!!!!!!!!!
-//  pageNumbered(totalPages, city){
-//    let pageEndpoint = `/areas/api/cities/${city}&page=${i}`
-//    let pages = {}
-//    if(totalPages > 1){
-//      for(i=0; i < totalPages; i++){
-//          pages.update({i: pageEndpoint})
-//      }
-//    }
-//    this.setState({
-//      pagesArray: pages
-//    });
-//    console.log(pages);
-//  }
 
   componentDidMount(){
     this.setState({
@@ -226,9 +227,12 @@ class CityDetail extends Component {
 
   render() {
     const { isLoaded, error, cityInfo, cityVideos, thisVideo, next, previous, totalPages, pagesArray, weatherToday, weatherDescription, weatherForecast, sunTime, videoClick } = this.state;
+    console.log(pagesArray)
     return(
       <>
       <div className="shadow bg-light mt-2">
+        <p>{ pagesArray[0] }</p>
+
         <h1 className="text-center p-2">{cityInfo.name}, {cityInfo.state}</h1>
         <WeatherHeader weatherToday={weatherToday} weatherDescription={weatherDescription} sunTime={sunTime} />
       </div>
@@ -259,8 +263,23 @@ class CityDetail extends Component {
                   })}
                 </div>
               : ""}
-              { previous !== null ? <button type="button" className="btn btn-info m-1" onClick={this.previousVideos}>Previous</button> : ""}
-              { next !== null ? <button type="button" className="btn btn-info m-1" onClick={this.loadMoreVideos}>Next</button> : ""}
+              <nav aria-label="Page navigation">
+                  { pagesArray.length !== 0 ?
+                    <ul className="pagination">
+                      { previous !== null ? <li className="page-item"><button className="page-link" onClick={this.previousVideos}>Previous</button></li> : "" }
+                      { pagesArray.map((i, page)=>{
+                        return (
+                          <li className="page-item">{ i } { page }</li>
+                        )
+
+                      })}
+                      { next !== null ? <li className="page-item"><button className="page-link" onClick={this.loadMoreVideos}>Next</button></li> : ""}
+                    </ul>
+                  : "" }
+                  {/*
+                  <li className="page-item"><a className="page-link" href="#">2</a></li>
+                  <li className="page-item"><a className="page-link" href="#">3</a></li> */}
+              </nav>
         </div>
         <div className="tab-pane fade" id="nav-weather-forecast" role="tabpanel" aria-labelledby="nav-weather-forecast-tab">
           <WeatherForecast weatherForecast={weatherForecast} />

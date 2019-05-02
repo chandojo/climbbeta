@@ -12,7 +12,7 @@ from django.db.models import Q
 from areas.models import *
 from api.google.geolocator.requests import *
 
-from weather.api.get_weather import *
+#from weather.api.get_weather import *
 from video.models import Videos
 
 
@@ -40,16 +40,16 @@ class State_View(ListView):
         self.state = get_object_or_404(State, slug=self.kwargs['slug'])
         return City_Town.objects.filter(state__name=self.state)
 
-    def get_weather_data(self, **kwargs):
-        self.cities = City_Town.objects.filter(state__name=self.state)
-        kwargs = {'cities': self.cities}
-        return get_list_weather_data(self, **kwargs)
+#    def get_weather_data(self, **kwargs):
+#        self.cities = City_Town.objects.filter(state__name=self.state)
+#        kwargs = {'cities': self.cities}
+#        return get_list_weather_data(self, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['state'] = self.state
         context['cities'] = self.get_queryset
-        context['weather_data'] = self.get_weather_data
+#        context['weather_data'] = self.get_weather_data
         return context
 
 
@@ -68,13 +68,13 @@ class City_View(ListView):
         print(len(self.videos))
         return self.videos
 
-    def get_weather_data(self, **kwargs):
-        kwargs = {'city': self.city}
-        return get_city_weather_data(self, **kwargs)
+#    def get_weather_data(self, **kwargs):
+#        kwargs = {'city': self.city}
+#        return get_city_weather_data(self, **kwargs)
 
-    def get_forecast_data(self, **kwargs):
-        kwargs = {'city': self.city}
-        return get_city_forecast_data(self, **kwargs)
+#    def get_forecast_data(self, **kwargs):
+#        kwargs = {'city': self.city}
+#        return get_city_forecast_data(self, **kwargs)
 
     def get_embed_map(self, **kwargs):
         kwargs = {'city': self.city}
@@ -89,9 +89,9 @@ class City_View(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['city'] = self.city
-        context['city_weather'] = self.get_weather_data
+    #    context['city_weather'] = self.get_weather_data
         context['videos'] = self.get_videos
-        context['forecast'] = self.get_forecast_data
+    #    context['forecast'] = self.get_forecast_data
         context['map'] = self.get_embed_map
         context['datetime'] = self.get_time
         return context

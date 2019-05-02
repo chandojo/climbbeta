@@ -1,5 +1,6 @@
 db.sqlite3
-fixtures/
+share/
+node_modules/
 
 .DS_Store
 bin/

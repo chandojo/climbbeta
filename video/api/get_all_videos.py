@@ -25,7 +25,7 @@ def get_all_city_videos():
             keys.youtube_search_url.format(q), headers={"content-type": "application/json"})
         youtube_response = requests.get(
             keys.youtube_search_url.format(q), headers={"content-type": "application/json"}).json()
-        video_response = 'video/fixtures/' + today + no_space_city + '-' + str(city.state.abbrv) + '.json'
+        video_response = '../fixtures/' + today + no_space_city + '-' + str(city.state.abbrv) + '.json'
         video_results = []
 
         if vimeo_status.status_code == 200:
@@ -71,13 +71,13 @@ def get_all_city_videos():
 def compile_videos():
     cities = City_Town.objects.all()
     today = str(date.today())
-    compiled_file = 'video/fixtures/' + today + '.json'
+    compiled_file = '../fixtures/' + today + '.json'
     concat_videos = []
 
     for city in cities:
         get_city = str(city.name)
         no_space_city = get_city.replace(' ', '')
-        video_response = 'video/fixtures/' + today + no_space_city + '-' + str(city.state.abbrv) + '.json'
+        video_response = '../fixtures/' + today + no_space_city + '-' + str(city.state.abbrv) + '.json'
         with open(video_response) as f:
             video_file = json.load(f)
             for video in video_file:
