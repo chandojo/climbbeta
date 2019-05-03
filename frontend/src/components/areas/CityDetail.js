@@ -143,7 +143,7 @@ class CityDetail extends Component {
         });
         var cityLat = data.coord.lat;
         var cityLon = data.coord.lon;
-        return fetch(`http://api.openweathermap.org/data/2.5/forecast?lat=${cityLat}&lon=${cityLon}&units=imperial&APPID=5f14a9e6503b7e9ccad869971588e4c5`)
+        return fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${cityLat}&lon=${cityLon}&units=imperial&APPID=5f14a9e6503b7e9ccad869971588e4c5`)
       })
       .then((response)=>{
         return response.json();
@@ -264,21 +264,10 @@ class CityDetail extends Component {
                 </div>
               : ""}
               <nav aria-label="Page navigation">
-                  { pagesArray.length !== 0 ?
                     <ul className="pagination">
                       { previous !== null ? <li className="page-item"><button className="page-link" onClick={this.previousVideos}>Previous</button></li> : "" }
-                      { pagesArray.map((i, page)=>{
-                        return (
-                          <li className="page-item">{ i } { page }</li>
-                        )
-
-                      })}
                       { next !== null ? <li className="page-item"><button className="page-link" onClick={this.loadMoreVideos}>Next</button></li> : ""}
                     </ul>
-                  : "" }
-                  {/*
-                  <li className="page-item"><a className="page-link" href="#">2</a></li>
-                  <li className="page-item"><a className="page-link" href="#">3</a></li> */}
               </nav>
         </div>
         <div className="tab-pane fade" id="nav-weather-forecast" role="tabpanel" aria-labelledby="nav-weather-forecast-tab">
