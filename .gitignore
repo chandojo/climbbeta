@@ -1,5 +1,8 @@
+#ignore settings __init__ file to keep in production when working locally
+climbbeta/settings/__init__.py
+
 db.sqlite3
-fixtures/*
+video/fixtures/*
 share/
 node_modules/
 
