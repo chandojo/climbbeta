@@ -25,7 +25,7 @@ def get_all_city_videos():
             keys.youtube_search_url.format(q), headers={"content-type": "application/json"})
         youtube_response = requests.get(
             keys.youtube_search_url.format(q), headers={"content-type": "application/json"}).json()
-        video_response = '../fixtures/' + today + no_space_city + '-' + str(city.state.abbrv) + '.json'
+        video_response = 'video/fixtures/' + today + no_space_city + '-' + str(city.state.abbrv) + '.json'
         video_results = []
 
         if vimeo_status.status_code == 200:
@@ -64,24 +64,24 @@ def get_all_city_videos():
         else:
             print("There has been an error with the YouTube call")
 
-        with open(video_response, 'w+') as f:
+        with open(video_response, 'w') as f:
             json.dump(video_results, f)
 
 
 def compile_videos():
     cities = City_Town.objects.all()
     today = str(date.today())
-    compiled_file = '../fixtures/' + today + '.json'
+    compiled_file = 'video/fixtures/' + today + '.json'
     concat_videos = []
 
     for city in cities:
         get_city = str(city.name)
         no_space_city = get_city.replace(' ', '')
-        video_response = '../fixtures/' + today + no_space_city + '-' + str(city.state.abbrv) + '.json'
+        video_response = 'video/fixtures/' + today + no_space_city + '-' + str(city.state.abbrv) + '.json'
         with open(video_response) as f:
             video_file = json.load(f)
             for video in video_file:
                 concat_videos.append(video)
 
-    with open(compiled_file, 'w+') as f:
+    with open(compiled_file, 'w') as f:
         json.dump(concat_videos, f)
