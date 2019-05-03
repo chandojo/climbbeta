@@ -3,6 +3,7 @@ climbbeta/settings/__init__.py
 
 db.sqlite3
 video/fixtures/*
+!video/fixtures/.gitkeep
 share/
 node_modules/
 
