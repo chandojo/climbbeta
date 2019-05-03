@@ -64,7 +64,7 @@ def get_all_city_videos():
         else:
             print("There has been an error with the YouTube call")
 
-        with open(video_response, 'w') as f:
+        with open(video_response, 'w+') as f:
             json.dump(video_results, f)
 
 
@@ -83,5 +83,5 @@ def compile_videos():
             for video in video_file:
                 concat_videos.append(video)
 
-    with open(compiled_file, 'w') as f:
+    with open(compiled_file, 'w+') as f:
         json.dump(concat_videos, f)
