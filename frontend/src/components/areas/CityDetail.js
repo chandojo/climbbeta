@@ -166,7 +166,7 @@ class CityDetail extends Component {
         var dayList = {};
         for (var i=0; i < forecastData.length; i++){
           var idt = forecastData[i].dt;
-          var dayKey = idt.slice(0,8);
+          var dayKey = idt.slice(0,9);
           if(!(dayKey in dayList)){
             dayList[dayKey] = []
             }
@@ -214,20 +214,22 @@ class CityDetail extends Component {
       weatherForecast:[]
     })
 
-    if(this.props.match){
-      const { city } = this.props.match.params;
-      this.setState({
-        city: city,
-        isLoaded: false
-      });
-      this.loadVideos(city);
-      this.loadCityDetails(city);
-    };
+  if(this.props.match){
+    const { city } = this.props.match.params;
+    this.setState({
+      city: city,
+      isLoaded: false
+    });
+    this.loadVideos(city);
+    this.loadCityDetails(city);
   }
+
+  }
+
 
   render() {
     const { isLoaded, error, cityInfo, cityVideos, thisVideo, next, previous, totalPages, pagesArray, weatherToday, weatherDescription, weatherForecast, sunTime, videoClick } = this.state;
-    console.log(pagesArray)
+
     return(
       <>
       <div className="shadow bg-light mt-2">
