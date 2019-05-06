@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import PageError from '../PageError.js';
 import CityVideosInline from '../videos/CityVideosInline.js';
 import VideoPlayer from '../videos/VideoPlayer.js';
 import WeatherHeader from '../layout/WeatherHeader.js';
@@ -15,7 +16,9 @@ class CityDetail extends Component {
 
     this.state = {
       error: null,
+      status: null,
       isLoaded: false,
+      id: null,
       city: null,
       cityInfo: [],
       cityVideos: [],
@@ -105,7 +108,7 @@ class CityDetail extends Component {
     })
   }
 
-    loadCityDetails(city){
+    loadCityDetails(city, id){
       let cityEndpoint = `/areas/api/cities/${city}`
       let thisComp = this
       let lookupOptions = {
@@ -114,12 +117,25 @@ class CityDetail extends Component {
           'Content-Type': 'application/json'
         }
       }
-      fetch(cityEndpoint, lookupOptions).then(function(response){
-        if(response.status == 404){
-          console.log("there is a 404 error for city info")
-        }
+      fetch(cityEndpoint, lookupOptions)
+      .then(function(response){
+        thisComp.setState({
+          status:response.status
+        })
         return response.json()
       })
+      .then((responseData) => {
+          if(responseData.state == id) {
+            console.log("it matches")
+            return responseData
+          } else {
+            console.log("it does not match")
+            thisComp.setState({
+              status: '404'
+            })
+          }
+        }
+      )
       .then((responseData) => {
         thisComp.setState({
           error:null,
@@ -166,7 +182,7 @@ class CityDetail extends Component {
         var dayList = {};
         for (var i=0; i < forecastData.length; i++){
           var idt = forecastData[i].dt;
-          var dayKey = idt.slice(0,8);
+          var dayKey = idt.slice(0,9);
           if(!(dayKey in dayList)){
             dayList[dayKey] = []
             }
@@ -197,7 +213,9 @@ class CityDetail extends Component {
   componentDidMount(){
     this.setState({
       error: null,
+      status: null,
       isLoaded: false,
+      id: null,
       city: null,
       cityInfo: [],
       cityVideos: [],
@@ -214,32 +232,36 @@ class CityDetail extends Component {
       weatherForecast:[]
     })
 
-    if(this.props.match){
-      const { city } = this.props.match.params;
-      this.setState({
-        city: city,
-        isLoaded: false
-      });
-      this.loadVideos(city);
-      this.loadCityDetails(city);
-    };
+  if(this.props.match){
+    const { city } = this.props.match.params;
+    const { id } = this.props.match.params;
+    console.log(id)
+    this.setState({
+      id: id,
+      city: city,
+      isLoaded: false
+    });
+    this.loadCityDetails(city, id);
+    this.loadVideos(city);
   }
 
+  }
+
+
   render() {
-    const { isLoaded, error, cityInfo, cityVideos, thisVideo, next, previous, totalPages, pagesArray, weatherToday, weatherDescription, weatherForecast, sunTime, videoClick } = this.state;
-    console.log(pagesArray)
+    const { isLoaded, error, status, cityInfo, cityVideos, thisVideo, next, previous, totalPages, pagesArray, weatherToday, weatherDescription, weatherForecast, sunTime, videoClick } = this.state;
     return(
       <>
+      { status == 200 ?
+      (  <>
       <div className="shadow bg-light mt-2">
-        <p>{ pagesArray[0] }</p>
-
-        <h1 className="text-center p-2">{cityInfo.name}, {cityInfo.state}</h1>
+        <h1 className="text-center p-2">{cityInfo.name}, {cityInfo.state_name}</h1>
         <WeatherHeader weatherToday={weatherToday} weatherDescription={weatherDescription} sunTime={sunTime} />
       </div>
       { !isLoaded ?
         <p>Loading</p> : ""
       }
-      { isLoaded && error ? <p>There has been an error...</p> : ""}
+      {/* isLoaded && error ? <p>There has been an error...</p> : ""*/}
       <div className="video-player col">
         <VideoPlayer video={thisVideo}/>
       </div>
@@ -277,8 +299,9 @@ class CityDetail extends Component {
         <div className="tab-pane fade" id="nav-about-area" role="tabpanel" aria-labelledby="nav-about-area-tab">About Area</div>
       </div>
     </div>
+  </>)
 
-
+  : <div> <PageError location={location}/> </div> }
     </>
     )
   }

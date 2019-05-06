@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import { Link } from 'react-router-dom';
-
+import { BrowserRouter as Router, Link, Route} from 'react-router-dom';
+import PageError from '../PageError.js';
 import CityDetail from './CityDetail.js';
 import 'whatwg-fetch';
 import cookie from 'react-cookies';
@@ -15,12 +15,13 @@ class StateDetail extends Component{
       name: null,
       cities: [],
       img: null,
-      cityClass: 'card d-inline-flex bg-light state-card'
+      cityClass: 'card d-inline-flex bg-light state-card',
+      status:null
     }
   }
 
   loadDetails(id){
-    let endpoint = `/areas/api/states/${id}`
+    let endpoint = `/areas/api/states/${id}/`
     let thisComp = this
     let lookupOptions = {
       method: "GET",
@@ -31,12 +32,11 @@ class StateDetail extends Component{
 
     fetch(endpoint, lookupOptions)
     .then(function(response){
-      if(response.status == 404){
-        console.log('Page not found')
-      }
-      return response.json()
-    }).then(function(responseData){
-      console.log(responseData);
+        thisComp.setState({
+          status: response.status
+        })
+        return response.json()
+      }).then(function(responseData){
       thisComp.setState({
         isLoaded: true,
         name: responseData.name,
@@ -60,39 +60,47 @@ class StateDetail extends Component{
       name: null,
       cities: [],
       img: null,
-      cityClass: 'card d-inline-flex bg-light state-card'
+      cityClass: 'card d-inline-flex bg-light state-card',
+      status:null
     })
 
     if(this.props.match){
       const { id } = this.props.match.params;
+      console.log(this.props.match)
       this.setState({
         id: id,
         isLoaded: false
       });
       this.loadDetails(id);
+      }
     }
- }
-render(){
-      const { isLoaded, id, name, cities, img, error, cityClass  } = this.state;
 
+render(){
+      const { isLoaded, id, name, cities, img, error, cityClass, status  } = this.state;
   return(
       <>
-      <h1>{ name }</h1>
-      { cities.map((city, i)=>{
-        return(
-        <div className={cityClass} key={i}>
-          <Link to={{ pathname:`/${id}/${city}`}}>
-          <div className="card-header text-capitalize">
-            { city }
-          </div>
-          </Link>
-        </div>
+      { status == 200 ?
+      (<>
+          <h1>{ name }</h1>
+          { cities.map((city, i)=>{
+            return(
+            <div className={cityClass} key={i}>
+              <Link to={`${this.props.match.url}/${city}`}>
+                <div className="card-header text-capitalize">
+                  { city }
+                </div>
+              </Link>
+            </div>
+            )
+          })}
+          <Route path={`${this.props.match.path}/:city`} component={CityDetail} />
+        </>)
+        : <div> <PageError location={location}/> </div>
+        }
 
-        )
-      })}
       </>
-    )
-  }
+      )
+    }
 
 }
 
