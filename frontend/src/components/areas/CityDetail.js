@@ -12,6 +12,7 @@ class CityDetail extends Component {
     this.loadMoreVideos = this.loadMoreVideos.bind(this)
     this.previousVideos = this.previousVideos.bind(this)
     this.videoClick = this.videoClick.bind(this)
+    this.loadPageVideos = this.loadPageVideos.bind(this)
 
     this.state = {
       error: null,
@@ -50,6 +51,11 @@ class CityDetail extends Component {
     };
   }
 
+  loadPageVideos(clickedPage){
+    const {city} = this.state;
+    this.loadVideos(city, clickedPage);
+  }
+
   loadVideos(city, nextEndpoint){
     let videoEndpoint = `/video/api/videos/?city=${city}`
     let thisComp = this
@@ -79,13 +85,16 @@ class CityDetail extends Component {
         previous: responseData.previous,
         count: responseData.count,
         totalPages: responseData.total_pages
-      });
+      })
+      var pageTotal = responseData.total_pages
+      return pageTotal
     })
-    .then((totalPages, city)=>{
+    .then((pageTotal)=>{
       var pages = []
-      if(totalPages > 1){
-        for(var i=0; i < totalPages; i++){
-          let pageEndpoint = `/areas/api/cities/${city}&page=${i}`;
+      if(pageTotal > 1){
+        for(var i=0; i < pageTotal; i++){
+          var pageNum = i+1
+          var pageEndpoint = `/video/api/videos/?city=${city}&page=${pageNum}`
           pages.push(pageEndpoint)
         }
       };
@@ -227,11 +236,9 @@ class CityDetail extends Component {
 
   render() {
     const { isLoaded, error, cityInfo, cityVideos, thisVideo, next, previous, totalPages, pagesArray, weatherToday, weatherDescription, weatherForecast, sunTime, videoClick } = this.state;
-    console.log(pagesArray)
     return(
       <>
       <div className="shadow bg-light mt-2">
-        <p>{ pagesArray[0] }</p>
 
         <h1 className="text-center p-2">{cityInfo.name}, {cityInfo.state}</h1>
         <WeatherHeader weatherToday={weatherToday} weatherDescription={weatherDescription} sunTime={sunTime} />
@@ -254,6 +261,23 @@ class CityDetail extends Component {
       </nav>
       <div className="tab-content" id="nav-tabContent">
         <div className="tab-pane fade show active" id="nav-videos" role="tabpanel" aria-labelledby="nav-videos-tab">
+          <nav aria-label="Page navigation" className="pr-3" >
+                <ul className="pagination justify-content-end pt-3 pr-3">
+                  { previous !== null ? <li className="page-item"><button type="button" className="btn btn-success m-1" onClick={this.previousVideos}>Previous</button></li> : "" }
+                  { pagesArray.length > 0 ?
+                    <>
+                     { pagesArray.map((link,index)=>{
+                       return(
+                         <li className="page-item">
+                           <button type="button" className="btn btn-success m-1" onClick={this.loadPageVideos.bind(this,link)}> { index + 1 } </button>
+                         </li>
+                       )
+                    }) }
+                  </>
+                    : ""}
+                  { next !== null ? <li className="page-item"><button type="button" className="btn btn-success m-1" onClick={this.loadMoreVideos}>Next</button></li> : ""}
+                </ul>
+          </nav>
           { isLoaded && cityVideos !== null && error === null ?
                 <div className="card-deck m-0 p-3">
                   { cityVideos.map((video)=>{
@@ -263,12 +287,7 @@ class CityDetail extends Component {
                   })}
                 </div>
               : ""}
-              <nav aria-label="Page navigation">
-                    <ul className="pagination">
-                      { previous !== null ? <li className="page-item"><button className="page-link" onClick={this.previousVideos}>Previous</button></li> : "" }
-                      { next !== null ? <li className="page-item"><button className="page-link" onClick={this.loadMoreVideos}>Next</button></li> : ""}
-                    </ul>
-              </nav>
+
         </div>
         <div className="tab-pane fade" id="nav-weather-forecast" role="tabpanel" aria-labelledby="nav-weather-forecast-tab">
           <WeatherForecast weatherForecast={weatherForecast} />
