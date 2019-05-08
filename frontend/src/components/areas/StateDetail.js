@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import { BrowserRouter as Router, Link, Route} from 'react-router-dom';
+import React, {Component, Fragment} from 'react';
+import { BrowserRouter, Link, Route, Switch} from 'react-router-dom';
 import PageError from '../PageError.js';
 import CityDetail from './CityDetail.js';
 import 'whatwg-fetch';
@@ -78,7 +78,7 @@ class StateDetail extends Component{
 render(){
       const { isLoaded, id, name, cities, img, error, cityClass, status  } = this.state;
   return(
-      <>
+    <>
       { status == 200 ?
       (<>
           <h1>{ name }</h1>
@@ -93,12 +93,10 @@ render(){
             </div>
             )
           })}
-          <Route path={`${this.props.match.path}/:city`} component={CityDetail} />
-
+            <Route path={`${this.props.match.path}/:city`} component={CityDetail} />
         </>)
-        : <div> <PageError location={location}/> </div>
+          : <div> <PageError location={location}/> </div>
         }
-
       </>
       )
     }
