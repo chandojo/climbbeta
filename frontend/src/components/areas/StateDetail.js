@@ -94,6 +94,7 @@ render(){
             )
           })}
           <Route path={`${this.props.match.path}/:city`} component={CityDetail} />
+
         </>)
         : <div> <PageError location={location}/> </div>
         }
