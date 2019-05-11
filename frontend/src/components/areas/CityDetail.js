@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
+import PageError from '../PageError.js';
 import CityVideosInline from '../videos/CityVideosInline.js';
 import VideoPlayer from '../videos/VideoPlayer.js';
 import WeatherHeader from '../layout/WeatherHeader.js';
@@ -16,11 +17,14 @@ class CityDetail extends Component {
 
     this.state = {
       error: null,
+      status: null,
       isLoaded: false,
+      id: null,
       city: null,
       cityInfo: [],
       cityVideos: [],
       thisVideo: null,
+      currentPage: null,
       next: null,
       previous: null,
       count: 0,
@@ -81,6 +85,7 @@ class CityDetail extends Component {
         error:null,
         isLoaded:true,
         cityVideos: responseData.results,
+        currentPage: responseData.current,
         next: responseData.next,
         previous: responseData.previous,
         count: responseData.count,
@@ -114,7 +119,7 @@ class CityDetail extends Component {
     })
   }
 
-    loadCityDetails(city){
+    loadCityDetails(city, id){
       let cityEndpoint = `/areas/api/cities/${city}`
       let thisComp = this
       let lookupOptions = {
@@ -123,12 +128,23 @@ class CityDetail extends Component {
           'Content-Type': 'application/json'
         }
       }
-      fetch(cityEndpoint, lookupOptions).then(function(response){
-        if(response.status == 404){
-          console.log("there is a 404 error for city info")
-        }
+      fetch(cityEndpoint, lookupOptions)
+      .then(function(response){
+        thisComp.setState({
+          status:response.status
+        })
         return response.json()
       })
+      .then((responseData) => {
+          if(responseData.state == id) {
+            return responseData
+          } else {
+            thisComp.setState({
+              status: '404'
+            })
+          }
+        }
+      )
       .then((responseData) => {
         thisComp.setState({
           error:null,
@@ -175,7 +191,7 @@ class CityDetail extends Component {
         var dayList = {};
         for (var i=0; i < forecastData.length; i++){
           var idt = forecastData[i].dt;
-          var dayKey = idt.slice(0,8);
+          var dayKey = idt.slice(0,9);
           if(!(dayKey in dayList)){
             dayList[dayKey] = []
             }
@@ -204,12 +220,15 @@ class CityDetail extends Component {
   }
 
   componentDidMount(){
-    this.setState({
+  this.setState({
       error: null,
+      status: null,
       isLoaded: false,
+      id: null,
       city: null,
       cityInfo: [],
       cityVideos: [],
+      currentPage: null,
       next: null,
       previous: null,
       count: 0,
@@ -223,30 +242,48 @@ class CityDetail extends Component {
       weatherForecast:[]
     })
 
-    if(this.props.match){
-      const { city } = this.props.match.params;
-      this.setState({
-        city: city,
-        isLoaded: false
-      });
-      this.loadVideos(city);
-      this.loadCityDetails(city);
-    };
+  if(this.props.match){
+    const { city } = this.props.match.params;
+    const { id } = this.props.match.params;
+    this.setState({
+      id: id,
+      city: city,
+      isLoaded: false
+    });
+    this.loadCityDetails(city, id);
+    this.loadVideos(city);
+    }
   }
 
+componentDidUpdate(prevProps){
+  const oldProps = prevProps.match.params
+  const newProps = this.props.match.params
+  if(newProps !== oldProps){
+    const { city } = newProps;
+    const { id } = newProps;
+    this.setState({
+      id: id,
+      city: city,
+      isLoaded: false
+    });
+    this.loadCityDetails(city, id);
+    this.loadVideos(city);
+  }
+}
+
   render() {
-    const { isLoaded, error, cityInfo, cityVideos, thisVideo, next, previous, totalPages, pagesArray, weatherToday, weatherDescription, weatherForecast, sunTime, videoClick } = this.state;
+    const { isLoaded, error, status, cityInfo, cityVideos, thisVideo, currentPage, next, previous, totalPages, pagesArray, weatherToday, weatherDescription, weatherForecast, sunTime, videoClick } = this.state;
     return(
       <>
+      { status == 200 ?
+      (  <>
       <div className="shadow bg-light mt-2">
-
-        <h1 className="text-center p-2">{cityInfo.name}, {cityInfo.state}</h1>
+        <h1 className="text-center p-2">{cityInfo.name}, {cityInfo.state_name}</h1>
         <WeatherHeader weatherToday={weatherToday} weatherDescription={weatherDescription} sunTime={sunTime} />
       </div>
       { !isLoaded ?
         <p>Loading</p> : ""
       }
-      { isLoaded && error ? <p>There has been an error...</p> : ""}
       <div className="video-player col">
         <VideoPlayer video={thisVideo}/>
       </div>
@@ -263,19 +300,23 @@ class CityDetail extends Component {
         <div className="tab-pane fade show active" id="nav-videos" role="tabpanel" aria-labelledby="nav-videos-tab">
           <nav aria-label="Page navigation" className="pr-3" >
                 <ul className="pagination justify-content-end pt-3 pr-3">
-                  { previous !== null ? <li className="page-item"><button type="button" className="btn btn-success m-1" onClick={this.previousVideos}>Previous</button></li> : "" }
+                  { previous !== null ? <li className="page-item"><button type="button" className="btn btn-outline-success m-1" onClick={this.previousVideos}>Previous</button></li> : "" }
                   { pagesArray.length > 0 ?
                     <>
                      { pagesArray.map((link,index)=>{
+                       const pageNum = index + 1;
                        return(
-                         <li className="page-item">
-                           <button type="button" className="btn btn-success m-1" onClick={this.loadPageVideos.bind(this,link)}> { index + 1 } </button>
+                         <li className="page-item" key={index}>
+                           { currentPage === pageNum ?
+                             <button type="button" className="btn btn-success m-1" onClick={this.loadPageVideos.bind(this,link)}> { pageNum } </button>
+                             : <button type="button" className="btn btn-outline-success m-1" onClick={this.loadPageVideos.bind(this,link)}> { pageNum } </button>
+                            }
                          </li>
                        )
                     }) }
                   </>
                     : ""}
-                  { next !== null ? <li className="page-item"><button type="button" className="btn btn-success m-1" onClick={this.loadMoreVideos}>Next</button></li> : ""}
+                  { next !== null ? <li className="page-item"><button type="button" className="btn btn-outline-success m-1" onClick={this.loadMoreVideos}>Next</button></li> : ""}
                 </ul>
           </nav>
           { isLoaded && cityVideos !== null && error === null ?
@@ -296,8 +337,9 @@ class CityDetail extends Component {
         <div className="tab-pane fade" id="nav-about-area" role="tabpanel" aria-labelledby="nav-about-area-tab">About Area</div>
       </div>
     </div>
+  </>)
 
-
+  : <div> <PageError location={location}/> </div> }
     </>
     )
   }
