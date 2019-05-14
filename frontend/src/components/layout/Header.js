@@ -10,12 +10,12 @@ class Header extends Component {
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
             <Link to="/" className="navbar-brand">Climb Beta</Link>
-            <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
+{/*            <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
               <li className="nav-item">
                   <Link to="/climbingvideos" className="nav-link"> Climbing Videos </Link>
               </li>
             </ul>
-
+*/}
           </div>
         </nav>
 

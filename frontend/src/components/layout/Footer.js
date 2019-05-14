@@ -13,7 +13,7 @@ const Footer = () => (
         </li>
         <li className="list-group-item border-0 p-2">
           <Link to='/contribute'>
-            <span className="text-muted">Contribute</span>      
+            <span className="text-muted">Contribute</span>
           </Link>
         </li>
       </ul>
