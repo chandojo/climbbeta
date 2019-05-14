@@ -333,8 +333,8 @@ componentDidUpdate(prevProps){
         <div className="tab-pane fade" id="nav-weather-forecast" role="tabpanel" aria-labelledby="nav-weather-forecast-tab">
           <WeatherForecast weatherForecast={weatherForecast} />
         </div>
-        <div className="tab-pane fade" id="nav-map" role="tabpanel" aria-labelledby="nav-map-tab">Map</div>
-        <div className="tab-pane fade" id="nav-about-area" role="tabpanel" aria-labelledby="nav-about-area-tab">About Area</div>
+        <div className="tab-pane fade" id="nav-map" role="tabpanel" aria-labelledby="nav-map-tab">Map Coming Soon...</div>
+        <div className="tab-pane fade" id="nav-about-area" role="tabpanel" aria-labelledby="nav-about-area-tab">About Area Coming Soon...</div>
       </div>
     </div>
   </>)
