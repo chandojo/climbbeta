@@ -31,6 +31,10 @@ This project uses Django and React frameworks.
 
 In project repository, run `python manage.py runserver`.  To run changes in front-end, run `npm run dev`. To change from Local to Production settings, comment necessary line in `/climbbeta/settings/__init__.py`.
 
+## Testing
+To run tests in Python backend:
+1. `cd climbbeta` (root folder)
+2. `python manage.py test`
 
 ## Contributing
 
