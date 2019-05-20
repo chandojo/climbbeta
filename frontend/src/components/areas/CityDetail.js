@@ -155,7 +155,8 @@ class CityDetail extends Component {
         });
         var cityLat = responseData.latitude;
         var cityLon = responseData.longitude;
-        return fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${cityLat}&lon=${cityLon}&units=imperial&APPID=5f14a9e6503b7e9ccad869971588e4c5`);
+        var weatherKey = process.env.REACT_APP_WEATHER_KEY;
+        return fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${cityLat}&lon=${cityLon}&units=imperial&APPID=${weatherKey}`);
       })
       .then(function(response) {
           return response.json();
@@ -168,7 +169,8 @@ class CityDetail extends Component {
         });
         var cityLat = data.coord.lat;
         var cityLon = data.coord.lon;
-        return fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${cityLat}&lon=${cityLon}&units=imperial&APPID=5f14a9e6503b7e9ccad869971588e4c5`)
+        var weatherKey = process.env.REACT_APP_WEATHER_KEY;
+        return fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${cityLat}&lon=${cityLon}&units=imperial&APPID=${weatherKey}`)
       })
       .then((response)=>{
         return response.json();
