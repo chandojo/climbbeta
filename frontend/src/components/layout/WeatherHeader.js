@@ -9,7 +9,7 @@ export default class WeatherHeader extends Component {
     return(
       <div className="row m-0 justify-content-center fixed">
             { weatherDescription.map((item, key)=>{
-              const icon = `http://openweathermap.org/img/w/${item.icon}.png`;
+              const icon = `https://openweathermap.org/img/w/${item.icon}.png`;
               return(
                 <div key={key}>
                 <div className="d-inline-block"><img src={icon} alt={item.main}/></div>

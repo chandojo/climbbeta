@@ -10,11 +10,20 @@ class VideoPagination(pagination.PageNumberPagination):
     page_size_query_param = 'size'
     max_page_size = 100
 
+    def get_current_page(self):
+        video_pages = self.page.paginator.page_range
+        number = self.page.number
+
+        for num in video_pages:
+            if number == num:
+                return num
+
     def get_paginated_response(self, data):
         return Response({
+            'current': self.get_current_page(),
             'next': self.get_next_link(),
             'previous': self.get_previous_link(),
-            'count': self.page.paginator.count,
+            'total_videos': self.page.paginator.count,
             'total_pages': self.page.paginator.num_pages,
             'results': data
         })

@@ -4,18 +4,17 @@ export default class WeatherForecast extends Component {
 
     render(){
       const { weatherForecast } = this.props;
-      console.log(weatherForecast)
       return(
         <div className="row">
         { Object.keys(weatherForecast).map((day, key)=>{
           return(
-              <div className="col text-center border border-light">
+              <div className="col text-center border border-light" key={key}>
                   <h5 className="mt-1 pt-3 pb-3 bg-warning">{ day }</h5>
 
                 { weatherForecast[day].map((value, key)=>{
-                  var icon = `http://openweathermap.org/img/w/${ value.icon }.png`;
+                  var icon = `https://openweathermap.org/img/w/${ value.icon }.png`;
                       return(
-                        <div className="card mx-auto text-center border-0">
+                        <div className="card mx-auto text-center border-0" key={key}>
                           <div className="card-header">{ value.dt.slice(10) }</div>
                           <img className=" mx-auto d-block" src={ icon }/>
                           <div className="card-text">

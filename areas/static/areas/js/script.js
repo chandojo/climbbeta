@@ -1,3 +1,4 @@
+/*
 $('.video-card').on('click', function(){
   $('.video-card.active-video').removeClass('active-video');
 
@@ -34,3 +35,4 @@ $('button.map-embed').click(function(){
 $('div.x').click(function(){
   $(this).parent().hide(400);
 });
+*/
