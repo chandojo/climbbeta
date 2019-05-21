@@ -25,10 +25,11 @@ class VideoFactory(DjangoModelFactory):
     class Meta:
         model = Videos
 
+    uri = factory.Faker('uri')
+    created = factory.Faker('iso8601')
     name = Climbing_Name_Random.climb_name
     city = factory.SubFactory(CityTownFactory)
     author = factory.Faker('user_name')
     thumbnail = factory.Faker('image_url')
-    embed = factory.Faker('word')
     description = factory.Faker('sentence')
     slug = slugify(name)

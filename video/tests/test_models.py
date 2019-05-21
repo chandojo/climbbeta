@@ -6,6 +6,14 @@ from .faker_data import *
 
 
 class VideosLabelTestCase(TestCase):
+    def test_uri_name_label(self):
+        field_label = Videos._meta.get_field('uri').verbose_name
+        self.assertEquals(field_label, 'uri')
+
+    def test_created_name_label(self):
+        field_label = Videos._meta.get_field('created').verbose_name
+        self.assertEquals(field_label, 'created')
+
     def test_videos_name_label(self):
         field_label = Videos._meta.get_field('name').verbose_name
         self.assertEquals(field_label, 'name')
@@ -21,10 +29,6 @@ class VideosLabelTestCase(TestCase):
     def test_thumbnail_name_label(self):
         field_label = Videos._meta.get_field('thumbnail').verbose_name
         self.assertEquals(field_label, 'thumbnail')
-
-    def test_embed_name_label(self):
-        field_label = Videos._meta.get_field('embed').verbose_name
-        self.assertEquals(field_label, 'embed')
 
     def test_description_name_label(self):
         field_label = Videos._meta.get_field('description').verbose_name
@@ -50,7 +54,6 @@ class VideoFieldLengthTestCase(TestCase):
 
 
 class VideosContentTestCase(TestCase):
-
     @classmethod
     def setUpTestData(cls):
         VideoFactory.create()
