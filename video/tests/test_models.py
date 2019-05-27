@@ -22,10 +22,6 @@ class VideosLabelTestCase(TestCase):
         field_label = Videos._meta.get_field('thumbnail').verbose_name
         self.assertEquals(field_label, 'thumbnail')
 
-    def test_embed_name_label(self):
-        field_label = Videos._meta.get_field('embed').verbose_name
-        self.assertEquals(field_label, 'embed')
-
     def test_description_name_label(self):
         field_label = Videos._meta.get_field('description').verbose_name
         self.assertEquals(field_label, 'description')

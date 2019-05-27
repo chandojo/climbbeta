@@ -29,6 +29,5 @@ class VideoFactory(DjangoModelFactory):
     city = factory.SubFactory(CityTownFactory)
     author = factory.Faker('user_name')
     thumbnail = factory.Faker('image_url')
-    embed = factory.Faker('word')
     description = factory.Faker('sentence')
     slug = slugify(name)
