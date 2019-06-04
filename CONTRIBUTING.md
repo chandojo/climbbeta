@@ -22,7 +22,7 @@ Working on an issue and ready to send a pull request? Go through this checklist 
 ### Pull Request Format
 Title | Description |
 -------|------------
-*Issue Number and Title* | * **Problem**: Problem the pull request addresses **Solution**: What the pull request does to fix this problem **Notes**: Any additional notes that are necessary*
+*Issue Number and Title* | ***Problem***: *Problem the pull request addresses* ***Solution***: *What the pull request does to fix this problem* ***Notes***: *Any additional notes that are necessary*
 
 ## Reporting Bugs
  - Found a bug? Make sure it is not already reported in [issues](https://github.com/chandojo/climbbeta/issues)
