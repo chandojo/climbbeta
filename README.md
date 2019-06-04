@@ -16,7 +16,7 @@ This project uses Django and React frameworks.
 
 3. Activate virtual environment
 
-  `source /climbbeta-environ/bin/activate`
+  `source ./climbbeta-environ/bin/activate`
 
 4. CD into project directory and install requirements
 
