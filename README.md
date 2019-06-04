@@ -38,8 +38,7 @@ To run tests in Python backend:
 
 ## Contributing
 
-For projects to contribute to, view our **Issues** tab
-
+We are happy you are interested in contributing to Climb Beta! Before getting started, read over our [Contributing Guidelines](CONTRIBUTING.md) to see how you can help.
 
 ## License
 
