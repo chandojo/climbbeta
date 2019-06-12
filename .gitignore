@@ -107,6 +107,7 @@ staticfiles/css
 staticfiles/img
 staticfiles/rest_framework
 staticfiles.json
+frontend/static/frontend/main.js
 
 # Rope project settings
 .ropeproject

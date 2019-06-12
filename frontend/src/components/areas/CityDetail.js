@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
+import Map from '../layout/Map.js';
 import PageError from '../PageError.js';
 import CityVideosInline from '../videos/CityVideosInline.js';
 import VideoPlayer from '../videos/VideoPlayer.js';
@@ -335,7 +336,9 @@ componentDidUpdate(prevProps){
         <div className="tab-pane fade" id="nav-weather-forecast" role="tabpanel" aria-labelledby="nav-weather-forecast-tab">
           <WeatherForecast weatherForecast={weatherForecast} />
         </div>
-        <div className="tab-pane fade" id="nav-map" role="tabpanel" aria-labelledby="nav-map-tab">Map Coming Soon...</div>
+        <div className="tab-pane fade" id="nav-map" role="tabpanel" aria-labelledby="nav-map-tab">
+          <Map city={cityInfo.name} state={cityInfo.state_name} />
+        </div>
         <div className="tab-pane fade" id="nav-about-area" role="tabpanel" aria-labelledby="nav-about-area-tab">About Area Coming Soon...</div>
       </div>
     </div>
