@@ -10,7 +10,4 @@ router.register('cities', views.API_CityTown_View)
 app_name = 'areas'
 urlpatterns = [
     path('api/', include(router.urls)),
-    path('', views.index, name='index'),
-    path('<slug:slug>/', views.State_View.as_view(), name='states'),
-    path('<slug:state__slug>/<slug:slug>/', views.City_View.as_view(), name='cities'),
  ]
