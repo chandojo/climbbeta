@@ -8,12 +8,10 @@ from frontend.views import index
 from django.views.generic.base import TemplateView
 
 urlpatterns = [
-#    path('', index, name='index'),
     path('areas/', include('areas.urls')),
     path('video/', include('video.urls')),
     path('admin/', admin.site.urls),
-#    path('', include('frontend.urls'))
-#   re_path('.*', index),
+    path('api-auth/', include('rest_framework.urls')),
     path('', TemplateView.as_view(template_name="frontend/index.html"), name='index'),
     re_path('^.*/$', TemplateView.as_view(template_name="frontend/index.html"), name='index')
 ]
