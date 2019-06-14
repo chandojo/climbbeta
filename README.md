@@ -1,18 +1,18 @@
 ## Getting Started
 
-Virtualenv is used to run the Python environment and NodeJS to run the Javascript environment. Pip is used to manage Python packages and npm for Javascript packages. You can set up environment before or after installing the project repo. Install virtualenv, NodeJS, pip, and npm.
+Climbbeta runs in a Python 3.6.3 virtual environment. NodeJS is used to run the Javascript environment. Pip is used to manage Python packages and npm for Javascript packages. You can set up environment before or after installing the project repo. Install virtualenv, NodeJS, pip, and npm.
 
 This project uses Django and React frameworks.
 
-### Setting Up
+## Setting Up
 
-1. Clone or download repository
+1. In your local working directory, clone or download repository
 
   `git clone https://github.com/chandojo/climbbeta.git`
 
-2. Create new virtualenv folder
+2. Create virtual environment
 
-  `virtualenv climbbeta-environ`
+  `python3 -m venv climbbeta-environ`
 
 3. Activate virtual environment
 
@@ -29,12 +29,29 @@ This project uses Django and React frameworks.
 
 ### Running the local environment
 
-In project repository, run `python manage.py runserver`.  To run changes in front-end, run `npm run dev`. To change from Local to Production settings, comment necessary line in `/climbbeta/settings/__init__.py`.
+In project repository, run `python manage.py runserver`.  While initially setting up your environment, you may need to create a build a main.js file for React.  To do this, run `npm run dev`.
+
+## Making changes
+
+### Making changes to React
+
+When making changes to React, make sure to update the main.js file.  If you do *not* update the main.js file, your changes will *not* render.     
+
+- Update locally
+  `npm run dev`
+
+- Update for production
+  `npm run build`
+
+### Changing from Local to Production settings
+
+To change from Local to Production settings, comment __Local__ line in `/climbbeta/settings/__init__.py` and uncomment __Production__.
 
 ## Testing
 To run tests in Python backend:
 1. `cd climbbeta` (root folder)
 2. `python manage.py test`
+
 
 ## Contributing
 
