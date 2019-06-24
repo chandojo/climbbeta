@@ -7,6 +7,7 @@ import CityVideosInline from '../videos/CityVideosInline.js';
 import VideoPlayer from '../videos/VideoPlayer.js';
 import WeatherHeader from '../layout/WeatherHeader.js';
 import WeatherForecast from '../layout/WeatherForecast.js';
+import AboutCity from '../layout/AboutCity.js';
 
 class CityDetail extends Component {
   constructor(props){
@@ -339,7 +340,9 @@ componentDidUpdate(prevProps){
         <div className="tab-pane fade" id="nav-map" role="tabpanel" aria-labelledby="nav-map-tab">
           <Map city={cityInfo.name} state={cityInfo.state_name} />
         </div>
-        <div className="tab-pane fade" id="nav-about-area" role="tabpanel" aria-labelledby="nav-about-area-tab">About Area Coming Soon...</div>
+        <div className="tab-pane fade" id="nav-about-area" role="tabpanel" aria-labelledby="nav-about-area-tab">
+          <AboutCity cityInfo={cityInfo}/>
+        </div>
       </div>
     </div>
   </>)
