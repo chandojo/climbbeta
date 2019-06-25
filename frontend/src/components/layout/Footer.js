@@ -4,7 +4,7 @@ import { BrowserRouter, Link } from 'react-router-dom';
 import '../design/footer.css';
 
 const Footer = () => (
-    <div className="navbar footer fixed-bottom text-center mx-auto justify-content-end">
+    <div className="navbar footer fixed-bottom text-center mx-auto justify-content-end" data-testid="footerDiv">
       <ul className="list-group list-group-horizontal">
         <li className="list-group-item border-0 p-2">
           <Link to='/about'>

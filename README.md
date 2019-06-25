@@ -10,7 +10,7 @@ This project uses Django and React frameworks.
 
   `git clone https://github.com/chandojo/climbbeta.git`
 
-2. Create virtual environment
+2. Create virtual environment **(must be in Python 3)**
 
   `python3 -m venv climbbeta-environ`
 
@@ -40,7 +40,7 @@ When making changes to React, make sure to update the main.js file.  If you do *
 - Update locally
   `npm run dev`
 
-- Update for production
+- Update for production.
   `npm run build`
 
 ### Changing from Local to Production settings
@@ -48,10 +48,12 @@ When making changes to React, make sure to update the main.js file.  If you do *
 To change from Local to Production settings, comment __Local__ line in `/climbbeta/settings/__init__.py` and uncomment __Production__.
 
 ## Testing
-To run tests in Python backend:
+To run tests for Django:
 1. `cd climbbeta` (root folder)
 2. `python manage.py test`
 
+To run test for React:
+`npm test`
 
 ## Contributing
 

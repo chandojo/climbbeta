@@ -57,7 +57,7 @@ class StateList extends Component {
 
       return (
         <div className="card-bank text-center">
-          { !isLoaded ? <div>Loading...</div> : "" }
+          { !isLoaded ? <div data-testid='loadingDiv'>Loading...</div> : "" }
 
           { isLoaded && stateList.length > 0 ? stateList.map((stateItem, index)=>{
             return(
@@ -65,7 +65,7 @@ class StateList extends Component {
             )
           }) : <p>No States Available</p> }
 
-          { isLoaded && error ? <div>An error has occured</div> : "" }
+          { isLoaded && error ? <div data-testid='errorDiv'>An error has occured</div> : "" }
         </div>
     )
   }
