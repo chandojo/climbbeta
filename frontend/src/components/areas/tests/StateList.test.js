@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, cleanup } from '@testing-library/react';
 import 'jest-dom/extend-expect';
-import StateList from './StateList.js';
+import StateList from '../StateList.js';
 
 afterEach(cleanup)
 

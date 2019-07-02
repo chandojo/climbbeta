@@ -33,11 +33,11 @@ class StateList extends Component {
         stateList:responseData
       });
     }).catch(function(error){
+      console.log("Error: ", error);
       thisComp.setState({
         error,
         isLoaded:true,
       })
-        console.log("Error: ", error);
     })
   }
 
