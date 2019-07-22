@@ -20,12 +20,8 @@
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
-<<<<<<< HEAD
     "@testing-library/react": "^8.0.4",
-    "babel-loader": "^8.0.5",
-=======
     "babel-loader": "^8.0.6",
->>>>>>> master
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-polyfill": "^6.26.0",
     "dotenv-webpack": "^1.7.0",

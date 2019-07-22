@@ -31,6 +31,18 @@ This project uses Django and React frameworks.
 
 In project repository, run `python manage.py runserver`.  While initially setting up your environment, you may need to create a build a main.js file for React.  To do this, run `npm run dev`.
 
+### Environment Variables
+This project heavily relies on environment variables. For the website to fully render on your local machine, be sure to define the following environment variables:
+
+- CLIMB_BETA_SECRET_KEY (Django secret key)
+- PRODUCTION_SETTING ('true' for production, 'false' for local)
+- REACT_APP_GOOGLE_EMBED_KEY (Google Maps api key)
+- REACT_APP_WEATHER_KEY (Open Weather Map api key)
+- GOOGLE_API_KEY (Google YouTube api key)
+- VIMEO_ACCESS_TOKEN
+- VIMEO_CLIENT_ID
+- VIMEO_CLIENT_SECRET
+
 ## Making changes
 
 ### Making changes to React
@@ -43,9 +55,9 @@ When making changes to React, make sure to update the main.js file.  If you do *
 - Update for production.
   `npm run build`
 
-### Changing from Local to Production settings
+### Local and Production Settings
 
-To change from Local to Production settings, comment __Local__ line in `/climbbeta/settings/__init__.py` and uncomment __Production__.
+Create environment variable called 'PRODUCTION_SETTING' and set as 'true' for production setting and 'false' for local setting.
 
 ## Testing
 To run tests for Django:

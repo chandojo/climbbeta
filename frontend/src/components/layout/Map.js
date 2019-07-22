@@ -8,7 +8,7 @@ export default class Map extends Component {
 
     return(
       <div className="row p-2">
-        <div className="col-md embed-responsive embed-responsive-16by9 ">
+        <div className="col-md embed-responsive embed-responsive-16by9" datatest-id="embedMapTest">
           <iframe className="embed-responsive-item" src={link} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;" frameBorder="0" allowFullScreen onload="this.style.height=this.contentDocument.body.scrollHeight +'px';"></iframe>
         </div>
     </div>
