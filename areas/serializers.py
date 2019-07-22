@@ -20,4 +20,4 @@ class CityTownSerializer(serializers.ModelSerializer):
     class Meta:
         model = City_Town
         fields = ('name', 'state', 'state_name', 'slug',
-                  'longitude', 'latitude', 'timezone')
+                  'longitude', 'latitude', 'timezone', 'permit_required', 'permit_name', 'busted', 'camping', 'nearby_food')

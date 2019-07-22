@@ -9,7 +9,7 @@
   "dependencies": {
     "css-loader": "^2.1.1",
     "file-loader": "^3.0.1",
-    "react-cookies": "^0.1.0",
+    "react-cookies": "^0.1.1",
     "react-paginate": "^6.3.0",
     "react-router-dom": "^4.3.1",
     "style-loader": "^0.23.1",
@@ -17,11 +17,15 @@
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.3.4",
-    "@babel/preset-env": "^7.3.4",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
+<<<<<<< HEAD
     "@testing-library/react": "^8.0.4",
     "babel-loader": "^8.0.5",
+=======
+    "babel-loader": "^8.0.6",
+>>>>>>> master
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-polyfill": "^6.26.0",
     "dotenv-webpack": "^1.7.0",
@@ -31,10 +35,10 @@
     "jest-dom": "^3.5.0",
     "jest-fetch-mock": "^2.1.2",
     "prop-types": "^15.6.2",
-    "react": "^16.8.1",
-    "react-dom": "^16.8.1",
-    "webpack": "^4.29.5",
-    "webpack-cli": "^3.2.3"
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "webpack": "^4.36.1",
+    "webpack-cli": "^3.3.6"
   },
   "engines": {
     "node": "10.15.0"

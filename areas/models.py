@@ -35,6 +35,12 @@ class City_Town(models.Model):
     longitude = models.FloatField(blank=True)
     latitude = models.FloatField(blank=True)
     timezone = models.CharField(max_length=200, blank=True, null=True)
+    permit_required = models.NullBooleanField()
+    permit_name = models.CharField(max_length=200, null=True, blank=True)
+    busted = models.TextField(blank=True, null=True)
+    camping = models.NullBooleanField()
+    nearby_food = models.NullBooleanField()
+
 
     def get_lat(self, **kwargs):
         lat = get_latitude(self, **kwargs)
@@ -47,6 +53,11 @@ class City_Town(models.Model):
     def get_time(self, **kwargs):
         time = get_timezone(self, **kwargs)
         return time
+
+    def get_permit(self, **kwargs):
+        if self.permit_required == False:
+            self.permit_name = null
+        return self.permit_name
 
     def save(self, *args, **kwargs):
         if not self.slug:
