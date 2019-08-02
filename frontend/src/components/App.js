@@ -24,7 +24,7 @@ class App extends Component {
               <Route exact path="/climbingvideos" component={ClimbingVideos} />
               <Route exact path="/" component={StateList} />
               <Route path="/about" component={About} />
-              <Route path="/contribute" component={Contribute} />              
+              <Route path="/contribute" component={Contribute} />
               <Route path="/:id" component={StateDetail} />
               <Route component={PageError}/>
             </Switch>
