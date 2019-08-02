@@ -4,6 +4,8 @@ import PageError from '../PageError.js';
 import CityDetail from './CityDetail.js';
 import 'whatwg-fetch';
 import cookie from 'react-cookies';
+import { fetchAPI } from './fetchAPI';
+
 
 class StateDetail extends Component{
   constructor(props){
@@ -21,30 +23,19 @@ class StateDetail extends Component{
   }
 
   loadDetails(id){
-    let endpoint = `/areas/api/states/${id}/`
-    let thisComp = this
-    let lookupOptions = {
-      method: "GET",
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }
+    let url = `/areas/api/states/${id}/`
+    const thisComp = this
 
-    fetch(endpoint, lookupOptions)
-    .then(function(response){
-        thisComp.setState({
-          status: response.status
-        })
-        return response.json()
-      }).then(function(responseData){
+    fetchAPI(url).then(function(responseData){
+      console.log(responseData)
       thisComp.setState({
         isLoaded: true,
         name: responseData.name,
         cities: responseData.cities,
-        img: responseData.img
+        img: responseData.img,
+        status: responseData.status
       })
     }).catch(function(error){
-      console.log('error',error);
       thisComp.setState({
         isLoaded: true,
         error
@@ -53,17 +44,6 @@ class StateDetail extends Component{
   }
 
   componentDidMount(){
-    this.setState({
-      error: null,
-      isLoaded: false,
-      id: null,
-      name: null,
-      cities: [],
-      img: null,
-      cityClass: 'card d-inline-flex bg-light state-card',
-      status:null
-    })
-
     if(this.props.match){
       const { id } = this.props.match.params;
       console.log(this.props.match)
@@ -79,8 +59,8 @@ render(){
       const { isLoaded, id, name, cities, img, error, cityClass, status  } = this.state;
   return(
     <>
-      { status == 200 ?
-      (<>
+    { error ? <div><PageError location={location}/></div> :
+      <>
           <h1>{ name }</h1>
           { cities.map((city, i)=>{
             return(
@@ -94,9 +74,7 @@ render(){
             )
           })}
             <Route path={`${this.props.match.path}/:city`} component={CityDetail} />
-        </>)
-          : <div> <PageError location={location}/> </div>
-        }
+        </>  }
       </>
       )
     }

@@ -3,7 +3,6 @@ import React, {Component} from 'react';
 class AboutCity extends Component {
   render(){
       const { cityInfo } = this.props;
-      console.log(cityInfo.busted)
       return (
         <>
         <table className="table table-striped">
