@@ -2,7 +2,7 @@ import 'whatwg-fetch';
 
 export const fetchWeatherAPI = (cityLat, cityLon) => {
     var weatherKey = process.env.REACT_APP_WEATHER_KEY;
-    let endpoint = `http://api.openweathermap.org/data/2.5/weather?lat=${cityLat}&lon=${cityLon}&units=imperial&APPID=${weatherKey}`;
+    let endpoint = `https://api.openweathermap.org/data/2.5/weather?lat=${cityLat}&lon=${cityLon}&units=imperial&APPID=${weatherKey}`;
 
   return fetch(endpoint)
     .then((response)=>{
@@ -15,7 +15,7 @@ export const fetchWeatherAPI = (cityLat, cityLon) => {
 
 export const fetchWeatherForecastAPI = (cityLat, cityLon, timezone) => {
   var weatherKey = process.env.REACT_APP_WEATHER_KEY;
-  let endpoint = `http://api.openweathermap.org/data/2.5/forecast?lat=${cityLat}&lon=${cityLon}&units=imperial&APPID=${weatherKey}`;
+  let endpoint = `https://api.openweathermap.org/data/2.5/forecast?lat=${cityLat}&lon=${cityLon}&units=imperial&APPID=${weatherKey}`;
 
   return fetch(endpoint)
     .then((response)=>{
