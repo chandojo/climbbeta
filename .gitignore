@@ -2,7 +2,7 @@ db.sqlite3
 video/fixtures/*
 !video/fixtures/.gitkeep
 share/
-node_modules/
+node_modules
 .idea/
 
 .DS_Store
