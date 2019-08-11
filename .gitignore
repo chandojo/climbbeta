@@ -2,8 +2,14 @@ db.sqlite3
 video/fixtures/*
 !video/fixtures/.gitkeep
 share/
+<<<<<<< HEAD
 node_modules/
 .idea/
+=======
+node_modules
+.idea/
+
+>>>>>>> 5bc51ab... [PROBLEM]: Vulnerable django version is vulnerable
 
 .DS_Store
 bin/
