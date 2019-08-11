@@ -3,6 +3,8 @@ import 'whatwg-fetch';
 import cookie from 'react-cookies';
 import StateInline from './StateInline';
 
+import { fetchAPI } from './fetchAPI';
+
 class StateList extends Component {
   constructor(props){
     super(props)
@@ -14,41 +16,25 @@ class StateList extends Component {
     };
   }
 
-  getStates(){
-    let endpoint = `/areas/api/states/`
-    let thisComp = this
-    let lookupOptions = {
-      method: "GET",
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }
 
-    fetch(endpoint,lookupOptions)
-    .then(function(response){
-      return response.json()
-    }).then(function(responseData){
-      thisComp.setState({
-        isLoaded:true,
-        stateList:responseData
-      });
-    }).catch(function(error){
-      console.log("Error: ", error);
-      thisComp.setState({
-        error,
-        isLoaded:true,
-      })
+getExtractedData(){
+  const APIurl = `/areas/api/states/`
+  const thisComp = this
+  fetchAPI(APIurl).then(function(extractedData){
+    thisComp.setState({
+      isLoaded:true,
+      stateList:extractedData
     })
-  }
+  }).catch(function(error){
+    thisComp.setState({
+      error,
+      isLoaded:true
+    })
+  })
+}
 
   componentDidMount(){
-    this.setState({
-      error: null,
-      isLoaded: false,
-      stateList: [],
-      stateClass: 'card d-inline-flex bg-light state-card'
-  })
-    this.getStates()
+    this.getExtractedData();
   }
 
 
