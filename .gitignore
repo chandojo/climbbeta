@@ -4,6 +4,7 @@ video/fixtures/*
 share/
 node_modules
 .idea/
+areas/media
 
 .DS_Store
 bin/
