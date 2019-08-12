@@ -27,13 +27,19 @@ class StateDetail extends Component{
     const thisComp = this
 
     fetchAPI(url).then(function(responseData){
-      thisComp.setState({
-        isLoaded: true,
-        name: responseData.name,
-        cities: responseData.cities,
-        img: responseData.img,
-        status: responseData.status
-      })
+      if(responseData.detail){
+        thisComp.setState({
+          error
+        })
+      } else {
+        thisComp.setState({
+          isLoaded: true,
+          name: responseData.name,
+          cities: responseData.cities,
+          img: responseData.img,
+          status: responseData.status
+        })
+      }
     }).catch(function(error){
       thisComp.setState({
         isLoaded: true,
@@ -47,9 +53,21 @@ class StateDetail extends Component{
       const { id } = this.props.match.params;
       this.setState({
         id: id,
-        isLoaded: false
       });
       this.loadDetails(id);
+      }
+    }
+
+    componentDidUpdate(prevProps){
+      const oldProps = prevProps.match.params;
+      const newProps = this.props.match.params;
+      if(newProps !== oldProps){
+          const { id } = newProps;
+          this.setState({
+            id: id,
+            error: null
+          });
+          this.loadDetails(id);
       }
     }
 

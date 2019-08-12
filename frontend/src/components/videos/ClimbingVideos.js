@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import 'whatwg-fetch';
+import { fetchAPI } from '../areas/fetchAPI.js';
 
 class ClimbingVideos extends Component {
     constructor(props){
@@ -14,23 +15,12 @@ class ClimbingVideos extends Component {
     componentDidMount(){
       let endpoint = `/video/api/videos`
       let thisComp = this
-      let lookupOptions = {
-        method: "GET",
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }
 
-      fetch(endpoint,lookupOptions)
-      .then(function(response){
-      if(response.status == 404){
-        console.log('there has been an error')
-      }
-        return response.json()
-      }).then(function(responseData){
+      fetchAPI(endpoint)
+      .then(function(responseData){
         thisComp.setState({
           isLoaded:true,
-          climbingVideos: responseData
+          climbingVideos: responseData.results
         });
       }).catch(function(error){
         thisComp.setState({
@@ -44,6 +34,7 @@ class ClimbingVideos extends Component {
     render(){
           const { error, isLoaded, climbingVideos } = this.state;
           const totalVideos = climbingVideos.length;
+          console.log(climbingVideos)
 
           return(
             <div>

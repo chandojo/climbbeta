@@ -183,7 +183,6 @@ componentDidUpdate(prevProps){
     });
     this.loadCityDetails(city, id);
     this.loadVideos(city);
-
   }
 }
 

@@ -1,0 +1,12 @@
+.main-link, .subheader {
+  font-size: 1.5rem;
+}
+
+.main-nav {
+  position: absolute;
+  bottom: 0;
+}
+
+.main-nav {
+  right: 0;
+}

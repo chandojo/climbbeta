@@ -1,9 +1,10 @@
 .state-card {
   width: 18rem;
+  height: auto;
 }
 
 .card-img-top {
   width: 100%;
-  height: 12vw;
+  height: 250px;
   object-fit: cover;
 }

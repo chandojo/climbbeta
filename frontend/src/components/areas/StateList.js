@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import 'whatwg-fetch';
 import cookie from 'react-cookies';
 import StateInline from './StateInline';
-
 import { fetchAPI } from './fetchAPI';
 
 class StateList extends Component {
@@ -42,17 +41,20 @@ getExtractedData(){
       const { error, isLoaded, stateList, stateClass } = this.state;
 
       return (
+        <>
         <div className="card-bank text-center">
           { !isLoaded ? <div data-testid='loadingDiv'>Loading...</div> : "" }
 
           { isLoaded && stateList.length > 0 ? stateList.map((stateItem, index)=>{
             return(
-                <StateInline state={stateItem} stateClass={stateClass}/>
+                <StateInline state={stateItem} stateClass={stateClass} key={stateItem.id}/>
             )
           }) : <p>No States Available</p> }
 
           { isLoaded && error ? <div data-testid='errorDiv'>An error has occured</div> : "" }
         </div>
+
+        </>
     )
   }
 }

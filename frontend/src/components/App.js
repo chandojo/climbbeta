@@ -11,6 +11,8 @@ import CityDetail from './areas/CityDetail.js';
 import PageError from './PageError.js';
 import About from './About.js';
 import Contribute from './Contribute.js';
+import SideNav from './layout/SideNav.js';
+import RandomVideo from './videos/RandomVideo.js';
 
 class App extends Component {
   render(){
@@ -19,16 +21,23 @@ class App extends Component {
         <BrowserRouter>
           <Fragment>
             <Header />
-
+            <div className="row">
+              <div className="col-2 p-3">
+                <SideNav />
+              </div>
+              <div className="col-10">
             <Switch>
-              <Route exact path="/climbingvideos" component={ClimbingVideos} />
+  {/*            <Route exact path="/climbingvideos" component={ClimbingVideos} /> */}
+              <Route exact path="/randomvideo" component={RandomVideo} />
               <Route exact path="/" component={StateList} />
-              <Route path="/about" component={About} />
-              <Route path="/contribute" component={Contribute} />
+              <Route exact path="/about" component={About} />
+              <Route exact path="/contribute" component={Contribute} />
               <Route path="/:id" component={StateDetail} />
               <Route component={PageError}/>
             </Switch>
+          </div>
 
+          </div>
             <Footer/>
 
           </Fragment>
