@@ -13,6 +13,7 @@ export const fetchWeatherAPI = (cityLat, cityLon) => {
       })
     }
 
+/// TODO: Splicing string in date/time either adding or subracting a letter or comma
 export const fetchWeatherForecastAPI = (cityLat, cityLon, timezone) => {
   var weatherKey = process.env.REACT_APP_WEATHER_KEY;
   let endpoint = `https://api.openweathermap.org/data/2.5/forecast?lat=${cityLat}&lon=${cityLon}&units=imperial&APPID=${weatherKey}`;

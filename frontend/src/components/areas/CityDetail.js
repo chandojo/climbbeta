@@ -11,6 +11,10 @@ import AboutCity from '../layout/AboutCity.js';
 import { fetchAPI } from './fetchAPI';
 import { fetchWeatherAPI, fetchWeatherForecastAPI } from './fetchWeatherAPI';
 
+
+// TODO: !!!Split component into multiple functions that can be seperated out:
+// Parsing video data, parsing weather data, setting state, and rendering data
+
 class CityDetail extends Component {
   constructor(props){
     super(props)
