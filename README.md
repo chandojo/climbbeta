@@ -1,3 +1,7 @@
+# Climb Beta
+https://climbbeta.herokuapp.com is a video aggregator improving users’ experience when planning which climbs to do next before going
+on their next climbing trip. Videos come from YouTube and Vimeo.
+
 ## Getting Started
 
 Climbbeta runs in a Python 3.6.3 virtual environment. NodeJS is used to run the Javascript environment. Pip is used to manage Python packages and npm for Javascript packages. You can set up environment before or after installing the project repo. Install virtualenv, NodeJS, pip, and npm.
