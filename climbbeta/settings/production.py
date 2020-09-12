@@ -7,7 +7,7 @@ from climbbeta.aws.conf import *
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['climbbeta.herokuapp.com', '.herokuapp.com', 'www.vplusbeta.com', 'vplusbeta.com']
+ALLOWED_HOSTS = ['localhost','climbbeta.herokuapp.com', '.herokuapp.com']
 
 
 # Database

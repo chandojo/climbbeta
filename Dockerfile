@@ -1,12 +1,16 @@
 FROM python:3.6.3
+
 ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE 1
 
 # Create directory, install requirements, and copy source code
-RUN mkdir /climbbeta
-WORKDIR /climbbeta
-COPY requirements.txt /climbbeta/
+RUN mkdir /app
+WORKDIR /app
+
+# Install dependencies
+COPY requirements.txt /app/
 RUN pip install -r requirements.txt
-COPY . /climbbeta/
+COPY . /app/
 
 # Setting up some environment variables
 ENV CLIMB_BETA_SECRET_KEY CLIMB_BETA_SECRET_KEY
@@ -18,12 +22,7 @@ ENV VIMEO_CLIENT_SECRET VIMEO_CLIENT_SECRET
 # Build production image
 ENV AWS_ACCESS_KEY_ID AWS_ACCESS_KEY_ID
 ENV AWS_SECRET_ACCESS_KEY AWS_SECRET_ACCESS_KEY
-ENV RDS_DB_NAME RDS_DB_NAME
-ENV RDS_USERNAME RDS_USERNAME
-ENV RDS_PASSWORD RDS_PASSWORD
-ENV RDS_HOSTNAME RDS_HOSTNAME
-ENV RDS_PORT RDS_PORT
 ENV EMAIL_HOST_USER EMAIL_HOST_USER
 ENV EMAIL_HOST_PASSWORD EMAIL_HOST_PASSWORD
 
-CMD ["gunicorn", "--bind", ":8000", "--workers", "3", "climbbeta.wsgi:application"]
+CMD gunicorn hello_django.wsgi:application --bind 0.0.0.0:$PORT
