@@ -1,4 +1,4 @@
-FROM python:3.6.3
+FROM python:3.6
 
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -25,4 +25,7 @@ ENV AWS_SECRET_ACCESS_KEY AWS_SECRET_ACCESS_KEY
 ENV EMAIL_HOST_USER EMAIL_HOST_USER
 ENV EMAIL_HOST_PASSWORD EMAIL_HOST_PASSWORD
 
-CMD gunicorn hello_django.wsgi:application --bind 0.0.0.0:$PORT
+RUN adduser --disabled-password --gecos '' accessuser
+USER accessuser
+
+CMD gunicorn climbbeta.wsgi:application --bind 0.0.0.0:$PORT
