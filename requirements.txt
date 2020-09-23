@@ -34,11 +34,11 @@ numpy==1.15.4
 oauthlib==2.1.0
 packaging==18.0
 Pillow==6.2.0
-pip-autoremove==0.9.1
-pip-check-reqs==2.0.3
 pyasn1==0.4.4
 pyasn1-modules==0.2.2
 pycurl==7.43.0.2
+psycopg2==2.7.6.1
+psycopg2-binary==2.7.6.1
 pyparsing==2.3.1
 python-dateutil==2.7.5
 pytz==2018.4
