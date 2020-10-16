@@ -5,10 +5,11 @@ python:
 services:
   - docker
 
-before_install:
-#  - sudo apt-get install python3-dev
+install: pip install -r requirements.txt
+
+script:
+  - python manage.py test
   - docker build -t web:latest .
   - docker run -d --name climbbeta -e "PORT=8765" -p 8007:8765 web:latest
   - docker ps -a
-
-install: skip
+  
