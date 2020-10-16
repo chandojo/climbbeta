@@ -6,7 +6,6 @@ node_modules
 .idea/
 areas/media
 .vscode
-
 .DS_Store
 bin/
 include/
