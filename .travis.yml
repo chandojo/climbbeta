@@ -5,11 +5,28 @@ python:
 services:
   - docker
 
-install: pip install -r requirements.txt
+install: skip
 
-script:
-  - python manage.py test
-  - docker build -t web:latest .
-  - docker run -d --name climbbeta -e "PORT=8765" -p 8007:8765 web:latest
-  - docker ps -a
-  
+stages:
+  - test
+  - build
+  - name: deploy
+    if: branch = master
+
+jobs:
+  include:
+    - stage: test
+      script:
+        - docker-compose up -d
+        - docker exec climbbeta-web-container python manage.py test
+        - docker-compose down
+    - stage: build
+      script:
+        - docker build -t registry.heroku.com/develop-climbbeta/web .
+    - stage: deploy
+      script:
+        - curl https://cli-assets.heroku.com/install.sh | sh
+        - heroku login
+        - heroku container:login
+        - docker push registry.heroku.com/develop-climbbeta/web
+        - heroku container:release -a develop-climbbeta web
