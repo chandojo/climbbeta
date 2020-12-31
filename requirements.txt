@@ -35,7 +35,7 @@ packaging==18.0
 Pillow==6.2.0
 pyasn1==0.4.4
 pyasn1-modules==0.2.2
-pycurl==7.43.0.2
+pycurl
 psycopg2==2.7.6.1
 psycopg2-binary==2.7.6.1
 pyparsing==2.3.1
@@ -52,7 +52,7 @@ six==1.10.0
 text-unidecode==1.2
 timezonefinder==3.3.0
 tinydb==3.12.1
-tuspy==0.2.1
+tuspy
 uritemplate==3.0.0
 urllib3==1.24.2
 whitenoise==4.1.2
