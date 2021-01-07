@@ -8,10 +8,19 @@
         - POSTGRES_USER=postgres
         - POSTGRES_PASSWORD=postgres
     web:
+      container_name: climbbeta-web-container
       build: .
-      command: python manage.py runserver 0.0.0.0:8000
+      environment:
+        - CLIMB_BETA_SECRET_KEY=${CLIMB_BETA_SECRET_KEY}
+        - GOOGLE_API_KEY=GOOGLE_API_KEY
+        - VIMEO_ACCESS_TOKEN=VIMEO_ACCESS_TOKEN
+        - VIMEO_CLIENT_ID=VIMEO_CLIENT_ID
+        - VIMEO_CLIENT_SECRET=VIMEO_CLIENT_SECRET
+        - AWS_ACCESS_KEY_ID=AWS_ACCESS_KEY_ID
+        - AWS_SECRET_ACCESS_KEY=AWS_SECRET_ACCESS_KEY
+      command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
       volumes:
-        - .:/climbbeta
+        - .:/app/
       ports:
         - "8000:8000"
       depends_on:

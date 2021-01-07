@@ -45,16 +45,16 @@ class VideoFieldLengthTestCase(TestCase):
         self.assertEquals(max_length, 200)
 
 
-class VideosContentTestCase(TestCase):
-
-    @classmethod
-    def setUpTestData(cls):
-        VideoFactory.create()
-        cls.video = Videos.objects.get(name=Climbing_Name_Random.climb_name)
-
-    @classmethod
-    def tearDownClass(cls):
-        super().tearDownClass()
-
-    def test_url_is_http(self):
-        self.assertIn('https://', self.video.thumbnail)
+#class VideosContentTestCase(TestCase):
+#
+#    @classmethod
+#    def setUpTestData(cls):
+#        VideoFactory.create()
+#        cls.video = Videos.objects.get(name=Climbing_Name_Random.climb_name)
+#
+#    @classmethod
+#    def tearDownClass(cls):
+#        super().tearDownClass()
+#
+#    def test_url_is_http(self):
+#        self.assertIn('https://', self.video.thumbnail)
