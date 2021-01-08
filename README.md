@@ -8,30 +8,7 @@ Climbbeta runs in a Python 3.6.3 virtual environment. NodeJS is used to run the 
 
 This project uses Django and React frameworks.
 
-## *OLD* Setting Up
-
-1. In your local working directory, clone or download repository
-
-  `git clone https://github.com/chandojo/climbbeta.git`
-
-2. Create virtual environment **(must be in Python 3)**
-
-  `python3 -m venv climbbeta-env`
-
-3. Activate virtual environment
-
-  `source ./climbbeta-env/bin/activate`
-
-4. CD into project directory and install requirements
-
-  `pip install -r requirements.txt`
-
-5. Install npm packages
-
-  `npm install`
-
-
-## *NEW* Setting up local environment with Docker
+##  Setting up local environment with Docker
 1. In your local working directory, clone or download repository
 
     `git clone https://github.com/chandojo/climbbeta.git`
