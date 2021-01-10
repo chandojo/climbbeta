@@ -16,6 +16,7 @@ jobs:
   include:
     - stage: test
       script:
+        - echo "Testing build"
         - docker-compose up -d
         - docker exec climbbeta-web-container python manage.py test
         - docker-compose down
