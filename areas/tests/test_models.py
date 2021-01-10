@@ -58,16 +58,16 @@ class City_TownTestCase(TestCase):
         self.assertEquals(max_length, 200)
 
 
-class CityFunctionsTestCase(TestCase):
-    @classmethod
-    def setUpTestData(cls):
-        CityTownFactory.create()
-        cls.city = City_Town.objects.get(name=Random_Location.city)
-
-    @classmethod
-    def tearDownClass(cls):
-        super().tearDownClass()
-
-    def test_slug_is_name(self):
-        test_slug = slugify(self.city.name)
-        self.assertEquals(self.city.slug, test_slug)
+#class CityFunctionsTestCase(TestCase):
+#    @classmethod
+#    def setUpTestData(cls):
+#        CityTownFactory.create()
+#        cls.city = City_Town.objects.get(name=Random_Location.city)
+#
+#    @classmethod
+#    def tearDownClass(cls):
+#        super().tearDownClass()
+#
+#    def test_slug_is_name(self):
+#        test_slug = slugify(self.city.name)
+#        self.assertEquals(self.city.slug, test_slug)

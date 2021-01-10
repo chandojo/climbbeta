@@ -8,30 +8,16 @@ Climbbeta runs in a Python 3.6.3 virtual environment. NodeJS is used to run the 
 
 This project uses Django and React frameworks.
 
-## Setting Up
-
+##  Setting up local environment with Docker
 1. In your local working directory, clone or download repository
 
-  `git clone https://github.com/chandojo/climbbeta.git`
+    `git clone https://github.com/chandojo/climbbeta.git`
 
-2. Create virtual environment **(must be in Python 3)**
-
-  `python3 -m venv climbbeta-environ`
-
-3. Activate virtual environment
-
-  `source ./climbbeta-environ/bin/activate`
-
-4. CD into project directory and install requirements
-
-  `pip install -r requirements.txt`
-
-5. Install npm packages
-
-  `npm install`
-
-
-### Running the local environment
+2. `cd` into directory
+3. Start Docker application
+4. Build Docker image and run
+    
+    `docker-compose up -d`
 
 In project repository, run `python manage.py runserver`.  While initially setting up your environment, you may need to create a build a main.js file for React.  To do this, run `npm run dev`.
 
@@ -48,7 +34,6 @@ This project heavily relies on environment variables. For the website to fully r
 - VIMEO_CLIENT_SECRET
 
 ## Making changes
-
 ### Making changes to React
 
 When making changes to React, make sure to update the main.js file.  If you do *not* update the main.js file, your changes will *not* render.     
@@ -58,10 +43,6 @@ When making changes to React, make sure to update the main.js file.  If you do *
 
 - Update for production.
   `npm run build`
-
-### Local and Production Settings
-
-Create environment variable called 'PRODUCTION_SETTING' and set as 'true' for production setting and 'false' for local setting.
 
 ## Testing
 To run tests for Django:
