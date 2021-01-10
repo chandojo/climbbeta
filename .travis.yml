@@ -9,7 +9,8 @@ install: skip
 
 stages:
   - test
-  - deploy-to-heroku
+  - name: deploy-to-heroku
+    if: branch = master
 
 jobs:
   include:
@@ -22,5 +23,4 @@ jobs:
       deploy:
         provider: heroku
         api_key: ${HEROKU_API_TOKEN}
-        app:
-          master: develop-climbbeta
+        app: develop-climbbeta
