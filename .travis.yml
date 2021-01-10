@@ -9,9 +9,7 @@ install: skip
 
 stages:
   - test
-  - build
-  - name: deploy
-    if: branch = master
+  - deploy-to-heroku
 
 jobs:
   include:
@@ -20,13 +18,9 @@ jobs:
         - docker-compose up -d
         - docker exec climbbeta-web-container python manage.py test
         - docker-compose down
-    - stage: build
-      script:
-        - docker build -t registry.heroku.com/develop-climbbeta/web .
-    - stage: deploy
-      script:
-        - curl https://cli-assets.heroku.com/install.sh | sh
-        - heroku login
-        - heroku container:login
-        - docker push registry.heroku.com/develop-climbbeta/web
-        - heroku container:release -a develop-climbbeta web
+    - stage: deploy-to-heroku
+      deploy:
+        provider: heroku
+        api_key: ${HEROKU_API_TOKEN}
+        app:
+          master: develop-climbbeta
