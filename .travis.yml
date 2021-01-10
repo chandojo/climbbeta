@@ -1,0 +1,26 @@
+language: python
+python:
+  - '3.6'
+
+services:
+  - docker
+
+install: skip
+
+stages:
+  - test
+  - name: deploy-to-heroku
+    if: branch = master
+
+jobs:
+  include:
+    - stage: test
+      script:
+        - docker-compose up -d
+        - docker exec climbbeta-web-container python manage.py test
+        - docker-compose down
+    - stage: deploy-to-heroku
+      deploy:
+        provider: heroku
+        api_key: ${HEROKU_API_TOKEN}
+        app: develop-climbbeta
