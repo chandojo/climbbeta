@@ -46,7 +46,7 @@ PyYAML==4.2b1
 requests==2.20.1
 requests-cache==0.4.13
 requests-oauthlib==1.0.0
-rsa==3.4.2
+rsa==4.7
 s3transfer
 six==1.10.0
 text-unidecode==1.2
