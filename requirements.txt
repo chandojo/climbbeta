@@ -32,7 +32,7 @@ nodeenv==1.3.3
 numpy==1.15.4
 oauthlib==2.1.0
 packaging==18.0
-Pillow==6.2.0
+Pillow==8.2.0
 pyasn1==0.4.4
 pyasn1-modules==0.2.2
 pycurl
